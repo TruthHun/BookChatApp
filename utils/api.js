@@ -1,6 +1,5 @@
-// const config = require('../config.js')
-const config = import('../config.js')
-const util = require('./util.js')
+import config from '../config.js'
+import util from "./util.js"
 
 const keyCategories = 'categories';
 const keyCacheExpire = 'categories-expire';

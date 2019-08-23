@@ -3,7 +3,7 @@
 let host = 'https://www.bookstack.cn/bookchat'
 
 // 是否是调试模式。如果是生产环境，请设置为false
-const debug = false
+const debug = true
 
 // 横幅图片比例，宽高比，小数或者比例(后期从后端接口获取)
 const bannerRatio = 825/315
@@ -46,5 +46,4 @@ module.exports = {
   debug,
   bannerRatio,
   about,
-  bannerAdUnitId,
 }

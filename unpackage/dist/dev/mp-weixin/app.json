@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/me/me",
+    "pages/cate/cate",
+    "pages/bookshelf/bookshelf"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "BookChat",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home-selected.png"
+      },
+      {
+        "pagePath": "pages/cate/cate",
+        "text": "分类",
+        "iconPath": "static/images/cate.png",
+        "selectedIconPath": "static/images/cate-selected.png"
+      },
+      {
+        "pagePath": "pages/bookshelf/bookshelf",
+        "text": "书架",
+        "iconPath": "static/images/collect.png",
+        "selectedIconPath": "static/images/collect-selected.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "static/images/me.png",
+        "selectedIconPath": "static/images/me-selected.png"
+      }
+    ],
+    "backgroundColor": "#ffffff",
+    "color": "#888888",
+    "selectedColor": "#1aad19"
+  },
+  "usingComponents": {}
+}

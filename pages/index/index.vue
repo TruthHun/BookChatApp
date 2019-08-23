@@ -1,52 +1,102 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
+	<view class="base-padding">
+		<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval" :duration="duration">
+			<swiper-item v-for="banner in banners" :key="banner.id">
+				<navigator :url="banner.link">
+					<image :src="banner.image" class="radius-basic" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
+				</navigator>
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 
 <script>
+	import api from '../../utils/api.js'
+	import util from '../../utils/util.js'
+	import config from '../../config.js'
+	
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				indicatorDots: true,
+				autoplay: true,
+				interval: 3000,
+				duration: 500,
+				bannerWidth: '100%',
+				bannerHeight: 'auto',
+				banners: [],
+				categoryBooks: [],
+				recommendBooks: []
 			}
 		},
 		onLoad() {
-
+			let info = uni.getSystemInfoSync()
+			let width = info.windowWidth * info.pixelRatio - 60; // 转成 rpx，因为小程序边距设置为 30rpx
+			let height = width / config.bannerRatio
+			this.bannerWidth =  width / info.pixelRatio + "px",
+			this.bannerHeight = height / info.pixelRatio + "px"
+			if(config.debug) console.log(this.bannerWidth, this.bannerHeight)
+			this.loadData()
 		},
 		methods: {
-
+			loadData() {
+			    let that = this
+			    let cids = []
+			    let categories = []
+			    api.getCategories().then(function(res) {
+			      if (res.length > 0) {
+			        categories = res.filter(function(category) {
+			          let b = category.pid == 0 && category.cnt > 0
+			          if (b) cids.push(category.id)
+			          return b
+			        })
+			      }
+			      if (config.debug) console.log(res, categories, cids)
+			    }).catch(function(e) {
+			      console.log("api.getCategories()", e)
+			    }).finally(function() {
+			      let banners = []
+			      let recommendBooks = []
+			      let bookLists = []
+			      Promise.all([util.request(config.api.banners), util.request(config.api.bookLists, {
+			        page: 1,
+			        size: 12,
+			        sort: 'latest-recommend'
+			      }), util.request(config.api.bookListsByCids, {
+			        page: 1,
+			        size: 5,
+			        sort: 'new',
+			        cids: cids.join(',')
+			      })]).then(function([resBanners, resRecommendBooks, resBookLists]) {
+			        if (config.debug) console.log(cids, resBanners, resRecommendBooks, resBookLists)
+			        if (resBanners.data && resBanners.data.banners) banners = resBanners.data.banners
+			        if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks = resRecommendBooks.data.books
+			        if (resBookLists.data && resBookLists.data.books) {
+			          categories = categories.map(function(category) {
+			            let book = resBookLists.data.books[category.id]
+			            if (book != undefined && book.length > 0) {
+			              category.books = book
+			            } else {
+			              category.books = []
+			            }
+			            return category
+			          })
+			        }
+			      }).catch(function(e) {
+			        console.log(e)
+			      }).finally(function() {
+			        that.banners = banners
+					that.categoryBooks = categories
+					that.recommendBooks = recommendBooks
+					that.showSearch= true
+			        uni.hideLoading()
+			      })
+			    })
+			  },
 		}
 	}
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200upx;
-		width: 200upx;
-		margin-top: 200upx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50upx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36upx;
-		color: #8f8f94;
-	}
+	@import url("index.css");
 </style>

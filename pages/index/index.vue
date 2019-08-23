@@ -1,13 +1,36 @@
 <template>
-	<view class="base-padding">
-		<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval" :duration="duration">
-			<swiper-item v-for="banner in banners" :key="banner.id">
-				<navigator :url="banner.link">
-					<image :src="banner.image" class="radius-basic" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
-				</navigator>
-			</swiper-item>
-		</swiper>
+	<view class="root">
+		<view class="base-padding base-margin-bottom">
+			<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval" :duration="duration">
+				<swiper-item v-for="banner in banners" :key="banner.id">
+					<navigator :url="banner.link">
+						<image :src="banner.image" class="radius-basic" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
+					</navigator>
+				</swiper-item>
+			</swiper>
+		</view>
+		
+		<!--  推荐  -->
+		<view v-if="recommendBooks.length>0" class='panel base-padding recommend base-margin-bottom'>
+		  <view class='panel-heading'>
+		    <view class='panel-title font-lv1 strong'>最新推荐</view>
+		  </view>
+		  <view class='panel-body'>
+		    <scroll-view scroll-x>
+		      <view class='hor'>
+		        <block v-for="book in recommendBooks" :key='book.book_id'>
+		          <navigator :url="'/pages/intro/intro?id='+ book.book_id">
+		            <image lazy-load="true" class='box-shadow cover' :src='book.cover' />
+		            <view class='font-lv3 ellipsis-2row mgt-15rpx'>{{book.book_name}}</view>
+		          </navigator>
+		        </block>
+		      </view>
+		    </scroll-view>
+		  </view>
+		</view>
 	</view>
+	
+	
 </template>
 
 <script>
@@ -36,6 +59,9 @@
 			this.bannerWidth =  width / info.pixelRatio + "px",
 			this.bannerHeight = height / info.pixelRatio + "px"
 			if(config.debug) console.log(this.bannerWidth, this.bannerHeight)
+			
+			util.loading('玩命加载中...')
+			
 			this.loadData()
 		},
 		methods: {

@@ -1,7 +1,9 @@
 
 // ============================ //
 /* bookchat global css */
-
+.root,page,.page{
+	line-height: 160%;
+}
 .text-center {
   text-align: center;
 }
@@ -9,23 +11,23 @@
 /*  字体大小规范  */
 
 .font-lv1 {
-  font-size: 36upx !important;
+  font-size: 18px !important;
 }
 
 .font-lv2 {
-  font-size: 32upx !important;
+  font-size: 16px !important;
 }
 
 .font-lv3 {
-  font-size: 28upx !important;
+  font-size: 14px !important;
 }
 
 .font-lv4 {
-  font-size: 24upx !important;
+  font-size: 12px !important;
 }
 
 .font-lv5 {
-  font-size: 20upx !important;
+  font-size: 10px !important;
 }
 
 /*  margin   */

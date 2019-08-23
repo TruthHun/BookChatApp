@@ -1,2 +1,92 @@
 @import url("../../static/css/bookchat.css");
 
+
+.recommend .panel-body {
+  display: flex;
+  word-break: break-all;
+  justify-content: space-between;
+}
+
+.panel-body navigator {
+  width: 30%;
+}
+
+.cate-data .row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40upx;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 40upx;
+}
+
+.cate-data .row:last-of-type {
+  border-bottom: 0px;
+  padding-bottom: 0upx;
+  margin-bottom: 0upx;
+}
+
+.cate-data .row navigator {
+  width: 100%;
+}
+
+.cate-data .row .row-left {
+  width: 25%;
+}
+
+.cate-data .row .row-right {
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 32upx;
+}
+
+.cate-data .row .info {
+  margin: 20upx 0upx 20upx;
+}
+
+.cate-data .info image {
+  width: 24upx;
+  height: 24upx;
+  position: relative;
+  top: 8upx;
+  float: left;
+  margin-right: 6upx;
+}
+
+.cate-data .desc {
+  text-indent: 2em;
+}
+
+.cate-data .info {
+  display: flex;
+  flex-direction: row;
+  font-size: 24upx;
+  color: #b2b2b2;
+}
+
+.cate-data .info view {
+  flex: 1;
+}
+
+.cate-data {
+  margin-top: 10upx;
+}
+
+.hor {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.hor navigator {
+  width: 170upx;
+  margin: 3upx 15upx;
+}
+
+.hor navigator:first-of-type {
+  margin-left: 3upx;
+}
+
+.hor navigator image {
+  width: 170upx;
+  height: 223.4upx;
+}

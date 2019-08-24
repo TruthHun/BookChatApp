@@ -9,8 +9,8 @@
 		  name='wd' 
 		  type='text'
 	   />
-	  <image @click='clear' v-if='showClear' class='clear' src='../static/images/clear.png'></image>
-	  <image @click='search' src='../static/images/search.png'></image>
+	  <image @click='clear' v-if='showClear' class='clear' src='/static/images/clear.png'></image>
+	  <image @click='search' src='/static/images/search.png'></image>
 	</form>
 </template>
 

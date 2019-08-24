@@ -3,7 +3,7 @@
 		
 		<list-book :wd="java"/>
 		
-		<view w-if="showSearch" class="base-padding mgb-30upx">
+		<view v-if="showSearch" class="base-padding mgb-30upx">
 			<search />
 		</view>
 		

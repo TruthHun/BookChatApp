@@ -13,6 +13,7 @@
 
 <script>
 	export default {
+		name: 'scrollBook',
 		data() {
 			return {
 				
@@ -26,10 +27,8 @@
 				}
 			},
 			width: {
-				type: String,// px
-				default: function(e){
-					return '690upx'
-				}
+				type: String,
+				default: '690upx'
 			}
 		}
 	}

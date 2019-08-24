@@ -32,8 +32,6 @@ const relativeTime = t => {
   let timestamp = toTimestamp(t)
   let n = now()
   let diff = n - timestamp
-
-
   let minute = 60;
   let hour = minute * 60;
   let day = hour * 24;
@@ -174,6 +172,16 @@ const toastSuccess = (content) => {
   })
 }
 
+const fixView = (view) => {
+  if (view > 10000) {
+    view = (view / 10000).toFixed(1) + "w"
+  } else if (view > 1000) {
+    view = (view / 1000).toFixed(1) + "k"
+  }
+  return view
+}
+
+
 function isEmail(email) {
   let pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
   return pattern.test(email);
@@ -294,4 +302,5 @@ module.exports = {
   isEmail,
   getSysInfo,
   setSysInfo,
+  fixView,
 }

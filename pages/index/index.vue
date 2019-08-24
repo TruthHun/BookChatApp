@@ -1,5 +1,8 @@
 <template>
 	<view class="root">
+		
+		<list-book :wd="java"/>
+		
 		<view w-if="showSearch" class="base-padding mgb-30upx">
 			<search />
 		</view>
@@ -23,6 +26,21 @@
 			<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
 		  </view>
 		</view>
+		
+		<!--  各种分类的书籍的展示  -->
+		<block v-for="category in categoryBooks" :key="category.id">
+		  <view v-if="category.books" class='panel base-padding base-margin-bottom cate-data'>
+			<view class='panel-heading'>
+			  <view class='panel-title font-lv1 strong'>{{category.title}}
+				<navigator :url="'/pages/list/list?tab=new&cid='+category.id" class='pull-right color-link font-lv3'>更多</navigator>
+			  </view>
+			</view>
+			<view class='panel-body'>
+			  <list-book :books="category.books" />
+			</view>
+		  </view>
+		</block>		
+		
 	</view>
 	
 	
@@ -31,6 +49,7 @@
 <script>
 	import scrollBook from '../../components/scrollBook.vue'
 	import search from '../../components/search.vue'
+	import listBook from '../../components/listBook.vue'
 	
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
@@ -120,6 +139,7 @@
 		components:{
 			scrollBook,
 			search,
+			listBook,
 		}
 	}
 </script>

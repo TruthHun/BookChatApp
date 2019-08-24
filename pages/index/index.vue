@@ -1,5 +1,9 @@
 <template>
 	<view class="root">
+		<view w-if="showSearch" class="base-padding mgb-30upx">
+			<search />
+		</view>
+		
 		<view class="base-padding base-margin-bottom">
 			<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval" :duration="duration">
 				<swiper-item v-for="banner in banners" :key="banner.id">
@@ -26,6 +30,8 @@
 
 <script>
 	import scrollBook from '../../components/scrollBook.vue'
+	import search from '../../components/search.vue'
+	
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
 	import config from '../../config.js'
@@ -39,6 +45,7 @@
 				duration: 500,
 				bannerWidth: '100%',
 				bannerHeight: 'auto',
+				showSearch: false, // 内容完全加载完成之后再显示搜索框
 				banners: [],
 				categoryBooks: [],
 				recommendBooks: []
@@ -111,7 +118,8 @@
 			  },
 		},
 		components:{
-			scrollBook
+			scrollBook,
+			search,
 		}
 	}
 </script>

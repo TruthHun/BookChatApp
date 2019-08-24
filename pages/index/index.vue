@@ -16,16 +16,7 @@
 		    <view class='panel-title font-lv1 strong'>最新推荐</view>
 		  </view>
 		  <view class='panel-body'>
-		    <scroll-view scroll-x>
-		      <view class='hor'>
-		        <block v-for="book in recommendBooks" :key='book.book_id'>
-		          <navigator :url="'/pages/intro/intro?id='+ book.book_id">
-		            <image lazy-load="true" class='box-shadow cover' :src='book.cover' />
-		            <view class='font-lv3 ellipsis-2row mgt-15rpx'>{{book.book_name}}</view>
-		          </navigator>
-		        </block>
-		      </view>
-		    </scroll-view>
+			<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
 		  </view>
 		</view>
 	</view>
@@ -34,6 +25,7 @@
 </template>
 
 <script>
+	import scrollBook from '../../components/scrollBook.vue'
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
 	import config from '../../config.js'
@@ -53,11 +45,9 @@
 			}
 		},
 		onLoad() {
-			let info = uni.getSystemInfoSync()
-			let width = info.windowWidth * info.pixelRatio - 60; // 转成 rpx，因为小程序边距设置为 30rpx
-			let height = width / config.bannerRatio
-			this.bannerWidth =  width / info.pixelRatio + "px",
-			this.bannerHeight = height / info.pixelRatio + "px"
+			let info = util.getSysInfo()
+			this.bannerWidth =  info.bannerWidth + "px",
+			this.bannerHeight = info.bannerHeight + "px"
 			if(config.debug) console.log(this.bannerWidth, this.bannerHeight)
 			
 			util.loading('玩命加载中...')
@@ -119,6 +109,9 @@
 			      })
 			    })
 			  },
+		},
+		components:{
+			scrollBook
 		}
 	}
 </script>

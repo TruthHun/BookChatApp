@@ -1,6 +1,7 @@
 const keyUser = 'user'
 const keyMenu = 'menu'
 const keyReaderSetting = 'reader-setting'
+const keyScreenInfo = 'screen-info'
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -254,6 +255,23 @@ const getReaderSetting = () => {
   return val
 }
 
+const setSysInfo = (obj) => {
+	uni.setStorageSync(keyScreenInfo, JSON.stringify(obj))
+}
+
+const getSysInfo = () => {
+	let val = uni.getStorageSync(keyScreenInfo)
+	if (!val) {
+	  return {
+	    windowWidth: 0,
+	    windowHeight: 0,
+		baseWidth: 0,
+		baseHeight: 0,
+	  }
+	}
+	return JSON.parse(val)
+}
+
 module.exports = {
   formatTime,
   now,
@@ -274,4 +292,6 @@ module.exports = {
   setReaderSetting,
   getReaderSetting,
   isEmail,
+  getSysInfo,
+  setSysInfo,
 }

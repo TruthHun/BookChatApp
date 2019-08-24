@@ -1,0 +1,57 @@
+<template>
+	<scroll-view scroll-x>
+	  <view class='hor' :style="'width:'+width">
+		<block v-for="book in books" :key='book.book_id'>
+		  <navigator :url="'/pages/intro/intro?id='+ book.book_id">
+			<image lazy-load="true" class='box-shadow cover' :src='book.cover' />
+			<view class='font-lv3 ellipsis-2row mgt-15upx'>{{book.book_name}}</view>
+		  </navigator>
+		</block>
+	  </view>
+	</scroll-view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			};
+		},
+		props:{
+			books: {
+				type: Array,
+				default: function(e){
+					return []
+				}
+			},
+			width: {
+				type: String,// px
+				default: function(e){
+					return '690upx'
+				}
+			}
+		}
+	}
+</script>
+
+<style>
+.hor {
+  display: flex;
+  flex-direction: row;
+}
+
+.hor navigator {
+  width: 170upx;
+  margin: 3upx 15upx;
+}
+
+.hor navigator:first-of-type {
+  margin-left: 3upx;
+}
+
+.hor navigator image {
+  width: 170upx;
+  height: 223.4upx;
+}
+</style>

@@ -83,7 +83,6 @@
   color: #00acff;
   border: 1upx solid #ddd;
   border-bottom: 0;
-  height: 79upx;
   background-color: #fff;
   border-top-left-radius: 6upx;
   border-top-right-radius: 6upx;

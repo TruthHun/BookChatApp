@@ -38,6 +38,38 @@
             "style" : {}
         }
         
+        ,{
+            "path" : "pages/reg/reg",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/read/read",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/ucenter/ucenter",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/comment/comment",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/intro/intro",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/bookmarks/bookmarks",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/menu/menu",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/search/search",
+            "style" : {}
+        }
     ],
 	"tabBar": {
 	    "list": [

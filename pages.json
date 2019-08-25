@@ -38,6 +38,7 @@
         },{
             "path" : "pages/bookshelf/bookshelf",
             "style" : {
+				"enablePullDownRefresh": true,
 				"navigationBarTitleText":"书架"
 			}
         }

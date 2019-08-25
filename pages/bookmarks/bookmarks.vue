@@ -43,8 +43,8 @@
 					identify: that.identify
 				}).then(function(res) {
 					if (config.debug) console.log("config.api.bookmark", res)
-					if (res && res.bookmarks) {
-					  bookmarks = res.bookmarks
+					if (res.data && res.data.bookmarks) {
+					  bookmarks = res.data.bookmarks
 					}
 				}).catch(function(e) {
 					console.log("request bookmarks error", e)

@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<view class='base-padding row' bindtap='userLoginEvent'>
+		<view class='base-padding row' @click='userLoginEvent'>
 		  <view class='user'>
 		    <image :src='user.avatar'></image>
 		    <view class='username font-lv2'>{{user.nickname}}</view>

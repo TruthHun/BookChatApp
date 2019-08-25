@@ -3,6 +3,9 @@
 	import util from 'utils/util.js'
 	
 	export default {
+		globalData: {  
+			bookshelfChanged: false 
+		},
 		onLaunch: function() {
 			let info = uni.getSystemInfoSync()
 			// 转成 upx，因为两边边距设置为 30upx

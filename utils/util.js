@@ -109,6 +109,7 @@ Promise.prototype.finally = function(callback) {
 
 const redirect = (uriWithDecode) => {
   // 带问号的，用 redirectTo，不带问号的，用switchTab
+  // 因为 tab 页面不需要带参数
   if (uriWithDecode.indexOf("?") > -1) {
     uni.redirectTo({
       url: uriWithDecode,

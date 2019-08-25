@@ -1,6 +1,17 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-	
+		{
+			"path" : "pages/login/login",
+			"style" : {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "BookChat"
+			}
+		},
 		{
 			"path" : "pages/list/list",
 			"style" : {}
@@ -12,11 +23,6 @@
 			}
 		},
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "BookChat"
-			}
-		},{
             "path" : "pages/me/me",
             "style" : {
 				"navigationBarTitleText":"我的"
@@ -31,6 +37,7 @@
             "path" : "pages/notfound/notfound",
             "style" : {}
         }
+        
     ],
 	"tabBar": {
 	    "list": [
@@ -66,8 +73,8 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "BookChat",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
 	},
 	"condition" : { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)

@@ -26,7 +26,7 @@
 			<button class='btn-submit btn-block' :loading='loading' form-type='submit'> 码上登录 </button>
 		</view>
 		<view class='row'>
-			<button @click="toReg" class='btn-auth btn-block'> 注册账号 </button>
+			<button @click="toReg" class='btn-login btn-block'> 注册账号 </button>
 		</view>
 	</form>
 	</view>

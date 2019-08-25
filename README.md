@@ -20,4 +20,4 @@ BookChat uniapp 版
 - [ ] 书籍介绍页 intro
 - [ ] 404页 notfound
 - [x] 登录页 login
-- [ ] 注册页 register
+- [x] 注册页 register(`待验证`)

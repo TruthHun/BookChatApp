@@ -1,6 +1,10 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path" : "pages/reg/reg",
+			"style" : {}
+		},
+		{
 			"path" : "pages/login/login",
 			"style" : {
 				"navigationBarTitleText": "登录"
@@ -38,10 +42,7 @@
             "style" : {}
         }
         
-        ,{
-            "path" : "pages/reg/reg",
-            "style" : {}
-        }
+        
         ,{
             "path" : "pages/read/read",
             "style" : {}
@@ -105,7 +106,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "BookChat",
-		"navigationBarBackgroundColor": "#FFFFFF",
+		"navigationBarBackgroundColor": "#EFEFEF",
 		"backgroundColor": "#FFFFFF"
 	},
 	"condition" : { //模式配置，仅开发期间生效

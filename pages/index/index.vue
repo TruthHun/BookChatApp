@@ -75,13 +75,11 @@
 			this.bannerWidth =  info.bannerWidth + "px",
 			this.bannerHeight = info.bannerHeight + "px"
 			if(config.debug) console.log(this.bannerWidth, this.bannerHeight)
-			
-			util.loading('玩命加载中...')
-			
 			this.loadData()
 		},
 		methods: {
 			loadData() {
+				util.loading('玩命加载中...')
 			    let that = this
 			    let cids = []
 			    let categories = []
@@ -145,5 +143,4 @@
 </script>
 
 <style>
-	@import url("index.css");
 </style>

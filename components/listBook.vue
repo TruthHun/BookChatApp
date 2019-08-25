@@ -9,15 +9,15 @@
 	        <view class='font-lv1 mgb-15upx ellipsis-1row'>{{book.book_name}}</view>
 	        <view class='font-lv4 color-light info'>
 	          <view class='col'>
-	            <image src='../static/images/eye.png'></image>
+	            <image src='/static/images/eye.png'></image>
 	            <text>{{book.view}} 阅读</text>
 	          </view>
 	          <view class="col">
-	            <image src='../static/images/document.png'></image>
+	            <image src='/static/images/document.png'></image>
 	            <text>{{book.cnt_doc}} 章节</text>
 	          </view>
 	          <view class='col'>
-	            <image src='../static/images/clock.png'></image>
+	            <image src='/static/images/clock.png'></image>
 	            <text>{{book.created_at}}</text>
 	          </view>
 	        </view>

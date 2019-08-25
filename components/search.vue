@@ -55,7 +55,7 @@
 				this.searchWd = wd
 			},
 			search(e){
-				uni.redirectTo({
+				uni.navigateTo({
 					url: this.target+"?wd="+this.searchWd
 				});
 			}
@@ -64,27 +64,27 @@
 </script>
 
 <style>
-	form.search {
+	form {
 	  margin-top: 30upx;
 	  position: relative;
 	  display: block;
 	}
 	
-	form.search input {
+	form input {
 	  box-sizing: border-box;
 	  width: 100%;
 	  background-color: #f8f8f8;
 	  line-height: 90upx;
 	  height: 90upx;
 	  display: block;
-	  font-size: 30upx;
+	  font-size: 16px;
 	  border-radius: 10upx;
 	  text-align: left;
 	  padding: 0 130upx 0 26upx;
 	}
 	
 	
-	form.search image {
+	form image {
 	  position: absolute;
 	  top: 0upx;
 	  right: 0upx;
@@ -95,22 +95,9 @@
 	  z-index: 99;
 	}
 	
-	form.search image.clear {
+	form image.clear {
 	  right: 60upx;
 	  z-index: 88;
-	}
-	
-	
-	@media (min-width:700px) {
-	  form.search input {
-	    line-height: 70upx;
-	    height: 70upx;
-	  }
-	
-	  form.search image {
-	    height: 70upx;
-	    width: 70upx;
-	  }
 	}
 
 </style>

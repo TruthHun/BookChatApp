@@ -14,7 +14,7 @@ BookChat uniapp 版
 - [ ] 个人主页 me
 - [ ] 目录页 menu
 - [ ] 书籍阅读页 read
-- [ ] 书签页 bookmarks
+- [x] 书签页 bookmarks(`待验证`)
 - [ ] 搜索结果页 search
 - [ ] 内容点评页 comment
 - [ ] 书籍介绍页 intro

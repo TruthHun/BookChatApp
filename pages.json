@@ -20,7 +20,9 @@
 		},
 		{
 			"path" : "pages/list/list",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText":"书籍列表"
+			}
 		},
 		{
 			"path" : "pages/cate/cate",
@@ -63,7 +65,9 @@
         }
         ,{
             "path" : "pages/bookmarks/bookmarks",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText":"我的书签"
+			}
         }
         ,{
             "path" : "pages/menu/menu",

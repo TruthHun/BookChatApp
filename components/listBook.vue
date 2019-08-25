@@ -1,6 +1,6 @@
 <template>
-	<view v-if="showBooks.length>0" class='book-list'>
-	  <block v-for="book in showBooks" :key='book.book_id'>
+	<view class='book-list'>
+	  <block v-for="(book,index) in showBooks" :key='index'>
 	    <view class='row'>
 	      <navigator :url="'/pages/intro/intro?id='+book.book_id" class='col-3'>
 	        <image lazy-load='true' class='box-shadow cover' :src='book.cover' />
@@ -43,13 +43,23 @@
 			}
 		},
 		created() {
-			let books = []
-			for (let book of this.books) {
-				book['view'] = util.fixView(book.view)
-				book['created_at'] = util.relativeTime(book.created_at)
-				books.push(book)
+			this.showBooks = this.formateBooks(this.books)
+		},
+		watch:{
+			books:function(){
+				this.showBooks = this.formateBooks(this.books)
 			}
-			this.showBooks = books
+		},
+		methods:{
+			formateBooks(books) {
+				let data = []
+				for (let book of this.books) {
+					book['view'] = util.fixView(book.view)
+					book['created_at'] = util.relativeTime(book.created_at)
+					data.push(book)
+				}
+				return data
+			}
 		}
 	}
 </script>

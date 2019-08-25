@@ -1,8 +1,5 @@
 <template>
 	<view class="root">
-		
-		<list-book :wd="java"/>
-		
 		<view v-if="showSearch" class="base-padding mgb-30upx">
 			<search />
 		</view>

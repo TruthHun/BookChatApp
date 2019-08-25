@@ -6,7 +6,7 @@
 			<block v-for="tab in tabs" :key="tab.value">
 			  <view @click='tabClick' 
 			  class="col font-lv2" 
-			  :class="tab.value == curTab ? 'active '+ tab.class : tab.class" 
+			  :class="tab.value == curTab ? 'active ' : ''" 
 			  :data-title="tab.title" 
 			  :data-value="tab.value">{{tab.title}}</view>
 			</block>
@@ -49,7 +49,6 @@
 			}
 		},
 		created() {
-			console.log('created')
 			if (this.tabGridLen==0) this.gridLeft = 8
 			this.gridRight = 12 - this.gridLeft
 			this.curTab = this.activeTab

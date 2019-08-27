@@ -17,7 +17,7 @@ BookChat uniapp 版
 - [x] 书签页 bookmarks(`待验证`)
 - [ ] 搜索结果页 search
 - [x] 内容点评页 comment(`待验证`)
-- [ ] 书籍介绍页 intro
 - [x] 404页 notfound
 - [x] 登录页 login
 - [x] 注册页 register(`待验证`)
+- [x] 书籍介绍页 intro(`待验证`)

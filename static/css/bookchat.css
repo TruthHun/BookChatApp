@@ -266,3 +266,63 @@ navigator:hover, navigator:active {
 .cover {
   border-radius: 6upx;
 }
+
+.score {
+  height: 14.5px;
+  padding-left: 170upx;
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAClCAYAAAAUAAAYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5xJREFUeNrs3T9rFEEcxvG7qEQIglaCICKkin9AUEtBKxU7wS61VlYivgWj70TtNFj5BqzE7qxEWwsxKIoYn4UtluFmbm8nczvzm+/BjxyuDwNzu3uXD0+46f7LC5PA45Hm+WTYw1x2LRDc0jzTXB+wqMlsaLPutz8fDFjYZHYauAz3NBvt83XNnyUWNpn1nVm3OsHmsb3EomazzZnVXKMPNcc0xzUnNKc0Rzv/77fms+Z7O3vt9b1eU7bZrNN68l5zcolX4ofmsuZXTdnmMvyi2dR86Bmcac62P6vKrnVubpc0bxYE32nOab45N8YqsvPeDfcD4SOav4HjprPuu+H5BTt9LXDMfNbdLPfT678Fx6vKupt1o/O8+R3pkOaJ5/iktqx7z/qp+aq5q/nY+fczmheaK03Gs7D5rLtZdzSvA6/Ebc2u55j57HQB0TzW7AzkjiKzny6+2hlKNE8juMNcFqKBaIZndRlCNBBNgmx7ZkE0fbLtZkE0EA1EM17WuQwhGogGooFoss6296y52cNO+J6HLJoPaFdbsvA9zGerIxrPh85eWYgGooFoDiQbuAxp0UA0EVmdWbRo+ma1WbRoIBqIZtzsnHdDWjQQDUQD0WSbde5ZS2UhmtqJJtSEiVkXooFoIJre2VATJmZdiKZ2ogk1YSb8oVMvDeUPnSAaiCaPJkzMuhANRAPRQDQpsqEmTMy6EI11oolpwkA0EA1EcyDZmCYMRAPR+LMxTZjqiCamCQPRQDQQzehNGIgGooFoIJpVZ2OaMBBN7USTqgkD0UA0EE3vbKomDERTO9GkasKYJJpUTRiIBqKBaEZvwkA0EA1EA9GkyKZqwkA01olmrCYMRAPRQDR9LkO+0QmiKbAJUyTRjNWEgWggGohm9CYMRAPRQDQQzZDsWE0YiMYC0eTYhIFoIJrKiCbHJgxEY4FocmzCZEs0OTZhIBqIpjKiybEJA9FANBANROPL5tiEgWhKIJoSmzAQDURjjGhKbMJANCUQTYlNmNGIpsQmDEQD0RgjmhKbMBANRAPR1Es0JTZhIJpciMZaEwaigWgKJBprTRiIJheisdaESUo01powEA1EUyDRWGvCQDQQDURjm2isNWEgmlURzWw2q4pZIBqIJkOiCVyGJpkFolkV0ejMMvel28mIRptl7ku3IRqIpjCimfNuaJpZIBqIBqIpm2ice5Z5ZonJupvVkMRu4JW4qXnrOWY++1+AAQBw9BJSCTeN9wAAAABJRU5ErkJggg==) no-repeat 0upx 4upx;
+  font-size: 15px;
+  color: #999;
+  margin-bottom: 15upx;
+}
+
+.score text {
+  position: relative;
+  top: -2px;
+}
+
+/*  评分  */
+
+.score-50, .score-49, .score-48, .score-47 {
+  background-position-y: 0px;
+}
+
+.score-45, .score-46, .score-44, .score-43 {
+  background-position-y: -15px;
+}
+
+.score-40, .score-41, .score-42, .score-39, .score-28, .score-37 {
+  background-position-y: -30px;
+}
+
+.score-35, .score-36, .score-34, .score-33 {
+  background-position-y: -45px;
+}
+
+.score-30, .score-32, .score-31, .score-29, .score-28, .score-27 {
+  background-position-y: -60px;
+}
+
+.score-25, .score-26, .score-24, .score-23 {
+  background-position-y: -75px;
+}
+
+.score-20, .score-21, .score-22, .score-19, .score-18, .score-17 {
+  background-position-y: -90px;
+}
+
+.score-15, .score-16, .score-14, .score-13 {
+  background-position-y: -105px;
+}
+
+.score-10, .score-11, .score-12, .score-9, .score-8, .score-7 {
+  background-position-y: -239upx;
+}
+
+.score-5, .score-6, .score-4, .score-3 {
+  background-position-y: -269upx;
+}
+
+.score-2, .score-1, .score-0 {
+  background-position-y: -299upx;
+}

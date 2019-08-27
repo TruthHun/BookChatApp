@@ -1,6 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/notfound/notfound",
+			"style": {
+				"navigationBarTitleText": "未找到对象"
+			}
+		},
+		{
 			"path": "pages/comment/comment",
 			"style": {
 				"navigationBarTitleText": "点评"
@@ -48,12 +54,6 @@
 				"navigationBarTitleText": "书架"
 			}
 		}, {
-			"path": "pages/notfound/notfound",
-			"style": {}
-		}
-
-
-		, {
 			"path": "pages/read/read",
 			"style": {}
 		}, {

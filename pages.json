@@ -1,6 +1,11 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "BookChat"
+			}
+		}, {
 			"path": "pages/notfound/notfound",
 			"style": {
 				"navigationBarTitleText": "未找到对象"
@@ -10,12 +15,6 @@
 			"path": "pages/comment/comment",
 			"style": {
 				"navigationBarTitleText": "点评"
-			}
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "BookChat"
 			}
 		},
 		{
@@ -72,7 +71,9 @@
 			"style": {}
 		}, {
 			"path": "pages/search/search",
-			"style": {}
+			"style": {
+				"navigationBarTitleText":"搜索"
+			}
 		}
 	],
 	"tabBar": {

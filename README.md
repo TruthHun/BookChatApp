@@ -15,7 +15,7 @@ BookChat uniapp 版
 - [ ] 目录页 menu
 - [ ] 书籍阅读页 read
 - [x] 书签页 bookmarks(`待验证`)
-- [ ] 搜索结果页 search
+- [x] 搜索结果页 search(`待验证`)
 - [x] 内容点评页 comment(`待验证`)
 - [x] 404页 notfound
 - [x] 登录页 login

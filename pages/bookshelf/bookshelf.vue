@@ -8,7 +8,7 @@
 				  <view>我们给了你一个华丽的书架</view>
 				  <view>你却没有一本书籍...</view>
 				  <view class='action'>
-					<search />
+					<search target="/pages/search/search"/>
 				  </view>
 				</view>
 				<view v-if="!token">

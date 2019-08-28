@@ -1,7 +1,7 @@
 <template>
 	<view class="root">
 		<view v-if="showSearch" class="base-padding mgb-30upx">
-			<search />
+			<search target="/pages/search/search"/>
 		</view>
 		
 		<view class="base-padding base-margin-bottom">
@@ -26,7 +26,7 @@
 		
 		<!--  各种分类的书籍的展示  -->
 		<block v-for="category in categoryBooks" :key="category.id">
-		  <view v-if="category.books" class='panel base-padding base-margin-bottom cate-data'>
+		  <view v-if="category.books" class='panel base-padding base-margin-bottom'>
 			<view class='panel-heading'>
 			  <view class='panel-title font-lv1 strong'>{{category.title}}
 				<navigator :url="'/pages/list/list?tab=new&cid='+category.id" class='pull-right color-link font-lv3'>更多</navigator>

@@ -11,7 +11,7 @@ BookChat uniapp 版
 - [x] 书架页 bookshelf(`待验证`)
 - [x] 列表页 list
 - [ ] 用户中心页 ucenter
-- [ ] 个人主页 me
+- [x] 个人主页 me(`待验证`)
 - [ ] 目录页 menu
 - [ ] 书籍阅读页 read
 - [x] 书签页 bookmarks(`待验证`)

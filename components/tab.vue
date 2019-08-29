@@ -49,7 +49,7 @@
 			}
 		},
 		created() {
-			if (this.tabGridLen==0) this.gridLeft = 8
+			this.gridLeft = this.tabGridLen==0 ? 8 : this.tabGridLen
 			this.gridRight = 12 - this.gridLeft
 			this.curTab = this.activeTab
 			if (this.tabs.length > 0 && this.curTab == '') {

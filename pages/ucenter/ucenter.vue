@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class='base-padding row user'>
+		<view class='base-padding row user mgt-15upx'>
 			<image :src='user.avatar'></image>
 			<view class='username font-lv2'>{{user.nickname}}</view>
 			<view class='color-grey font-lv3'>{{user.intro}}</view>
@@ -138,12 +138,14 @@
 					uni.redirectTo({
 						url: '/pages/notfound/notfound',
 					})
+				}).finally(function() {
+					that.setTitile()
 				})
 			} else {
 				that.user = user
 				that.getLists()
+				that.setTitile()
 			}
-			that.setTitile()
 		},
 		onReachBottom: function() {
 			switch (this.tabValue) {
@@ -222,7 +224,9 @@
 							break;
 					}
 				}
-				this.title = title
+				uni.setNavigationBarTitle({
+					title: this.user.nickname + " · " + title
+				})
 			},
 			_getBooks: function(api) {
 				let that = this

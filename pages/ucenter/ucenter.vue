@@ -7,7 +7,7 @@
 		</view>
 
 		<view class='pdb-30upx pdt-30upx'>
-			<tab @click="tabClick" :tabs="tabs" :tabGridLen="6" :activeTab="tabValue" />
+			<tab @tabClick="tabClick" :tabs="tabs" :tabGridLen="10" :activeTab="tabValue" />
 		</view>
 
 
@@ -57,19 +57,22 @@
 				</block>
 			</view>
 		</view>
+
+		<loading :loading="page > 0" :tips="tips" />
+
 	</view>
 </template>
 
 <script>
 	import tab from '../../components/tab.vue'
 	import loading from '../../components/loading.vue'
-	
+
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
-	
+
 	export default {
-		components:{
+		components: {
 			tab,
 			loading,
 		},
@@ -98,23 +101,21 @@
 		},
 		onLoad: function(options) {
 			if (config.debug) console.log("params", options)
-			if (options.tab) this.setData({
-				tabValue: options.tab
-			})
+			if (options.tab) this.tabValue = options.tab
 
 			let user = util.getUser() || {
 				uid: 0
 			}
 
 			let uid = options.uid || 0
-
+			let that = this
 
 			if (!uid && user != undefined && user.uid != undefined) {
 				uid = user.uid
 			}
 
 			if (!uid) {
-				wx.redirectTo({
+				uni.redirectTo({
 					url: '/pages/notfound/notfound',
 				})
 				return
@@ -130,27 +131,22 @@
 					} else {
 						user.uid = uid
 					}
-					this.setData({
-						user: user
-					})
-					this.getLists()
+					that.user = user
+					that.getLists()
 				}).catch((e) => {
 					console.log(e)
-					wx.navigateTo({
+					uni.redirectTo({
 						url: '/pages/notfound/notfound',
 					})
 				})
 			} else {
-				this.setData({
-					user: user
-				})
-				this.getLists()
+				that.user = user
+				that.getLists()
 			}
-
-			this.setTitile()
+			that.setTitile()
 		},
 		onReachBottom: function() {
-			switch (this.data.tabValue) {
+			switch (this.tabValue) {
 				case 'release':
 					this.getRelease();
 					break;
@@ -170,18 +166,16 @@
 			tabClick: function(e) {
 				if (config.debug) console.log("tabClick", e)
 
-				if (e.detail.value == this.data.tabValue) return;
+				if (e.value == this.tabValue) return;
 
-				this.setData({
-					lists: [],
-					page: 1,
-					tabValue: e.detail.value,
-				})
+				this.lists = []
+				this.page = 1
+				this.tabValue = e.value
 				this.getLists()
-				this.setTitile(e.target.dataset.title)
+				this.setTitile(e.title)
 			},
 			getLists: function() {
-				switch (this.data.tabValue) {
+				switch (this.tabValue) {
 					case 'release':
 						this.getRelease()
 						break;
@@ -210,7 +204,7 @@
 			},
 			setTitile(title) {
 				if (title == undefined || title == '') {
-					switch (this.data.tabValue) {
+					switch (this.tabValue) {
 						case 'release':
 							title = '发布';
 							break;
@@ -228,63 +222,63 @@
 							break;
 					}
 				}
-				this.setData({
-					title: title
-				})
+				this.title = title
 			},
 			_getBooks: function(api) {
 				let that = this
-				let page = that.data.page
+				let page = that.page
 
 				if (page == 0) return
 
 				let lists = []
 
-				if (page > 1) lists = that.data.lists
+				if (page > 1) lists = that.lists
 
 				util.request(api, {
-					uid: that.data.user.uid,
+					uid: that.user.uid,
 					page: page,
 				}).then((res) => {
 					if (config.debug) console.log(api, res)
 
 					if (res.data && res.data.books && res.data.books.length > 0) {
-						if (res.data.books.length < that.data.size) {
+						if (res.data.books.length < that.size) {
 							page = 0
 						} else {
 							page++
 						}
-						lists = lists.concat(res.data.books)
+						if (config.debug) console.log("res.data.books", res.data.books)
+						lists = lists.concat(res.data.books.map(function(book) {
+							book.created_at = util.relativeTime(book.created_at)
+							book.view = util.fixView(book.view)
+							return book
+						}))
 					} else {
 						page = 0
 					}
 
-					that.setData({
-						lists: lists,
-						page: page
-					})
-
+					that.lists = lists
+					that.page = page
 				}).catch((e) => {
 					console.log(e)
 				})
 			},
 			_getFansOrFollow: function(api) {
 				let that = this
-				let page = that.data.page
+				let page = that.page
 
 				if (page == 0) return
 
 				let lists = []
 
-				if (page > 1) lists = that.data.lists
+				if (page > 1) lists = that.lists
 
 				util.request(api, {
-					uid: that.data.user.uid,
+					uid: that.user.uid,
 					page: page,
 				}).then((res) => {
 					if (config.debug) console.log(api, res)
 					if (res.data && res.data.users && res.data.users.length > 0) {
-						if (res.data.users.length < that.data.size) {
+						if (res.data.users.length < that.size) {
 							page = 0
 						} else {
 							page++
@@ -293,18 +287,10 @@
 					} else {
 						page = 0
 					}
-
-					that.setData({
-						lists: lists,
-						page: page
-					})
+					that.lists = lists
+					that.page = page
 				}).catch((e) => {
 					console.log(e)
-				})
-			},
-			onShareAppMessage: function() {
-				wx.showShareMenu({
-					withShareTicket: true
 				})
 			}
 		}
@@ -422,6 +408,10 @@
 		height: 24upx;
 		position: relative;
 		top: 4upx;
+	}
+
+	.info text {
+		margin-left: 4px;
 	}
 
 	.icon {

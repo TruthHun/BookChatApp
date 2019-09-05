@@ -13,7 +13,7 @@
 					</view>
 					<navigator :url='"/pages/ucenter/ucenter?uid="+book.uid' class='mgt-15upx font-lv3 color-semi'>
 						<image class='icon-avatar' src='../../static/images/me.png'></image>
-						<text> {{book.user}}</text>
+						<text>{{book.user}}</text>
 					</navigator>
 					<view class='progress mgt-30upx'>
 						<view class='font-lv3 color-grey'>阅读进度
@@ -602,4 +602,5 @@
 		width: 170upx;
 		height: 223.5upx;
 	}
+	.info navigator text{margin-left: 4px;}
 </style>

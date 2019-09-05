@@ -2,7 +2,7 @@
 	<view class='menu'>
 		<!-- 搜索 -->
 		<view class='search base-padding mgb-30upx'>
-			<search :wd="wd" @search="search" @clear="clear" />
+			<search :wd="wd" @search="search"/>
 		</view>
 
 		<!-- 书籍信息 -->
@@ -23,7 +23,7 @@
 						<text v-if="book.is_read != 1" class='pull-right'>{{book.cnt_readed}} / {{book.cnt_doc}} 章节</text>
 					</view>
 				</view>
-				<view wx:if="{{book.is_read != 1}}" class='progress mgt-30upx'>
+				<view v-if="book.is_read != 1" class='progress mgt-30upx'>
 					<view class='font-lv3 color-grey'>阅读进度
 						<view class='pull-right'>{{book.percent}}%
 							<text v-if="!token">(未登录)</text>
@@ -64,6 +64,10 @@
 			search,
 			menuTree,
 		},
+		created() {
+			console.log(this.book)
+			console.log(this.menu)
+		},
 		props: {
 			book: {
 				type: Object,
@@ -81,10 +85,14 @@
 			},
 			currentDocId: {
 				type: Number,
-				Value: 0,
+				value: 0,
 			},
 			token: {
 				type: String
+			},
+			pid: {
+				type: Number,
+				value: 0
 			}
 		},
 		methods: {

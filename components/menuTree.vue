@@ -15,6 +15,7 @@
 </template>
 
 <script>
+	import menuTree from './menuTree.vue'
 	export default {
 		name: 'menuTree',
 		data() {
@@ -24,6 +25,9 @@
 		},
 		components:{
 			menuTree
+		},
+		created() {
+			console.log("menuTree", this.pid, this.menu)
 		},
 		props: {
 			menu: {

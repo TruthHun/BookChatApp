@@ -8,7 +8,7 @@ BookChat uniapp 版
 
 - [ ] 目录页 menu
 - [ ] 书籍阅读页 read
-- [ ] 用户中心页 ucenter
+- [x] 用户中心页 ucenter
 - [x] 首页 index
 - [x] 分类页 cate
 - [x] 书架页 bookshelf(`待验证`)

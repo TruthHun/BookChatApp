@@ -1,5 +1,5 @@
 <template>
-	<block>
+	<view>
 		<view v-for="(item, index) in menu" :key="index" class='ul menu-tree font-lv3 color-semi'>
 			<view class="li">
 				<view :class="['navigator', item.readed ? 'readed':'', currentDocId == item.id ? 'color-active':'']"
@@ -7,10 +7,12 @@
 				 :data-identify='item.book_id+"/"+item.id'>
 					<text>{{item.title}}</text>
 				</view>
-				<menu-tree @itemClick="menuClick" :currentDocId="currentDocId" :menu="item.children" />
+				<block v-if="item.children">
+					<menu-tree @itemClick="menuClick" :currentDocId="currentDocId" :menu="item.children" />
+				</block>
 			</view>
 		</view>
-	</block>
+	</view>
 </template>
 
 <script>

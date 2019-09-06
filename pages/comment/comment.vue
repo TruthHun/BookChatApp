@@ -45,12 +45,11 @@
 			let identify = options.identify || ''
 		
 			if (!identify) {
-			  wx.redirectTo({
+			  uni.redirectTo({
 				url: '/page/notfound/notfound',
 			  })
 			  return
 			}
-			
 			this.identify = identify
 			this.beforeScore = score
 			this.score = score
@@ -60,34 +59,31 @@
 				
 				if (config.debug) console.log("submit", e)
 				
-				return
-				
 			    let that = this
+				
+				let obj = e.detail.value
+				
 			    if (that.loading) return
 				
-			    if (that.score == 0) {
+			    if (obj.score == 0) {
 					util.toastError('忘了打个分？')
 					return
 			    }
 				
-			    if (that.content.length < 5 || that.content.length > 256) {
+			    if (obj.content.length < 5 || obj.content.length > 256) {
 			      util.toastError('点评内容需要 5 ~ 256 个字符')
 			      return
 			    }
 			
 			    that.loading = true
 			
-			    util.request(config.api.comment, {
-			      content: that.content,
-			      identify: that.identify,
-			      score: that.score
-			    }, 'POST').then(function(res) {
+			    util.request(config.api.comment, obj, 'POST').then(function(res) {
 			      if (config.debug) console.log(config.api.comment, res)
 			      uni.showToast({
 			        title: '发表点评成功',
 			      })
 			      let to = setTimeout(function(){
-					  clearTimeout(to)
+					clearTimeout(to)
 			        uni.navigateBack({
 			          delta: 1,
 			        })

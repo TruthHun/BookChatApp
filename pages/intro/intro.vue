@@ -78,7 +78,7 @@
 							<view class='row comment-info'>
 								<navigator :url='"/pages/ucenter/ucenter?uid="+comment.uid' class='col font-lv2 color-semi'>{{comment.nickname}}</navigator>
 								<view class='col'>
-									<view class='score score-50'></view>
+									<view :class='"score score-"+myScore'></view>
 								</view>
 								<view class='col'>
 									<view class='pull-right font-lv4 color-grey'>{{comment.created_at}}</view>
@@ -120,7 +120,7 @@
 					<image src='../../static/images/star.png'></image>
 					<text>收藏</text>
 				</view>
-				<view :data-url='"/pages/comment/comment?identify={{book.book_id}}&score="+myScore' @click='comment' class='col item-min'>
+				<view :data-url='"/pages/comment/comment?identify="+book.book_id+"&score="+myScore' @click='comment' class='col item-min'>
 					<image src='../../static/images/comment.png'></image>
 					<text>点评</text>
 				</view>
@@ -259,7 +259,7 @@
 					})
 					that.comments = comments
 					that.page = comments.length >= that.size ? (that.page + 1) : 0
-					that.myScore = myScore
+					that.myScore = myScore * 10
 				})
 			},
 			comment: function(e) {
@@ -319,15 +319,13 @@
 					} else {
 						book.is_star = true
 					}
-					that.setData({
-						book: book
-					})
+					that.book = book
 					uni.showToast({
 						title: book.is_star ? '收藏书籍成功' : '移除收藏成功',
 					})
 					getApp().globalData.bookshelfChanged = true
 				}).catch(function(e) {
-					util.toastError(e.data.message || e.errMsg)
+					util.toastError(e.message || e.errMsg)
 				})
 			},
 
@@ -602,5 +600,8 @@
 		width: 170upx;
 		height: 223.5upx;
 	}
-	.info navigator text{margin-left: 4px;}
+
+	.info navigator text {
+		margin-left: 4px;
+	}
 </style>

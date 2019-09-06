@@ -14,10 +14,10 @@ BookChat uniapp 版
 - [x] 书架页 bookshelf(`待验证`)
 - [x] 列表页 list
 - [x] 个人主页 me(`待验证`)
-- [x] 书签页 bookmarks(`待验证`)
+- [x] 书签页 bookmarks(删除，`待验证`)
 - [x] 搜索结果页 search(`待验证`)
-- [x] 内容点评页 comment(`待验证`)
+- [x] 内容点评页 comment(左上角返回有问题，`待验证`)
 - [x] 404页 notfound
-- [x] 登录页 login
+- [x] 登录页 login(`待验证`)
 - [x] 注册页 register(`待验证`)
 - [x] 书籍介绍页 intro(`待验证`)

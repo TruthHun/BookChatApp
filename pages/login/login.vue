@@ -90,7 +90,9 @@
 					util.setUser(user)
 					util.toastSuccess('登录成功')
 					setTimeout(function() {
-						util.redirect(decodeURIComponent(that.redirect))
+						uni.redirectTo({
+							url:decodeURIComponent(that.redirect)
+						})
 					}, 1500)
 				}).catch((e) => {
 					if (config.debug) console.log(e);

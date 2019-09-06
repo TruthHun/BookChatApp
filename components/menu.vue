@@ -2,7 +2,7 @@
 	<view class='menu'>
 		<!-- 搜索 -->
 		<view class='search base-padding mgb-30upx'>
-			<search :wd="wd" @search="search"/>
+			<search :wd="wd" @clear="clear" @search="search"/>
 		</view>
 
 		<!-- 书籍信息 -->
@@ -13,7 +13,7 @@
 				</navigator>
 			</view>
 			<navigator :url='"/pages/intro/intro?id="+book.book_id' class='book-info col-9'>
-				<view class='book-title font-lv1 ellipsis-1row'>book.book_name</view>
+				<view class='book-title font-lv1 ellipsis-1row'>{{book.book_name}}</view>
 				<view v-if="book.is_read == 1" class='mgt-15upx'>
 					<text class='font-lv3 color-grey'>{{book.cnt_doc}} 章节</text>
 				</view>
@@ -98,20 +98,22 @@
 		methods: {
 			tabClick: function(e) {
 				if (e.target.dataset.tab != this.data.activeTab) {
-					this.triggerEvent('tabClick', e.target.dataset)
+					console.log(e)
+					this.$emit('tabClick', e.target.dataset)
 				}
 			},
 			delBookmark: function(e) {
-				this.triggerEvent('delBookmark', e.target.dateset)
+				console.log(e)
+				this.$emit('delBookmark', e.target.dateset)
 			},
 			search: function(e) {
-				this.triggerEvent('search', e.detail)
+				this.$emit('search', e)
 			},
 			itemClick: function(e) {
-				this.triggerEvent('itemClick', e.detail)
+				this.$emit('itemClick', e)
 			},
-			clear: function(e) {
-				this.triggerEvent('clear')
+			clear: function() {
+				this.$emit('clear')
 			}
 		}
 	}

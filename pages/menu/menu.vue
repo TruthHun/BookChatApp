@@ -1,7 +1,10 @@
 <template>
 	<view>
-		<imenu :book="book" :wd="wd" :menu="menuTree" :token="token" :result="result" @search="search" @itemClick="itemClick"
-		 @tabClick="tabClick" />
+		<imenu :book="book" :wd="wd" :menu="menuTree" :token="token" :result="result" 
+		@search="search" 
+		@itemClick="itemClick"
+		@tabClick="tabClick"
+		@clear="clear"/>
 	</view>
 </template>
 
@@ -94,7 +97,7 @@
 			itemClick: function(e) {
 				if(config.debug) console.log("itemClick", e)
 				uni.navigateTo({
-					url: '/pages/read/read?identify=' + e.detail.identify,
+					url: '/pages/read/read?identify=' + e.identify,
 				})
 			},
 			search: function(e) {
@@ -104,7 +107,7 @@
 				let result = []
 				util.request(config.api.searchDoc, {
 					identify: that.identify,
-					wd: e.detail.wd
+					wd: e.wd
 				}).then(function(res) {
 					if (config.debug) console.log(config.api.searchDoc, res)
 					if (res.data && res.data.result) {
@@ -114,17 +117,16 @@
 					console.log(e)
 				}).finally(function() {
 					that.result = result
-					that.wd = e.detail.wd
+					that.wd = e.wd
 					uni.hideLoading()
 					if (result.length == 0) {
 						util.toastError("没有搜索到结果")
 					}
 				})
 			},
-			clear: function(e) {
-				this.setData({
-					result: []
-				})
+			clear: function() {
+				if(config.debug) console.log("click clear search word")
+				this.result = []
 			}
 		}
 	}

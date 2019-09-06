@@ -40,9 +40,9 @@
 				this.searchWd = this.wd
 			},
 			clear(e) {
-				console.log(e)
 				this.showClear = false
 				this.searchWd = ''
+				this.$emit('clear')
 			},
 			change(e) {
 				let wd = e.detail.value.trim()

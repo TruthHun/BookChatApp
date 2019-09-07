@@ -1,5 +1,6 @@
 <template>
-	<view class='menu'>
+	<view>
+		
 		<!-- 搜索 -->
 		<view class='search base-padding mgb-30upx'>
 			<search :wd="wd" @clear="clear" @search="search"/>
@@ -32,9 +33,6 @@
 					<progress class='mgt-15upx' :percent="book.percent" />
 				</view>
 			</navigator>
-
-
-
 		</view>
 
 		<!-- 书籍目录 -->
@@ -50,8 +48,8 @@
 </template>
 
 <script>
-	import search from './search.vue'
-	import menuTree from './menuTree.vue'
+	import search from '@/components/search.vue'
+	import menuTree from '@/components/menuTree.vue'
 	
 	export default {
 		name: 'menu',

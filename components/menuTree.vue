@@ -16,7 +16,7 @@
 </template>
 
 <script>
-	import menuTree from './menuTree.vue'
+	import menuTree from '@/components/menuTree.vue'
 	export default {
 		name: 'menuTree',
 		data() {

@@ -1,6 +1,6 @@
 <template>
-	<view>
-		<view :class='"bg-theme"+setting.themeIndex' @click='contentClick' style='min-height:100%;'>
+	<view class="page">
+		<view :class='"bg-theme"+setting.themeIndex' @click='contentClick' :style='"min-height:" + (sys.windowHeight) +"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
 				<rich-text :nodes="article.content"></rich-text>
@@ -14,7 +14,7 @@
 			</view>
 		</view>
 
-		<view :class='"drawer drawer-right "+[showMore ? "show":""]' :style='"top:"+top+"px"'>
+		<view :class='"drawer drawer-right "+[showMore ? "show":""]'>
 			<view class='drawer-content'>
 				<view class='more-setting' style='bottom: 70px'>
 					<block v-if="!h5">
@@ -71,8 +71,8 @@
 				</view>
 			</view>
 		</view>
-		
-		<view :class='"footer row font-lv3 "+ [showFooter ? "":"hide"]'>
+
+		<view class='footer row font-lv3'>
 			<view v-if="article.bookmark" class='col' @click='clickBookmark' data-action="cancel">
 				<image src='../../static/images/bookmark-added.png'></image>
 			</view>
@@ -107,11 +107,11 @@
 	import api from '../../utils/api.js'
 	import config from '../../config.js'
 
-	import imenu from '../../components/menuTree.vue'
+	import imenu from '../../components/menu.vue'
 
 	export default {
 		components: {
-			imenu
+			imenu,
 		},
 		data() {
 			return {
@@ -134,10 +134,10 @@
 				screenBrightness: 0,
 				showFooter: true,
 				fontIndexs: ['14px', '16px', '16px', '17px', '18px', '19px', '20px'],
-				top: 0,
 				tips: '',
 				result: [],
 				h5: false,
+				sys: util.getSysInfo(),
 			}
 		},
 		onLoad: function(options) {
@@ -203,13 +203,16 @@
 				that.menuTree = menuTree
 				that.book = book
 				uni.setNavigationBarTitle({
-					title:book.book_name
+					title: book.book_name
 				})
 				if (latestReadId > 0) {
 					identify = book.book_id + "/" + latestReadId
 				} else if (arr.length < 2) {
 					identify = book.book_id + "/" + menuTree[0].id
 				}
+
+				console.log(util.getSysInfo())
+
 				that.getArticle(identify)
 			})
 		},
@@ -255,7 +258,7 @@
 				if (config.debug) console.log('contentClick', e)
 				this.showMenu = false
 				this.showMore = false
-				this.showFooter = this.showMenu == true || this.showMore == true ? this.showFooter : !this.showFooter
+				// this.showFooter = this.showMenu == true || this.showMore == true ? this.showFooter : !this.showFooter
 			},
 			clickMenu: function(e) {
 				this.showMenu = !this.showMenu
@@ -300,15 +303,17 @@
 				this.getArticle(e.identify)
 			},
 			search: function(e) {
+				if(config.debug) console.log("search", e)
+				
 				let that = this
 				let result = []
-
-				if (that.wd == e.detail.wd) return;
+				
+				if (that.wd == e.wd) return;
 
 				util.loading("玩命搜索中...")
 				util.request(config.api.searchDoc, {
 					identify: that.book.book_id,
-					wd: e.detail.wd
+					wd: e.wd
 				}).then(function(res) {
 					if (config.debug) console.log(config.api.searchDoc, res)
 					if (res.data && res.data.result) {
@@ -318,7 +323,7 @@
 					console.log(e)
 				}).finally(function() {
 					that.result = result
-					that.wd = e.detail.wd
+					that.wd = e.wd
 					uni.hideLoading()
 					if (result.length == 0) {
 						util.toastError("没有搜索到结果")
@@ -441,6 +446,11 @@
 <style>
 	@import url('../../static/css/markdown.css');
 
+	.page,
+	page {
+		min-height: 100%;
+	}
+
 	.title {
 		line-height: 1.6;
 		border-bottom: 1px solid #efefef;
@@ -457,18 +467,18 @@
 	/* footer */
 
 	.footer {
-		box-shadow: 0upx 0upx 10upx #efefef;
+		box-shadow: 0 0 5px #efefef;
 		border-top: 1px solid #efefef;
 		position: fixed;
 		height: 48px;
 		line-height: 48px;
-		bottom: 0px;
+		bottom: 0;
 		width: 100%;
 		text-align: center;
 		z-index: 100;
 		box-sizing: border-box;
 		background-color: #fff;
-		transition: bottom 0.2s;
+		/* transition: bottom 0.2s; */
 	}
 
 	.footer.hide {
@@ -489,7 +499,7 @@
 		z-index: 99;
 		height: 100%;
 		overflow-y: scroll;
-		top: 50px;
+		top: 0;
 		transition: all 0.5s;
 		-webkit-overflow-scrolling: touch;
 		background-color: #fff;

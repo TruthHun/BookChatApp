@@ -1,6 +1,9 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/menu/menu",
+			"style": {}
+		},{
 			"path": "pages/read/read",
 			"style": {}
 		}, {
@@ -8,9 +11,6 @@
 			"style": {
 				"navigationBarTitleText": "BookChat"
 			}
-		}, {
-			"path": "pages/menu/menu",
-			"style": {}
 		}, {
 			"path": "pages/notfound/notfound",
 			"style": {

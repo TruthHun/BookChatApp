@@ -8,7 +8,7 @@
 .-strong {
   font-weight: 400;
 }
-
+.-img{max-width: 100%;}
 .markdown-body .-img {
   max-width: 100%;
   box-sizing: border-box;

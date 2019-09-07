@@ -132,7 +132,7 @@
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
 				showFooter: true,
-				fontIndexs: ['30upx', '32upx', '34upx', '36upx', '38upx', '40upx', '42upx'],
+				fontIndexs: ['14px', '16px', '16px', '17px', '18px', '19px', '20px'],
 				title: '',
 				top: 0,
 				tips: '',

@@ -9,30 +9,24 @@
 
 		<view :class='"drawer drawer-left " + [showMenu ? "show":""]' :style='"top:"+top+"px"'>
 			<view class='drawer-content' :style='"padding-bottom: "+top+"px"'>
-				<imenu 
-					:book="book" 
-					:currentDocId="article.id" 
-					:wd="wd" 
-					:menu="menuTree"
-					:result="result" 
-					:tips="tips"
-					@search="search" 
-					@clear="clear"
-					@itemClick="itemClick"
-				/>
+				<imenu :book="book" :currentDocId="article.id" :wd="wd" :menu="menuTree" :result="result" :tips="tips" @search="search"
+				 @clear="clear" @itemClick="itemClick" />
 			</view>
 		</view>
 
 		<view :class='"drawer drawer-right "+[showMore ? "show":""]' :style='"top:"+top+"px"'>
 			<view class='drawer-content'>
-				<view class='more-setting' :style='"bottom: "+top+"px"'>
-					<view class='row setting-tips'>
-						<text class='color-grey font-lv4'>屏幕亮度</text>
-					</view>
-					<view class='row setting-screen setting-item '>
-						<slider min='0' max='1' step='0.1' block-size='18' @change="setBrightnessScreen" :value='screenBrightness'
-						 show-value></slider>
-					</view>
+				<view class='more-setting' style='bottom: 70px'>
+					<block v-if="!h5">
+						<view class='row setting-tips'>
+							<text class='color-grey font-lv4'>屏幕亮度</text>
+						</view>
+						<view class='row setting-screen setting-item '>
+							<slider min='0' max='1' step='0.1' block-size='18' @change="setBrightnessScreen" :value='screenBrightness'
+							 show-value></slider>
+						</view>
+					</block>
+
 					<view class='row setting-tips'>
 						<text class='color-grey font-lv4'>字体大小</text>
 					</view>
@@ -143,6 +137,7 @@
 				top: 0,
 				tips: '',
 				result: [],
+				h5: false,
 			}
 		},
 		onLoad: function(options) {
@@ -154,6 +149,10 @@
 			let arr = String(identify).split("/")
 			let book = {}
 			let menu = []
+
+			// #ifdef H5
+			that.h5 = true
+			// #endif
 
 
 			if (arr.length == 0) {
@@ -405,11 +404,15 @@
 			initReaderSetting: function() {
 				let setting = util.getReaderSetting()
 				let screenBrightness = 0
+
+				// #ifndef H5
 				uni.getScreenBrightness({
 					success: function(res) {
 						screenBrightness = res.value
 					}
 				})
+				// #endif
+
 				this.setting = setting
 				this.defautScreenBrightness = screenBrightness
 				this.screenBrightness = screenBrightness

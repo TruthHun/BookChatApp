@@ -50,6 +50,10 @@
 				}).catch(function(e) {
 					console.log("request bookmarks error", e)
 				}).finally(function() {
+					bookmarks.map(function(item) {
+						item.created_at = util.relativeTime(item.created_at)
+						return item
+					})
 					that.bookmarks = bookmarks
 					that.tips = bookmarks.length > 0 ? '' : ' -- 您暂时还没有书签 -- '
 					uni.hideLoading()
@@ -64,14 +68,14 @@
 					success: function(res) {
 						if (res.confirm) {
 							util.loading("正在删除...")
-							util.request(config.api.bookmark + "?doc_id=" + e.currentTargetset.id, {}, 'DELETE').then(function(res) {
+							util.request(config.api.bookmark + "?doc_id=" + e.currentTarget.dataset.id, {}, 'DELETE').then(function(res) {
 								if (config.debug) console.log(res)
 							}).catch(function(e) {
 								console.log(e)
 							}).finally(function() {
 								let bookmarks = that.bookmarks
 								bookmarks = bookmarks.filter(bookmark => {
-									return bookmark.doc_id != e.currentTargetset.id
+									return bookmark.doc_id != e.currentTarget.dataset.id
 								})
 								that.bookmarks = bookmarks
 								that.tips = bookmarks.length > 0 ? '' : ' -- 您暂时还没有书签 -- '
@@ -86,6 +90,13 @@
 </script>
 
 <style>
+	.recycle image {
+		width: 20upx;
+		height: 20upx;
+		float: right;
+		margin-top: 30upx;
+	}
+
 	.col-11 navigator {
 		color: #353535;
 		white-space: nowrap;

@@ -7,8 +7,8 @@
 			</view>
 		</view>
 
-		<view :class='"drawer drawer-left " + [showMenu ? "show":""]' :style='"top:"+top+"px"'>
-			<view class='drawer-content' :style='"padding-bottom: "+top+"px"'>
+		<view :class='"drawer drawer-left " + [showMenu ? "show":""]'>
+			<view class='drawer-content' style='padding-bottom: 70px'>
 				<imenu :book="book" :currentDocId="article.id" :wd="wd" :menu="menuTree" :result="result" :tips="tips" @search="search"
 				 @clear="clear" @itemClick="itemClick" />
 			</view>
@@ -71,6 +71,7 @@
 				</view>
 			</view>
 		</view>
+		
 		<view :class='"footer row font-lv3 "+ [showFooter ? "":"hide"]'>
 			<view v-if="article.bookmark" class='col' @click='clickBookmark' data-action="cancel">
 				<image src='../../static/images/bookmark-added.png'></image>
@@ -133,7 +134,6 @@
 				screenBrightness: 0,
 				showFooter: true,
 				fontIndexs: ['14px', '16px', '16px', '17px', '18px', '19px', '20px'],
-				title: '',
 				top: 0,
 				tips: '',
 				result: [],
@@ -160,11 +160,6 @@
 					url: '/pages/notfound/notfound',
 				})
 				return
-			}
-
-			if (uni.getSystemInfoSync().windowWidth >= 700) {
-				let fontIndexs = ['22upx', '24upx', '26upx', '28upx', '30upx', '32upx', '34upx']
-				that.fontIndexs = fontIndexs
 			}
 
 			that.initReaderSetting()
@@ -207,8 +202,9 @@
 				that.menuSortIds = util.menuSortIds(menuTree)
 				that.menuTree = menuTree
 				that.book = book
-				that.title = book.book_name
-
+				uni.setNavigationBarTitle({
+					title:book.book_name
+				})
 				if (latestReadId > 0) {
 					identify = book.book_id + "/" + latestReadId
 				} else if (arr.length < 2) {
@@ -239,10 +235,6 @@
 					let message = e.data.message || e.errMsg
 					util.toastError(message)
 				}).finally(function() {
-					if (article.content == '') {
-						article.content = '<div style="color:#888;margin:100px auto;text-align:center;"> -- 本章节内容为空 -- </div>'
-					}
-
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
 
@@ -447,7 +439,7 @@
 </script>
 
 <style>
-	@import url("../../static/css/markdown.css");
+	@import url('../../static/css/markdown.css');
 
 	.title {
 		line-height: 1.6;

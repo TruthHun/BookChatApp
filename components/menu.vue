@@ -65,8 +65,13 @@
 			menuTree,
 		},
 		created() {
-			console.log(this.book)
-			console.log(this.menu)
+			console.log("book", this.book)
+			console.log("menu", this.menu)
+		},
+		onLoad() {
+			console.log("onload")
+			console.log("book", this.book)
+			console.log("menu", this.menu)
 		},
 		props: {
 			book: {

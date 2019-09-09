@@ -3,7 +3,15 @@
 		<view :class='"bg-theme"+setting.themeIndex' @click='contentClick' :style='"min-height:" + (sys.windowHeight) +"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
+				<!-- #ifdef MP -->
 				<rich-text :nodes="article.content"></rich-text>
+				<!-- #endif -->
+				<!-- #ifdef APP-PLUS -->
+				<view v-html="article.content"></view>
+				<!-- #endif -->
+				<!-- #ifdef H5 -->
+				<view v-html="article.content"></view>
+				<!-- #endif -->
 			</view>
 		</view>
 
@@ -138,6 +146,9 @@
 				result: [],
 				h5: false,
 				sys: util.getSysInfo(),
+				webviewStyles: {
+					progress: false
+				}
 			}
 		},
 		onLoad: function(options) {
@@ -241,6 +252,9 @@
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
 
+					article.content = article.content.replace(/\<pre/g, '<div')
+					article.content = article.content.replace(/\/pre\>/g, '/div>')
+
 					that.article = article
 					that.identify = identify
 					that.showMenu = false
@@ -258,6 +272,7 @@
 				if (config.debug) console.log('contentClick', e)
 				this.showMenu = false
 				this.showMore = false
+				console.log(this)
 				// this.showFooter = this.showMenu == true || this.showMore == true ? this.showFooter : !this.showFooter
 			},
 			clickMenu: function(e) {
@@ -303,11 +318,11 @@
 				this.getArticle(e.identify)
 			},
 			search: function(e) {
-				if(config.debug) console.log("search", e)
-				
+				if (config.debug) console.log("search", e)
+
 				let that = this
 				let result = []
-				
+
 				if (that.wd == e.wd) return;
 
 				util.loading("玩命搜索中...")
@@ -444,8 +459,8 @@
 </script>
 
 <style>
-	@import url('../../static/css/markdown.css');
-
+	
+	
 	.page,
 	page {
 		min-height: 100%;

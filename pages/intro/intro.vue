@@ -9,7 +9,7 @@
 					<text class='ellipsis-2row font-lv1'>{{book.book_name}}</text>
 					<view :class='"score score-"+book.score+" mgt-30upx"'>
 						<text>{{book.float_score}} 分</text>
-						<text v-if="book.lang.length>0" class='pull-right'>[ <text class='color-red'>{{book.lang}}</text> ]</text>
+						<text v-if="book.lang" class='pull-right'>[ <text class='color-red'>{{book.lang}}</text> ]</text>
 					</view>
 					<navigator :url='"/pages/ucenter/ucenter?uid="+book.uid' class='mgt-15upx font-lv3 color-semi'>
 						<image class='icon-avatar' src='../../static/images/me.png'></image>
@@ -46,7 +46,7 @@
 
 			<view class='intro font-lv3 color-grey'>
 				<text>{{book.description}}</text>
-				<view v-if="book.author.length>0" class='ellipsis-1row font-lv4'>来源: {{book.author}} - {{book.author_url}}</view>
+				<view v-if="book.author" class='ellipsis-1row font-lv4'>来源: {{book.author}} - {{book.author_url}}</view>
 			</view>
 			<navigator :url='"/pages/menu/menu?identify="+book.book_id' class='menu row'>
 				<view class='col font-lv3'>查看目录</view>
@@ -54,7 +54,7 @@
 			</navigator>
 		</block>
 
-		<view v-if="relatedBooks.length>0" class='panel related-books'>
+		<view v-if="relatedBooks" class='panel related-books'>
 			<view class='panel-heading base-padding'>
 				<view class='panel-title pdt-30upx strong font-lv2'>相关书籍</view>
 			</view>
@@ -69,7 +69,7 @@
 				<view class='panel-title pdt-30upx strong font-lv2'>书友点评</view>
 			</view>
 			<view class='panel-body base-padding'>
-				<block v-if="comments.length>0">
+				<block v-if="comments">
 					<view v-for="(comment, index) in comments" :key="index" class='row comment-list'>
 						<navigator :url='"/pages/ucenter/ucenter?uid="+comment.uid' class='col-2 comment-left'>
 							<image class='img-responsive radius-circle border-basic' :src='comment.avatar'></image>

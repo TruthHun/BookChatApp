@@ -3,15 +3,7 @@
 		<view :class='"bg-theme"+setting.themeIndex' @click='contentClick' :style='"min-height:" + (sys.windowHeight) +"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
-				<!-- #ifdef MP -->
-				<rich-text :nodes="article.content"></rich-text>
-				<!-- #endif -->
-				<!-- #ifdef APP-PLUS -->
-				<view v-html="article.content"></view>
-				<!-- #endif -->
-				<!-- #ifdef H5 -->
-				<view v-html="article.content"></view>
-				<!-- #endif -->
+				<rich-text :nodes="nodes"></rich-text>
 			</view>
 		</view>
 
@@ -126,6 +118,7 @@
 				book: {},
 				article: {},
 				menuSortIds: [],
+				nodes: [],
 				menuTree: [],
 				menuIndex: 0,
 				bookmark: [], //书签
@@ -239,9 +232,12 @@
 			getArticle: function(identify) {
 				let article = {}
 				let that = this
-				util.request(config.api.read, {
-					identify: identify
-				}).then(function(res) {
+				let params = {
+					identify: identify,
+					'from-app':true
+				}
+				
+				util.request(config.api.read, params).then(function(res) {
 					if (res.data && res.data.article) {
 						article = res.data.article
 					}
@@ -251,10 +247,10 @@
 				}).finally(function() {
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
-
-					article.content = article.content.replace(/\<pre/g, '<div')
-					article.content = article.content.replace(/\/pre\>/g, '/div>')
-
+					
+					if (config.debug) console.log("article", JSON.parse(article.content))
+					
+					that.nodes = JSON.parse(article.content) || article.content
 					that.article = article
 					that.identify = identify
 					that.showMenu = false
@@ -272,7 +268,6 @@
 				if (config.debug) console.log('contentClick', e)
 				this.showMenu = false
 				this.showMore = false
-				console.log(this)
 				// this.showFooter = this.showMenu == true || this.showMore == true ? this.showFooter : !this.showFooter
 			},
 			clickMenu: function(e) {
@@ -459,8 +454,6 @@
 </script>
 
 <style>
-	
-	
 	.page,
 	page {
 		min-height: 100%;

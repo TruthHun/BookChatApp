@@ -21,3 +21,8 @@ BookChat uniapp 版
 - [x] 登录页 login(`待验证`)
 - [x] 注册页 register(`待验证`)
 - [x] 书籍介绍页 intro(`待验证`)
+
+## 采坑
+
+- rich-text，先自行生成 node 数组
+- `unLoad`函数，记得加上`hideLoading`，避免上一个请求回退时

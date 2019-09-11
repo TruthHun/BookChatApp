@@ -52,7 +52,7 @@
 	import menuTree from '@/components/menuTree.vue'
 	
 	export default {
-		name: 'menu',
+		name: 'imenu',
 		data() {
 			return {
 

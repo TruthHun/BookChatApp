@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<view :class='"bg-theme"+setting.themeIndex' @click='contentClick' :style='"min-height:" + (sys.windowHeight) +"px"'>
+		<view :class='"bg-theme"+setting.themeIndex' @click='contentClick'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
 				<rich-text :nodes="nodes"></rich-text>
@@ -103,6 +103,8 @@
 </template>
 
 <script>
+	import '../../static/css/markdown.css'
+	
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
 	import config from '../../config.js'
@@ -126,6 +128,7 @@
 				showMore: false,
 				preDisable: false,
 				nextDisable: false,
+				identify: '',
 				wd: '', //搜索关键字
 				setting: {
 					themeIndex: 0,
@@ -133,7 +136,7 @@
 				},
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
-				showFooter: true,
+				// showFooter: true,
 				fontIndexs: ['14px', '16px', '16px', '17px', '18px', '19px', '20px'],
 				tips: '',
 				result: [],
@@ -215,18 +218,22 @@
 					identify = book.book_id + "/" + menuTree[0].id
 				}
 
-				console.log(util.getSysInfo())
+				if (config.debug) console.log("sys info", util.getSysInfo())
 
 				that.getArticle(identify)
 			})
 		},
-		onReachBottom: function() {
-			this.showFooter = true
+		onUnload() {
+			uni.hideLoading()
 		},
 		onShareAppMessage: function() {
 			uni.showShareMenu({
 				withShareTicket: true
 			})
+		},
+		onPullDownRefresh() {
+			this.getArticle(this.identify)
+			uni.stopPullDownRefresh();
 		},
 		methods: {
 			getArticle: function(identify) {
@@ -607,5 +614,9 @@
 
 	.bg-theme4 {
 		background-color: rgb(207, 231, 207) !important;
+	}
+	
+	.cont-box{
+		overflow-y: scroll;
 	}
 </style>

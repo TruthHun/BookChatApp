@@ -1,6 +1,6 @@
 <template>
-	<view class="page">
-		<view :class='"bg-theme"+setting.themeIndex' @click='contentClick'>
+	<view class="page" @click='pageClick'>
+		<view :class='"bg-theme"+setting.themeIndex'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
 				<rich-text :nodes="nodes"></rich-text>
@@ -71,40 +71,42 @@
 				</view>
 			</view>
 		</view>
-
-		<view class='footer row font-lv3'>
-			<view v-if="article.bookmark" class='col' @click='clickBookmark' data-action="cancel">
-				<image src='../../static/images/bookmark-added.png'></image>
-			</view>
-			<view v-else class='col' @click='clickBookmark' data-action="add">
-				<image src='../../static/images/bookmark-add.png'></image>
-			</view>
-			<view class='col' v-if="preDisable">
-				<image src='../../static/images/pre-disable.png'></image>
-			</view>
-			<view class='col' v-else @click='clickPrev'>
-				<image src='../../static/images/pre.png'></image>
-			</view>
-			<view class='col' @click='clickMenu'>
-				<image src='../../static/images/menu.png'></image>
-			</view>
-
-			<view class='col' v-if="nextDisable">
-				<image src='../../static/images/next-disable.png'></image>
-			</view>
-			<view class='col' v-else @click='clickNext'>
-				<image src='../../static/images/next.png'></image>
-			</view>
-			<view class='col' @click='clickMore'>
-				<image src='../../static/images/more.png'></image>
+		<view class="footer" :class='showFooter?"":"hide"'>
+			<view class='row font-lv3'>
+				<view v-if="article.bookmark" class='col' @click='clickBookmark' data-action="cancel">
+					<image src='../../static/images/bookmark-added.png'></image>
+				</view>
+				<view v-else class='col' @click='clickBookmark' data-action="add">
+					<image src='../../static/images/bookmark-add.png'></image>
+				</view>
+				<view class='col' v-if="preDisable">
+					<image src='../../static/images/pre-disable.png'></image>
+				</view>
+				<view class='col' v-else @click='clickPrev'>
+					<image src='../../static/images/pre.png'></image>
+				</view>
+				<view class='col' @click='clickMenu'>
+					<image src='../../static/images/menu.png'></image>
+				</view>
+				<view class='col' v-if="nextDisable">
+					<image src='../../static/images/next-disable.png'></image>
+				</view>
+				<view class='col' v-else @click='clickNext'>
+					<image src='../../static/images/next.png'></image>
+				</view>
+				<view class='col' @click='clickMore'>
+					<image src='../../static/images/more.png'></image>
+				</view>
 			</view>
 		</view>
+
+
 	</view>
 </template>
 
 <script>
 	import '../../static/css/markdown.css'
-	
+
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
 	import config from '../../config.js'
@@ -136,15 +138,14 @@
 				},
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
-				// showFooter: true,
+				scrollTop: 0,
+				showFooter: true,
+				first: true, // 如果是第一次加载，不隐藏自定义的tabBar
 				fontIndexs: ['14px', '16px', '16px', '17px', '18px', '19px', '20px'],
 				tips: '',
 				result: [],
 				h5: false,
 				sys: util.getSysInfo(),
-				webviewStyles: {
-					progress: false
-				}
 			}
 		},
 		onLoad: function(options) {
@@ -223,6 +224,7 @@
 				that.getArticle(identify)
 			})
 		},
+		
 		onUnload() {
 			uni.hideLoading()
 		},
@@ -233,7 +235,9 @@
 		},
 		onPullDownRefresh() {
 			this.getArticle(this.identify)
-			uni.stopPullDownRefresh();
+		},
+		onReachBottom() {
+			this.showFooter = true
 		},
 		methods: {
 			getArticle: function(identify) {
@@ -241,8 +245,10 @@
 				let that = this
 				let params = {
 					identify: identify,
-					'from-app':true
+					'from-app': true
 				}
+				
+				that.first ? that.first = false : that.showFooter = false
 				
 				util.request(config.api.read, params).then(function(res) {
 					if (res.data && res.data.article) {
@@ -254,8 +260,9 @@
 				}).finally(function() {
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
-					
+
 					if (config.debug) console.log("article", JSON.parse(article.content))
+
 					
 					that.nodes = JSON.parse(article.content) || article.content
 					that.article = article
@@ -265,17 +272,23 @@
 					that.nextDisable = nextDisable
 					that.preDisable = preDisable
 					that.menuTree = util.menuTreeReaded(that.menuTree, article.id)
+					
+					// 用于存在下拉刷新的时候
+					uni.stopPullDownRefresh()
+					uni.hideLoading()
+
 					uni.pageScrollTo({
 						scrollTop: 0,
-					})
-					uni.hideLoading()
+						duration: 300
+					});
+					
 				})
 			},
-			contentClick: function(e) {
+			pageClick: function(e) {
 				if (config.debug) console.log('contentClick', e)
 				this.showMenu = false
 				this.showMore = false
-				// this.showFooter = this.showMenu == true || this.showMore == true ? this.showFooter : !this.showFooter
+				this.showFooter = !this.showFooter
 			},
 			clickMenu: function(e) {
 				this.showMenu = !this.showMenu
@@ -488,12 +501,13 @@
 		height: 48px;
 		line-height: 48px;
 		bottom: 0;
+		left: 0;
 		width: 100%;
 		text-align: center;
 		z-index: 100;
 		box-sizing: border-box;
 		background-color: #fff;
-		/* transition: bottom 0.2s; */
+		transition: bottom 0.2s;
 	}
 
 	.footer.hide {
@@ -615,8 +629,8 @@
 	.bg-theme4 {
 		background-color: rgb(207, 231, 207) !important;
 	}
-	
-	.cont-box{
+
+	.cont-box {
 		overflow-y: scroll;
 	}
 </style>

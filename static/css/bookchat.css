@@ -240,8 +240,6 @@ navigator:active {
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
-	height: 1.5em;
-	line-height: 1.5;
 	overflow: hidden;
 }
 
@@ -252,9 +250,9 @@ navigator:active {
 	box-decoration-break: ;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
-	box-orient: vertical;
+	/* box-orient: vertical;
 	height: 3em;
-	line-height: 1.5;
+	line-height: 1.5; */
 	overflow: hidden;
 }
 

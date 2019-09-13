@@ -51,6 +51,7 @@
 			    books: [],
 			    showTips: false,
 			    wd: '',	
+				token: ''
 			}
 		},
 		components:{
@@ -92,6 +93,7 @@
 			    let page = isClearAll ? 1 : that.page
 			    let size = that.size
 				let books = that.books
+				let showTips = false
 			
 			    util.request(config.api.bookshelf, {
 			      page: page,
@@ -110,11 +112,13 @@
 			      }
 			      
 			    }).catch(function(e) {
-			      util.toastError(e.data.message || e.errMsg)
+					if(config.debug) console.log("error", e)
+			      util.toastError(e.message || e.errMsg)
 			    }).finally(function(){
 					that.books = books
 					that.showTips = books.length == 0
 					that.page = page
+					that.token = token
 					if (isClearAll) uni.pageScrollTo({
 					  scrollTop: 0,
 					})

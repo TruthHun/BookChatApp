@@ -1,6 +1,6 @@
 <template>
-	<view class="page" @click='pageClick'>
-		<view :class='"bg-theme"+setting.themeIndex'>
+	<view class="page">
+		<view :class='"bg-theme"+setting.themeIndex' @click='pageClick'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
 				<rich-text :nodes="nodes"></rich-text>
@@ -71,7 +71,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="footer" :class='showFooter?"":"hide"'>
+		<view class="footer">
 			<view class='row font-lv3'>
 				<view v-if="article.bookmark" class='col' @click='clickBookmark' data-action="cancel">
 					<image src='../../static/images/bookmark-added.png'></image>
@@ -139,7 +139,6 @@
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
 				scrollTop: 0,
-				showFooter: true,
 				first: true, // 如果是第一次加载，不隐藏自定义的tabBar
 				fontIndexs: ['14px', '16px', '16px', '17px', '18px', '19px', '20px'],
 				tips: '',
@@ -224,7 +223,6 @@
 				that.getArticle(identify)
 			})
 		},
-		
 		onUnload() {
 			uni.hideLoading()
 		},
@@ -236,9 +234,6 @@
 		onPullDownRefresh() {
 			this.getArticle(this.identify)
 		},
-		onReachBottom() {
-			this.showFooter = true
-		},
 		methods: {
 			getArticle: function(identify) {
 				let article = {}
@@ -247,9 +242,7 @@
 					identify: identify,
 					'from-app': true
 				}
-				
-				that.first ? that.first = false : that.showFooter = false
-				
+
 				util.request(config.api.read, params).then(function(res) {
 					if (res.data && res.data.article) {
 						article = res.data.article
@@ -262,9 +255,19 @@
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
 
 					if (config.debug) console.log("article", JSON.parse(article.content))
+					let nodes = [{
+						"name": "img",
+						"attrs": {
+							"src": "./static/images/loading.png",
+							"style": "display:block;margin:200px auto;"
+						}
+					}]
 
-					
-					that.nodes = JSON.parse(article.content) || article.content
+					// #ifndef APP-PLUS
+					nodes = JSON.parse(article.content) || article.content
+					// #endif
+
+					that.nodes = nodes
 					that.article = article
 					that.identify = identify
 					that.showMenu = false
@@ -272,23 +275,29 @@
 					that.nextDisable = nextDisable
 					that.preDisable = preDisable
 					that.menuTree = util.menuTreeReaded(that.menuTree, article.id)
-					
+
 					// 用于存在下拉刷新的时候
 					uni.stopPullDownRefresh()
 					uni.hideLoading()
 
+					// #ifndef APP-PLUS
 					uni.pageScrollTo({
 						scrollTop: 0,
 						duration: 300
 					});
-					
+					// #endif
+
+					// #ifdef APP-PLUS
+					that.renderContent(JSON.parse(article.content) || article.content)
+					// #endif
+
+
 				})
 			},
 			pageClick: function(e) {
 				if (config.debug) console.log('contentClick', e)
 				this.showMenu = false
 				this.showMore = false
-				this.showFooter = !this.showFooter
 			},
 			clickMenu: function(e) {
 				this.showMenu = !this.showMenu
@@ -303,7 +312,9 @@
 				let idx = that.menuSortIds.indexOf(that.article.id)
 				idx++
 				if (idx < that.menuSortIds.length) {
+					// #ifndef APP-PLUS
 					util.loading('加载下一章节...')
+					// #endif
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -318,7 +329,9 @@
 				let idx = that.menuSortIds.indexOf(that.article.id)
 				idx--
 				if (idx > -1) {
+					// #ifndef APP-PLUS
 					util.loading('加载上一章节...')
+					// #endif
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -394,6 +407,13 @@
 						that._clickBookmark('add')
 					}
 				}
+			},
+			renderContent: function(nodes) {
+				let that = this
+				let t = setTimeout(function() {
+					that.nodes = nodes
+					clearTimeout(t)
+				}, 200)
 			},
 			setFont: function(e) {
 				// 0 ~ 6
@@ -507,7 +527,7 @@
 		z-index: 100;
 		box-sizing: border-box;
 		background-color: #fff;
-		transition: bottom 0.2s;
+		transition: all 0.5s;
 	}
 
 	.footer.hide {

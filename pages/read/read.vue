@@ -253,7 +253,9 @@
 				}).finally(function() {
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
-
+					
+					if (!article.content) article.content="[]"
+					
 					if (config.debug) console.log("article", JSON.parse(article.content))
 					let nodes = [{
 						"name": "img",

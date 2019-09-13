@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class='search base-padding mgb-30upx'>
-			<search @search="search" :focus="focus" :wd="wd" />
+			<search @search="search" :focus="focus" @clear="clear" :wd="wd" />
 		</view>
 
 		<view v-if="showTab" class="mgb-30upx">
@@ -109,9 +109,22 @@
 				this.showTab = true
 				this.execSearch()
 			},
+			clear:function(){
+				this.wd = ''
+				uni.setNavigationBarTitle({
+					title:'搜索'
+				})
+				this.showTab = false
+				this.lists = []
+				this.loading = false
+				this.tips=''
+				this.focus = true
+			},
 			execSearch: function() {
 				let that = this
 				let api = config.api.searchDoc
+				
+				that.showTab = true
 				
 				uni.setNavigationBarTitle({
 					title: this.wd+" · 搜索"

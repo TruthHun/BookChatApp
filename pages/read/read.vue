@@ -140,7 +140,7 @@
 				screenBrightness: 0,
 				scrollTop: 0,
 				first: true, // 如果是第一次加载，不隐藏自定义的tabBar
-				fontIndexs: ['14px', '16px', '16px', '17px', '18px', '19px', '20px'],
+				fontIndexs: ['14px', '15px', '16px', '17px', '18px', '19px', '20px'],
 				tips: '',
 				result: [],
 				h5: false,

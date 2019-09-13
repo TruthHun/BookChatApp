@@ -353,8 +353,6 @@
 				let that = this
 				let result = []
 
-				if (that.wd == e.wd) return;
-
 				util.loading("玩命搜索中...")
 				util.request(config.api.searchDoc, {
 					identify: that.book.book_id,
@@ -367,9 +365,9 @@
 				}).catch(function(e) {
 					console.log(e)
 				}).finally(function() {
+					uni.hideLoading()
 					that.result = result
 					that.wd = e.wd
-					uni.hideLoading()
 					if (result.length == 0) {
 						util.toastError("没有搜索到结果")
 					}

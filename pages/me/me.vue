@@ -4,7 +4,7 @@
 			<view class='user'>
 				<image :src='user.avatar'></image>
 				<view class='username font-lv2'>{{user.nickname}}</view>
-				<view class='color-grey font-lv3'>{{user.intro}}</view>
+				<view v-if="user.intro" class='color-grey font-lv3'>{{user.intro}}</view>
 			</view>
 		</view>
 		<view class='base-padding row base-info'>
@@ -88,12 +88,15 @@
 		onLoad(op) {
 			if (config.debug) console.log("onLoad", op)
 			if (op.redirect) this.redirect = op.redirect
+		},
+		onShow() {
 			this.initUser()
 		},
 		methods: {
 			initUser: function() {
 				let that = this
 				let user = util.getUser()
+				if(config.debug) console.log("user", user)
 				if (user == undefined || user.token == undefined || user.uid <= 0) {
 					user = {
 						'uid': 0,

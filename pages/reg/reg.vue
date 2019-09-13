@@ -95,13 +95,20 @@
 						title: '注册成功',
 					})
 					setTimeout(function() {
-						uni.redirectTo({
-							url: decodeURIComponent(that.redirect)
-						})
+						let url = decodeURIComponent(that.redirect)
+						if (url.indexOf("?") > -1) {
+							uni.redirectTo({
+								url: url
+							})
+						} else {
+							uni.switchTab({
+								url: url
+							})
+						}
 					}, 1500)
 				}).catch(function(e) {
 					if (config.debug) console.log(config.api.register, e)
-					util.toastError(e.message || e.errMsg)
+					util.toastError(e.data.message || e.errMsg)
 				}).finally(function() {
 					that.loading = false
 				})

@@ -101,7 +101,7 @@
 					util.setUser(user)
 					util.toastSuccess('登录成功')
 					setTimeout(function() {
-						let url = decodeURIComponent(this.redirect)
+						let url = decodeURIComponent(that.redirect)
 						if (url.indexOf("?") > -1) {
 							uni.redirectTo({
 								url: url

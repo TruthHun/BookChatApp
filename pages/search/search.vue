@@ -166,6 +166,7 @@
 					if (that.tabValue == 'doc') {
 						result = result.map(function(item) {
 							item.created_at = util.relativeTime(item.created_at)
+							item.vcnt = util.fixView(item.vcnt)
 							return item
 						})
 					}

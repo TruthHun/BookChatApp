@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<view @click='pageClick' :class='"bg-theme"+setting.themeIndex' :style='"min-height:"+(sys.windowHeight - sys.statusBarHeight - 55)+"px"'>
+		<view @click='pageClick' :class='"bg-theme"+setting.themeIndex' :style='"min-height:"+(sys.screenHeight - sys.statusBarHeight - 55)+"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
 				<rich-text :nodes="nodes"></rich-text>
@@ -138,9 +138,7 @@
 				},
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
-				scrollTop: 0,
-				first: true, // 如果是第一次加载，不隐藏自定义的tabBar
-				fontIndexs: ['14px', '15px', '16px', '17px', '18px', '19px', '20px'],
+				fontIndexs: ['14px', '15px', '16px', '17px', '18px', '19px', '220px'],
 				tips: '',
 				result: [],
 				h5: false,

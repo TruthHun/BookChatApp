@@ -68,7 +68,7 @@
 				<view class='panel-title pdt-30upx strong font-lv2'>书友点评</view>
 			</view>
 			<view class='panel-body base-padding'>
-				<block v-if="comments">
+				<block v-if="comments.length>0">
 					<view v-for="(comment, index) in comments" :key="index" class='row comment-list'>
 						<navigator :url='"/pages/ucenter/ucenter?uid="+comment.uid' class='col-2 comment-left'>
 							<image class='img-responsive radius-circle border-basic' :src='comment.avatar'></image>
@@ -153,11 +153,11 @@
 			scrollBook
 		},
 		onLoad(options) {
-			if (config.debug) console.log(options)
-
 			let id = options.id || options.scene
+			
+			if (config.debug) console.log(options,id)
 
-			if (id == undefined || id == NaN || id <= 0) {
+			if (!id || id == undefined || id == NaN || id <= 0) {
 				if (config.debug) {
 					id = 2180
 				} else {

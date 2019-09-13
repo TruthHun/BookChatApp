@@ -62,7 +62,6 @@
 						url: url
 					})
 				}
-				return
 			}
 		},
 		methods: {

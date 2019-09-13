@@ -54,7 +54,7 @@
 			</navigator>
 		</block>
 
-		<view v-if="relatedBooks" class='panel related-books'>
+		<view v-if="relatedBooks.length>0" class='panel related-books'>
 			<view class='panel-heading base-padding'>
 				<view class='panel-title pdt-30upx strong font-lv2'>相关书籍</view>
 			</view>

@@ -62,6 +62,21 @@
 			if (config.debug) console.log('onLoad', op)
 			if (op.redirect) this.redirect = op.redirect
 		},
+		onShow: function() {
+			let token = util.getToken()
+			if (token) {
+				let url = decodeURIComponent(this.redirect)
+				if (url.indexOf("?") > -1) {
+					uni.redirectTo({
+						url: url
+					})
+				} else {
+					uni.switchTab({
+						url: url
+					})
+				}
+			}
+		},
 		methods: {
 			submit: function(e) {
 				if (config.debug) console.log("submit", e)

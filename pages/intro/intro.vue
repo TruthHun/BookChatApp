@@ -63,7 +63,6 @@
 			</view>
 		</view>
 
-
 		<view v-if="book.book_id>0" class='panel comments'>
 			<view class='panel-heading base-padding'>
 				<view class='panel-title pdt-30upx strong font-lv2'>书友点评</view>
@@ -78,7 +77,7 @@
 							<view class='row comment-info'>
 								<navigator :url='"/pages/ucenter/ucenter?uid="+comment.uid' class='col font-lv2 color-semi'>{{comment.nickname}}</navigator>
 								<view class='col'>
-									<view :class='"score score-"+myScore'></view>
+									<view :class='"score score-"+comment.score'></view>
 								</view>
 								<view class='col'>
 									<view class='pull-right font-lv4 color-grey'>{{comment.created_at}}</view>

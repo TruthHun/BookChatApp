@@ -7,7 +7,7 @@ BookChat uniapp 版
 ## 页面功能
 
 - [x] 目录页 menu
-- [ ] 书籍阅读页 read
+- [x] 书籍阅读页 read
 - [x] 用户中心页 ucenter
 - [x] 首页 index
 - [x] 分类页 cate

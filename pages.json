@@ -111,7 +111,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "BookChat",
-		"navigationBarBackgroundColor": "#EFEFEF",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
 	},
 	"condition": { //模式配置，仅开发期间生效

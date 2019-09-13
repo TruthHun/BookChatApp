@@ -67,9 +67,9 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	form {
-		margin-top: 30upx;
+		margin-top: 15px;
 		position: relative;
 		display: block;
 	}
@@ -78,29 +78,30 @@
 		box-sizing: border-box;
 		width: 100%;
 		background-color: #f8f8f8;
-		line-height: 90upx;
-		height: 90upx;
+		line-height: 45px;
+		height: 45px;
 		display: block;
-		font-size: 16px;
-		border-radius: 10upx;
+		font-size: 15px;
+		border-radius: 5px;
 		text-align: left;
-		padding: 0 130upx 0 26upx;
+		vertical-align: middle;
+		padding: 10px 65px 15px 13px;
 	}
 
 
 	form image {
 		position: absolute;
-		top: 0upx;
-		right: 0upx;
+		top: 0;
+		right: 0;
 		box-sizing: border-box;
-		height: 90upx;
-		width: 90upx;
-		padding: 20upx;
+		height: 45px;
+		width: 45px;
+		padding: 10px;
 		z-index: 99;
 	}
 
 	form image.clear {
-		right: 60upx;
+		right: 30px;
 		z-index: 88;
 	}
 </style>

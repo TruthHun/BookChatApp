@@ -55,11 +55,11 @@
 				let url = decodeURIComponent(this.redirect)
 				if (url.indexOf("?") > -1) {
 					uni.redirectTo({
-						url:url
+						url: url
 					})
 				} else {
 					uni.switchTab({
-						url:url
+						url: url
 					})
 				}
 				return
@@ -68,7 +68,7 @@
 		methods: {
 			toReg: function() {
 				uni.navigateTo({
-					url:'/pages/reg/reg?redirect=' + this.redirect
+					url: '/pages/reg/reg?redirect=' + this.redirect
 				})
 			},
 			findPassword: function(e) {
@@ -101,9 +101,16 @@
 					util.setUser(user)
 					util.toastSuccess('登录成功')
 					setTimeout(function() {
-						uni.redirectTo({
-							url: decodeURIComponent(that.redirect)
-						})
+						let url = decodeURIComponent(this.redirect)
+						if (url.indexOf("?") > -1) {
+							uni.redirectTo({
+								url: url
+							})
+						} else {
+							uni.switchTab({
+								url: url
+							})
+						}
 					}, 1500)
 				}).catch((e) => {
 					if (config.debug) console.log(e);

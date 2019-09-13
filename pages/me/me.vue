@@ -45,8 +45,8 @@
 			</navigator>
 		</view>
 
-		<view class='base-padding row base-info'>
-			<view v-if="user.uid>0" @click='logout' class='col-12'>
+		<view v-if="user.uid>0" class='base-padding row base-info'>
+			<view @click='logout' class='col-12'>
 				<image src='../../static/images/login.png'></image>
 				退出登录
 				<image class='pull-right' src='/static/images/right-angle.png'></image>
@@ -196,6 +196,6 @@
 	}
 
 	.base-info .col-12:last-of-type {
-		margin-bottom: 0upx;
+		margin-bottom: 0;border-bottom: 0;
 	}
 </style>

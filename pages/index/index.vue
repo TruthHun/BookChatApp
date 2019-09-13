@@ -4,7 +4,7 @@
 			<search target="/pages/search/search"/>
 		</view>
 		
-		<view class="base-padding base-margin-bottom">
+		<view v-if="banners.length>0" class="base-padding base-margin-bottom">
 			<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval" :duration="duration">
 				<swiper-item v-for="banner in banners" :key="banner.id">
 					<navigator :url="banner.link">
@@ -15,7 +15,7 @@
 		</view>
 		
 		<!--  推荐  -->
-		<view v-if="recommendBooks.length>0" class='panel base-padding recommend base-margin-bottom'>
+		<view v-if="recommendBooks" class='panel base-padding recommend base-margin-bottom'>
 		  <view class='panel-heading'>
 		    <view class='panel-title font-lv1 strong'>最新推荐</view>
 		  </view>

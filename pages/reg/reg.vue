@@ -90,7 +90,7 @@
 
 				util.request(config.api.register, data, 'POST').then(function(res) {
 					if (config.debug) console.log(config.api.register, res)
-					util.setUser(res.user)
+					util.setUser(res.data.user)
 					uni.showToast({
 						title: '注册成功',
 					})

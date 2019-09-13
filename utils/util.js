@@ -131,7 +131,7 @@ const request = (api, params = {}, method = "GET", header = {}) => {
           reject(res);
         }
       },
-      fail: function(err) {
+      fail: function(err) { 
         reject(err)
       }
     })

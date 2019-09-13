@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<view @click='pageClick' :class='"bg-theme"+setting.themeIndex' :style='"min-height:"+sys.windowHeight+"px"'>
+		<view @click='pageClick' :class='"bg-theme"+setting.themeIndex' :style='"min-height:"+(sys.windowHeight - sys.statusBarHeight - 55)+"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
 				<rich-text :nodes="nodes"></rich-text>

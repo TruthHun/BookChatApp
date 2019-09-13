@@ -119,6 +119,7 @@
 				this.loading = false
 				this.tips=''
 				this.focus = true
+				this.tabValue = 'book'
 			},
 			execSearch: function() {
 				let that = this

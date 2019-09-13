@@ -107,7 +107,9 @@
 				})
 			},
 			toLogin: function() {
-				util.redirect('/pages/login/login?redirect=' + this.redirect)
+				uni.navigateTo({
+					url: '/pages/login/login?redirect=' + this.redirect
+				})
 			},
 		}
 	}

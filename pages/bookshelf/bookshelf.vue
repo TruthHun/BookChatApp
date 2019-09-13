@@ -121,7 +121,9 @@
 				})
 			},
 			login: function(e) {
-			    util.redirect('/pages/login/login?redirect='+encodeURIComponent('/pages/bookshelf/bookshelf'))
+			    uni.navigateTo({
+			    	url:'/pages/login/login?redirect='+encodeURIComponent('/pages/bookshelf/bookshelf')
+			    })
 			},
 		}
 	}

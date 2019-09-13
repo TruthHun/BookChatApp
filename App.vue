@@ -17,10 +17,10 @@
 			util.setSysInfo(info)
 		},
 		onShow: function() {
-			console.log('App Show')
+			if(config.debug) console.log('App Show')
 		},
 		onHide: function() {
-			console.log('App Hide')
+			if(config.debug) console.log('App Hide')
 		}
 	}
 </script>

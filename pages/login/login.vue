@@ -1,34 +1,34 @@
 <template>
 	<view class='base-padding'>
-	<form @submit="formSubmit">
-		<view class='form-body'>
-		<view>
-			<image src='/static/images/logo.png'></image>
-		</view>
-		<view class='row'>
-			<view class='col-3'>账号</view>
-			<view class='col-9'>
-			<input name="username" auto-focus='true' placeholder="请输入用户名或邮箱" />
+		<form @submit="formSubmit">
+			<view class='form-body'>
+				<view>
+					<image src='/static/images/logo.png'></image>
+				</view>
+				<view class='row'>
+					<view class='col-3'>账号</view>
+					<view class='col-9'>
+						<input name="username" auto-focus='true' placeholder="请输入用户名或邮箱" />
+					</view>
+				</view>
+				<view class='row'>
+					<view class='col-3'>密码</view>
+					<view class='col-9'>
+						<input password name="password" placeholder="请输入密码" />
+					</view>
+				</view>
 			</view>
-		</view>
-		<view class='row'>
-			<view class='col-3'>密码</view>
-			<view class='col-9'>
-			<input password name="password" placeholder="请输入密码" />
+			<view class='row mgb-30upx font-lv3 color-grey'>
+				<navigator class='col' :url="'/pages/read/read?identify='+about">关于我们</navigator>
+				<view class='col text-right' @click='findPassword'>忘记密码？</view>
 			</view>
-		</view>
-		</view>
-		<view class='row mgb-30upx font-lv3 color-grey'>
-			<navigator class='col' :url="'/pages/read/read?identify='+about">关于我们</navigator>
-			<view class='col text-right' @click='findPassword'>忘记密码？</view>
-		</view>
-		<view class='row'>
-			<button class='btn-submit btn-block' :loading='loading' form-type='submit'> 码上登录 </button>
-		</view>
-		<view class='row'>
-			<button @click="toReg" class='btn-login btn-block'> 注册账号 </button>
-		</view>
-	</form>
+			<view class='row'>
+				<button class='btn-submit btn-block' :loading='loading' form-type='submit'> 码上登录 </button>
+			</view>
+			<view class='row'>
+				<button @click="toReg" class='btn-login btn-block'> 注册账号 </button>
+			</view>
+		</form>
 	</view>
 </template>
 
@@ -36,7 +36,7 @@
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
-	
+
 	export default {
 		data() {
 			return {
@@ -46,19 +46,30 @@
 			}
 		},
 		onLoad: function(op) {
-			if (config.debug) console.log("onLoad",op)
-			if (op.redirect) this.redirect =op.redirect
+			if (config.debug) console.log("onLoad", op)
+			if (op.redirect) this.redirect = op.redirect
 		},
 		onShow: function() {
 			let token = util.getToken()
 			if (token) {
-			util.redirect(decodeURIComponent(this.redirect))
-			return
+				let url = decodeURIComponent(this.redirect)
+				if (url.indexOf("?") > -1) {
+					uni.redirectTo({
+						url:url
+					})
+				} else {
+					uni.switchTab({
+						url:url
+					})
+				}
+				return
 			}
 		},
 		methods: {
-			toReg: function(){
-				util.redirect('/pages/reg/reg?redirect='+this.redirect)
+			toReg: function() {
+				uni.navigateTo({
+					url:'/pages/reg/reg?redirect=' + this.redirect
+				})
 			},
 			findPassword: function(e) {
 				uni.showModal({
@@ -68,17 +79,17 @@
 			},
 			formSubmit: function(e) {
 				let that = this
-				
+
 				if (config.debug) console.log("formSubmit", e);
 				if (that.loading) return;
-				
+
 				if (e.detail.value.password == '' || e.detail.value.username == '') {
 					util.toastError('账号和密码均不能为空')
 					return
 				}
-				
+
 				that.loading = true
-			
+
 				util.request(config.api.login, e.detail.value, 'POST').then((res) => {
 					if (config.debug) console.log(config.api.login, res);
 					let user = res.data.user
@@ -91,7 +102,7 @@
 					util.toastSuccess('登录成功')
 					setTimeout(function() {
 						uni.redirectTo({
-							url:decodeURIComponent(that.redirect)
+							url: decodeURIComponent(that.redirect)
 						})
 					}, 1500)
 				}).catch((e) => {

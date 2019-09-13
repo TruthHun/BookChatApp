@@ -55,7 +55,9 @@
 				if (!op.cid) cid = 108
 			}
 			if (!cid) {
-				util.redirect('/pages/notfound/notfound')
+				uni.redirectTo({
+					url:'/pages/notfound/notfound'
+				})
 				return
 			}
 			this.cid = cid

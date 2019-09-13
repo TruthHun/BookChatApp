@@ -107,20 +107,6 @@ Promise.prototype.finally = function(callback) {
   );
 }
 
-const redirect = (uriWithDecode) => {
-  // 带问号的，用 redirectTo，不带问号的，用switchTab
-  // 因为 tab 页面不需要带参数
-  if (uriWithDecode.indexOf("?") > -1) {
-    uni.navigateTo({
-      url: uriWithDecode,
-    })
-  } else {
-    uni.switchTab({
-      url: uriWithDecode,
-    })
-  }
-}
-
 // 只有请求结果返回 200 的时候，才会resolve，否则reject
 const request = (api, params = {}, method = "GET", header = {}) => {
   return new Promise(function(resolve, reject) {
@@ -295,7 +281,6 @@ module.exports = {
   clearUser,
   getUser,
   getToken,
-  redirect,
   menuToTree,
   menuSortIds,
   menuTreeReaded,

@@ -7,8 +7,15 @@ const debug = true
 // 横幅图片比例，宽高比，小数或者比例(后期从后端接口获取)
 const bannerRatio = 825/315
 
-// "关于我们"的文档标识
-const about = 'help/bookchat'
+// 程序信息，置空则不显示
+const info = {
+	// "关于我们"的文档标识
+	about = 'help/bookchat'
+	version: 'v1.0',
+	copyright: 'BookStack.CN',
+	license: 'Apache 2.0',
+	author: 'TruthHun',
+}
 
 const api = {
   banners: `${host}/api/v1/banners`, 
@@ -45,4 +52,5 @@ module.exports = {
   debug,
   bannerRatio,
   about,
+  info,
 }

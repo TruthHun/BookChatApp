@@ -38,7 +38,7 @@
 		</view>
 
 		<view class='base-padding row base-info'>
-			<navigator :url='"/pages/read/read?identify="+about' class='col-12'>
+			<navigator :url='"/pages/read/read?identify="+info.about' class='col-12'>
 				<image src='../../static/images/about-us.png'></image>
 				关于我们
 				<image class='pull-right' src='../../static/images/right-angle.png'></image>
@@ -55,17 +55,17 @@
 
 		<view class='base-padding row base-info'>
 			<view class='col-12 text-center'>
-				<view>
-					<text class='font-lv4 color-grey'>Copyright © 2018-{{now}} BookStack.CN</text>
+				<view v-if="info.copyright">
+					<text class='font-lv4 color-grey'>Copyright © 2018-{{now}} {{info.copyright}}</text>
 				</view>
-				<view>
-					<text class='font-lv4 color-grey'>License：Apache 2.0</text>
+				<view v-if="info.license">
+					<text class='font-lv4 color-grey'>License：{{info.license}}</text>
 				</view>
-				<view>
-					<text class='font-lv4 color-grey'>Author：TruthHun</text>
+				<view v-if="info.author">
+					<text class='font-lv4 color-grey'>Author：{{info.author}}</text>
 				</view>
-				<view>
-					<text class='font-lv4 color-grey'>Version：3.0</text>
+				<view v-if="info.version">
+					<text class='font-lv4 color-grey'>Version：{{info.version}}</text>
 				</view>
 			</view>
 		</view>
@@ -79,15 +79,16 @@
 	export default {
 		data() {
 			return {
+				info: {},
 				user: {},
 				now: new Date().getFullYear(),
-				about: config.about,
 				redirect: encodeURIComponent('/pages/me/me')
 			}
 		},
 		onLoad(op) {
 			if (config.debug) console.log("onLoad", op)
 			if (op.redirect) this.redirect = op.redirect
+			this.info = config.info
 		},
 		onShow() {
 			this.initUser()

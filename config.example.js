@@ -51,6 +51,5 @@ module.exports = {
 	api,
 	debug,
 	bannerRatio,
-	about,
 	info,
 }

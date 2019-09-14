@@ -15,7 +15,7 @@
 		</view>
 		
 		<!--  推荐  -->
-		<view v-if="recommendBooks" class='panel base-padding recommend base-margin-bottom'>
+		<view v-if="recommendBooks.length>0" class='panel base-padding recommend base-margin-bottom'>
 		  <view class='panel-heading'>
 		    <view class='panel-title font-lv1 strong'>最新推荐</view>
 		  </view>

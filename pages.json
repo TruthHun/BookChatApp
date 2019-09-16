@@ -6,10 +6,7 @@
 				"navigationBarTitleText": "BookChat"
 			}
 		}, {
-			"path": "pages/read/read",
-			"style": {
-				"enablePullDownRefresh": true
-			}
+			"path": "pages/read/read"
 		}, {
 			"path": "pages/menu/menu",
 			"style": {}

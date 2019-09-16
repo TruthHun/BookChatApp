@@ -229,9 +229,6 @@
 				withShareTicket: true
 			})
 		},
-		onPullDownRefresh() {
-			this.getArticle(this.identify)
-		},
 		methods: {
 			getArticle: function(identify) {
 				let article = {}
@@ -276,8 +273,6 @@
 					that.preDisable = preDisable
 					that.menuTree = util.menuTreeReaded(that.menuTree, article.id)
 
-					// 用于存在下拉刷新的时候
-					uni.stopPullDownRefresh()
 					uni.hideLoading()
 
 					// #ifndef APP-PLUS
@@ -411,7 +406,7 @@
 				let t = setTimeout(function() {
 					that.nodes = nodes
 					clearTimeout(t)
-				}, 200)
+				}, 300)
 			},
 			setFont: function(e) {
 				// 0 ~ 6

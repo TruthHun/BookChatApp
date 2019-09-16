@@ -9,7 +9,7 @@
     "app-plus" : {
         "usingComponents" : true,
         "splashscreen" : {
-            "alwaysShowBeforeRender" : false,
+            "alwaysShowBeforeRender" : true,
             "waiting" : false,
             "autoclose" : true,
             "delay" : 0

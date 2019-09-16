@@ -82,7 +82,9 @@
 		},
 		methods: {
 			loadData() {
+				// #ifdef MP
 				util.loading('玩命加载中...')
+				// #endif
 				
 				let that = this
 				let cids = []

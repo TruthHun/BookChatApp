@@ -255,7 +255,7 @@
 					let nodes = [{
 						"name": "img",
 						"attrs": {
-							"src": "./static/images/loading.png",
+							"src": that.setting.themeIndex==3 ? "./static/images/loading-white.png":"./static/images/loading.png",
 							"style": "display:block;margin:200px auto;"
 						}
 					}]

@@ -41,7 +41,7 @@
 		data() {
 			return {
 				loading: false,
-				about: config.about,
+				about: config.info.about,
 				redirect: encodeURIComponent('/pages/me/me'),
 			}
 		},

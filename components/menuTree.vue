@@ -27,9 +27,6 @@
 		components: {
 			menuTree
 		},
-		// created() {
-		// 	console.log("menuTree", this.pid, this.menu)
-		// },
 		props: {
 			menu: {
 				type: Array

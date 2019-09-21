@@ -62,15 +62,6 @@
 			search,
 			menuTree,
 		},
-		created() {
-			console.log("book", this.book)
-			console.log("menu", this.menu)
-		},
-		onLoad() {
-			console.log("onload")
-			console.log("book", this.book)
-			console.log("menu", this.menu)
-		},
 		props: {
 			book: {
 				type: Object,
@@ -101,12 +92,10 @@
 		methods: {
 			tabClick: function(e) {
 				if (e.target.dataset.tab != this.data.activeTab) {
-					console.log(e)
 					this.$emit('tabClick', e.target.dataset)
 				}
 			},
 			delBookmark: function(e) {
-				console.log(e)
 				this.$emit('delBookmark', e.target.dateset)
 			},
 			search: function(e) {

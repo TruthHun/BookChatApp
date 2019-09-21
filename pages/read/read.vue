@@ -306,10 +306,9 @@
 				let that = this
 				let idx = that.menuSortIds.indexOf(that.article.id)
 				idx++
+				that.nextDisable = true
 				if (idx < that.menuSortIds.length) {
-					// #ifndef APP-PLUS
 					util.loading('加载下一章节...')
-					// #endif
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -322,11 +321,10 @@
 			clickPrev: function() {
 				let that = this
 				let idx = that.menuSortIds.indexOf(that.article.id)
+				that.preDisable = true
 				idx--
 				if (idx > -1) {
-					// #ifndef APP-PLUS
 					util.loading('加载上一章节...')
-					// #endif
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({

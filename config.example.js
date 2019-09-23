@@ -17,6 +17,10 @@ const info = {
 	author: 'TruthHun',
 }
 
+// ########################### //
+// 以上配置可修改，以下配置不要修改 //
+// ########################### //
+
 const api = {
 	banners: `${host}/api/v1/banners`,
 	register: `${host}/api/v1/register`,

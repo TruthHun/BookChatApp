@@ -251,7 +251,10 @@
 					
 					if (!article.content) article.content=[]
 					
+					// #ifndef APP-PLUS
 					if (config.debug) console.log("article", article.content)
+					// #endif
+					
 					let nodes = [{
 						"name": "img",
 						"attrs": {
@@ -283,7 +286,7 @@
 					// #endif
 
 					// #ifdef APP-PLUS
-					that.renderContent(JSON.parse(article.content) || article.content)
+					that.renderContent(article.content)
 					// #endif
 				})
 			},

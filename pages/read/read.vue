@@ -138,7 +138,7 @@
 				},
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
-				fontIndexs: ['14px', '15px', '16px', '17px', '18px', '19px', '220px'],
+				fontIndexs: ['14px', '15px', '16px', '17px', '18px', '19px', '20px'],
 				tips: '',
 				result: [],
 				h5: false,
@@ -309,7 +309,9 @@
 				idx++
 				that.nextDisable = true
 				if (idx < that.menuSortIds.length) {
+					// #ifdef MP
 					util.loading('加载下一章节...')
+					// #endif
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -325,7 +327,9 @@
 				that.preDisable = true
 				idx--
 				if (idx > -1) {
+					// #ifdef MP
 					util.loading('加载上一章节...')
+					// #endif
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -405,7 +409,7 @@
 				let t = setTimeout(function() {
 					that.nodes = nodes
 					clearTimeout(t)
-				}, 300)
+				}, 500)
 			},
 			setFont: function(e) {
 				// 0 ~ 6

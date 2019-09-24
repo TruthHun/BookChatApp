@@ -409,7 +409,7 @@
 				let t = setTimeout(function() {
 					that.nodes = nodes
 					clearTimeout(t)
-				}, 500)
+				}, 300) // 让用户视觉上认为有个渲染过程，避免内容渲染过快，避免页面从空白到出现内容的过程中有些突兀
 			},
 			setFont: function(e) {
 				// 0 ~ 6

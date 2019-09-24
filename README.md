@@ -2,6 +2,8 @@
 
 # BookChatApp
 
+![](static/images/logo.png)
+
 通用书籍阅读APP，[BookChat](https://gitee.com/truthhun/BookChat) 的 `uni-app` 实现版本，支持多端分发，编译生成 Android 和 iOS 手机APP以及各平台的小程序。
 
 使用`BookChatApp`，您可以轻松地将您的电子书、文档手册和在线书籍分发到各个小程序平台，以及编译生成手机APP发布到各大手机软件市场供用户下载和使用。

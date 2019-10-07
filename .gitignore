@@ -1,6 +1,7 @@
 unpackage/dist/*
 unpackage/resources/*
 unpackage/.DS_Store
+unpackage/release/*
 .DS_Store
 */.DS_Store
 config.js

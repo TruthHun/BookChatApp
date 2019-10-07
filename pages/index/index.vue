@@ -80,6 +80,14 @@
 			if (config.debug) console.log(this.bannerWidth, this.bannerHeight)
 			this.loadData()
 		},
+		onShow() {
+			if(this.categoryBooks.length==0){
+				this.loadData()
+			}
+		},
+		onPullDownRefresh() {
+			this.loadData()
+		},
 		methods: {
 			loadData() {
 				// #ifdef MP
@@ -131,6 +139,7 @@
 					}).catch(function(e) {
 						console.log(e)
 					}).finally(function() {
+						uni.stopPullDownRefresh();
 						that.banners = banners
 						that.categoryBooks = categories
 						that.recommendBooks = recommendBooks

@@ -70,7 +70,8 @@
 				showSearch: false, // 内容完全加载完成之后再显示搜索框
 				banners: [],
 				categoryBooks: [],
-				recommendBooks: []
+				recommendBooks: [],
+				times: 100, // 当iOS未允许访问网络的时候，没3秒请求一次数据
 			}
 		},
 		onLoad() {
@@ -81,7 +82,7 @@
 			this.loadData()
 		},
 		onShow() {
-			if(this.categoryBooks.length==0){
+			if (this.categoryBooks.length == 0) {
 				this.loadData()
 			}
 		},
@@ -90,7 +91,7 @@
 				// #ifdef MP
 				util.loading('玩命加载中...')
 				// #endif
-				
+
 				let that = this
 				let cids = []
 				let categories = []
@@ -141,6 +142,16 @@
 						that.recommendBooks = recommendBooks
 						that.showSearch = true
 						uni.hideLoading()
+						if (that.times > 0 && (!categories || categories.length == 0)) {
+							if (config.debug) console.log("reload")
+							let iload = setTimeout(function() {
+								clearTimeout(iload)
+								that.times = that.times - 1
+								that.loadData()
+							}, 3000)
+						} else {
+							that.times = 0
+						}
 					})
 				})
 			}

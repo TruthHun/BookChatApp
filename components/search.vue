@@ -84,7 +84,7 @@
 		font-size: 15px;
 		border-radius: 5px;
 		text-align: left;
-		vertical-align: middle;
+		/* vertical-align: middle; */
 		padding: 10px 65px 15px 13px;
 	}
 

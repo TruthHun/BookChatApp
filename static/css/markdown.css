@@ -711,7 +711,7 @@
 
 .editormd-preview-container .tag-blockquote,
 .editormd-html-preview .tag-blockquote {
-	color: #999 !important;
+	color: #777 !important;
 	font-style: normal !important;
 	border-left: 4px solid #d6dbdf;
 	/* font-size: 14px; */

@@ -76,9 +76,9 @@
 		},
 		onLoad() {
 			let info = util.getSysInfo()
-			this.bannerWidth = info.bannerWidth + "px"
-			this.bannerHeight = info.bannerHeight + "px"
-			if (config.debug) console.log(this.bannerWidth, this.bannerHeight)
+			// this.bannerWidth = info.bannerWidth + "px"
+			// this.bannerHeight = info.bannerHeight + "px"
+			// if (config.debug) console.log(this.bannerWidth, this.bannerHeight)
 			this.loadData()
 		},
 		onShow() {
@@ -121,7 +121,18 @@
 						cids: cids.join(',')
 					})]).then(function([resBanners, resRecommendBooks, resBookLists]) {
 						if (config.debug) console.log(cids, resBanners, resRecommendBooks, resBookLists)
-						if (resBanners.data && resBanners.data.banners) banners = resBanners.data.banners
+						if (resBanners.data && resBanners.data.banners) {
+							banners = resBanners.data.banners
+
+							// 计算横幅合适的宽高
+							// 转成 upx，因为两边边距设置为 30upx
+							let size = resBanners.data.size || 2.619
+							let info = util.getSysInfo()
+							let width = info.windowWidth * info.pixelRatio - 60
+							let height = width / size
+							that.bannerWidth = width / info.pixelRatio + "px"
+							that.bannerHeight = height / info.pixelRatio + "px"
+						}
 						if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks = resRecommendBooks.data.books
 						if (resBookLists.data && resBookLists.data.books) {
 							categories = categories.map(function(category) {

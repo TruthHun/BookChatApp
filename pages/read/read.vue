@@ -210,10 +210,12 @@
 				uni.setNavigationBarTitle({
 					title: book.book_name
 				})
-				if (latestReadId > 0) {
-					identify = book.book_id + "/" + latestReadId
-				} else if (arr.length < 2) {
-					identify = book.book_id + "/" + menuTree[0].id
+				if (arr.length != 2) {
+					if (latestReadId > 0) {
+						identify = book.book_id + "/" + latestReadId
+					} else {
+						identify = book.book_id + "/" + menuTree[0].id
+					}
 				}
 
 				if (config.debug) console.log("sys info", util.getSysInfo())
@@ -248,17 +250,17 @@
 				}).finally(function() {
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
-					
-					if (!article.content) article.content=[]
-					
+
+					if (!article.content) article.content = []
+
 					// #ifndef APP-PLUS
 					if (config.debug) console.log("article", article.content)
 					// #endif
-					
+
 					let nodes = [{
 						"name": "img",
 						"attrs": {
-							"src": that.setting.themeIndex==3 ? "./static/images/loading-white.png":"./static/images/loading.png",
+							"src": that.setting.themeIndex == 3 ? "./static/images/loading-white.png" : "./static/images/loading.png",
 							"style": "display:block;margin:200px auto;"
 						}
 					}]

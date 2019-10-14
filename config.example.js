@@ -7,7 +7,7 @@ const debug = true
 // 程序信息，置空则不显示
 const info = {
 	// "关于我们"的文档标识
-	about: 'help/bookchat',
+	about: 'help/about',
 	version: 'v1.0',
 	copyright: 'BookStack.CN',
 	license: 'Apache 2.0',

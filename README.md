@@ -50,7 +50,7 @@ APP下载体验地址： https://www.bookstack.cn/app
 - Gitee: https://gitee.com/truthhun/BookStack
 - GitHub: https://github.com/truthhun/BookStack
 
-**BookStack 官网***
+**BookStack 官网**
 
 书栈网： https://www.bookstack.cn
 

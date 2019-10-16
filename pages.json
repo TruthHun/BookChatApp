@@ -3,8 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "BookChat",
-				"enablePullDownRefresh":true
+				"navigationBarTitleText": "BookChat"
 			}
 		}, {
 			"path": "pages/read/read"

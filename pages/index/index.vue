@@ -70,30 +70,28 @@
 				showSearch: false, // 内容完全加载完成之后再显示搜索框
 				banners: [],
 				categoryBooks: [],
-				recommendBooks: []
+				recommendBooks: [],
+				times: 100, // 当iOS未允许访问网络的时候，没3秒请求一次数据
 			}
 		},
 		onLoad() {
 			let info = util.getSysInfo()
-			this.bannerWidth = info.bannerWidth + "px"
-			this.bannerHeight = info.bannerHeight + "px"
-			if (config.debug) console.log(this.bannerWidth, this.bannerHeight)
+			// this.bannerWidth = info.bannerWidth + "px"
+			// this.bannerHeight = info.bannerHeight + "px"
+			// if (config.debug) console.log(this.bannerWidth, this.bannerHeight)
 			this.loadData()
 		},
 		onShow() {
-			if(this.categoryBooks.length==0){
+			if (this.categoryBooks.length == 0) {
 				this.loadData()
 			}
-		},
-		onPullDownRefresh() {
-			this.loadData()
 		},
 		methods: {
 			loadData() {
 				// #ifdef MP
 				util.loading('玩命加载中...')
 				// #endif
-				
+
 				let that = this
 				let cids = []
 				let categories = []
@@ -123,7 +121,18 @@
 						cids: cids.join(',')
 					})]).then(function([resBanners, resRecommendBooks, resBookLists]) {
 						if (config.debug) console.log(cids, resBanners, resRecommendBooks, resBookLists)
-						if (resBanners.data && resBanners.data.banners) banners = resBanners.data.banners
+						if (resBanners.data && resBanners.data.banners) {
+							banners = resBanners.data.banners
+
+							// 计算横幅合适的宽高
+							// 转成 upx，因为两边边距设置为 30upx
+							let size = resBanners.data.size || 2.619
+							let info = util.getSysInfo()
+							let width = info.windowWidth * info.pixelRatio - 60
+							let height = width / size
+							that.bannerWidth = width / info.pixelRatio + "px"
+							that.bannerHeight = height / info.pixelRatio + "px"
+						}
 						if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks = resRecommendBooks.data.books
 						if (resBookLists.data && resBookLists.data.books) {
 							categories = categories.map(function(category) {
@@ -139,12 +148,21 @@
 					}).catch(function(e) {
 						console.log(e)
 					}).finally(function() {
-						uni.stopPullDownRefresh();
 						that.banners = banners
 						that.categoryBooks = categories
 						that.recommendBooks = recommendBooks
 						that.showSearch = true
 						uni.hideLoading()
+						if (that.times > 0 && (!categories || categories.length == 0)) {
+							if (config.debug) console.log("reload")
+							let iload = setTimeout(function() {
+								clearTimeout(iload)
+								that.times = that.times - 1
+								that.loadData()
+							}, 3000)
+						} else {
+							that.times = 0
+						}
 					})
 				})
 			}

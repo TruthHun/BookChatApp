@@ -8,6 +8,12 @@
 
 使用`BookChatApp`，您可以轻松地将您的电子书、文档手册和在线书籍分发到各个小程序平台，以及编译生成手机APP发布到各大手机软件市场供用户下载和使用。
 
+## APP 体验
+
+目前 `BookChatApp` 已经打包变异生成的 Android 和 iOS 手机APP，您可以直接下载体验和感受下。
+
+APP下载体验地址： https://www.bookstack.cn/app
+
 ## 设计开发
 
 `BookChatApp`的设计开发跟微信小程序[BookChat](https://gitee.com/truthhun/BookChat)几乎没有两样，如果有不一样的地方，
@@ -44,7 +50,7 @@
 - Gitee: https://gitee.com/truthhun/BookStack
 - GitHub: https://github.com/truthhun/BookStack
 
-**BookStack 官网***
+**BookStack 官网**
 
 书栈网： https://www.bookstack.cn
 
@@ -96,42 +102,42 @@ Web 全栈工程师，自带发际线魔法加成，擅长`Ctrl + C` 和 `Ctrl +
 
 ## 预览
 
+### 启动页
+
+![](unpackage/images/iphone/loading.png)
+
 ### 首页
 
 
-![](unpackage/images/index.png)
+![](unpackage/images/iphone/index.png)
 
 <br/>
 <br/>
 
 ### 分类页
 
-![](unpackage/images/category.png)
+![](unpackage/images/iphone/category.png)
 
 <br/>
 <br/>
 
 ### 书架页
 
-![](unpackage/images/bookshelf.png)
+![](unpackage/images/iphone/bookshelf.png)
 
 <br/>
 <br/>
 
 ### 书籍介绍页
 
-![](unpackage/images/book-intro.png)
-
------
-
-![](unpackage/images/book-intro-2.png)
+![](unpackage/images/iphone/intro.png)
 
 <br/>
 <br/>
 
 ### 书籍阅读页
 
-![](unpackage/images/read.png)
+![](unpackage/images/iphone/read.png)
 
 -----
 
@@ -154,14 +160,14 @@ Web 全栈工程师，自带发际线魔法加成，擅长`Ctrl + C` 和 `Ctrl +
 
 ### 个人中心
 
-![](unpackage/images/me.png)
+![](unpackage/images/iphone/me.png)
 
 <br/>
 <br/>
 
 ### 搜索
 
-![](unpackage/images/search-book.png)
+![](unpackage/images/iphone/search.png)
 
 -----
 

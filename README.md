@@ -10,7 +10,7 @@
 
 ## APP 体验
 
-目前 `BookChatApp` 已经打包变异生成的 Android 和 iOS 手机APP，您可以直接下载体验和感受下。
+目前 `BookChatApp` 已经打包编译生成的 Android 和 iOS 手机APP，您可以直接下载体验和感受下。
 
 APP下载体验地址： https://www.bookstack.cn/app
 

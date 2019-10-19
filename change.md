@@ -9,7 +9,7 @@
 	- [ ] 列表页            /pages/list/list
 	- [ ] 个人主页          /pages/me/me
 	- [ ] 书签页            /pages/bookmarks/bookmarks
-	- [ ] 搜索结果页         /pages/search/search
+	- [x] 搜索结果页         /pages/search/search
 	- [ ] 内容点评页         /pages/comment/comment
 	- [x] 404页            /pages/notfound/notfound
 	- [x] 登录页            /pages/login/login

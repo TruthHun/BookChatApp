@@ -214,4 +214,13 @@
 		margin-bottom: 30upx;
 		padding-bottom: 30upx;
 	}
+	@media (min-width: 768px) {
+		.doc-info image {
+			max-height: 18px;
+			max-width: 18px;
+			margin-right: 6px;
+			position: relative;
+			top: 3px;
+		}
+	}
 </style>

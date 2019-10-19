@@ -7,14 +7,14 @@
 				<view v-if="user.intro" class='color-grey font-lv3'>{{user.intro}}</view>
 			</view>
 		</view>
-		<view class='base-padding row base-info'>
+		<view class='base-padding row base-info font-lv2'>
 			<navigator url='/pages/search/search' class='col-12'>
 				<image src='../../static/images/search.png'></image>
 				<text>书籍搜索</text>
 				<image class='pull-right' src='../../static/images/right-angle.png'></image>
 			</navigator>
 		</view>
-		<view class='base-padding row base-info'>
+		<view class='base-padding row base-info font-lv2'>
 			<navigator :url="user.uid>0 ? '/pages/ucenter/ucenter?tab=release':'/pages/login/login'" class='col-12'>
 				<image src='../../static/images/book.png'></image>
 				我的发布
@@ -37,7 +37,7 @@
 			</navigator>
 		</view>
 
-		<view class='base-padding row base-info'>
+		<view class='base-padding row base-info font-lv2'>
 			<navigator :url='"/pages/read/read?identify="+info.about' class='col-12'>
 				<image src='../../static/images/about-us.png'></image>
 				关于我们
@@ -45,7 +45,7 @@
 			</navigator>
 		</view>
 
-		<view v-if="user.uid>0" class='base-padding row base-info'>
+		<view v-if="user.uid>0" class='base-padding row base-info font-lv2'>
 			<view @click='logout' class='col-12'>
 				<image src='../../static/images/login.png'></image>
 				退出登录
@@ -53,7 +53,7 @@
 			</view>
 		</view>
 
-		<view class='base-padding row base-info'>
+		<view class='base-padding row base-info footer'>
 			<view class='col-12 text-center'>
 				<view v-if="info.copyright">
 					<text class='font-lv4 color-grey'>Copyright © 2018-{{now}} {{info.copyright}}</text>
@@ -97,7 +97,7 @@
 			initUser: function() {
 				let that = this
 				let user = util.getUser()
-				if(config.debug) console.log("user", user)
+				if (config.debug) console.log("user", user)
 				if (user == undefined || user.token == undefined || user.uid <= 0) {
 					user = {
 						'uid': 0,
@@ -135,7 +135,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	page,
 	.page {
 		background-color: #f6f6f6;
@@ -196,10 +196,21 @@
 		padding-bottom: 30upx;
 		padding-top: 30upx;
 		color: #666;
-		font-size: 34upx;
 	}
 
 	.base-info .col-12:last-of-type {
-		margin-bottom: 0;border-bottom: 0;
+		margin-bottom: 0;
+		border-bottom: 0;
+	}
+	@media (min-width: 768px) {
+		.base-info image{
+			max-width: 20px;
+			max-height: 20px;
+			top: 3px;
+		}
+		.base-info .col-12{
+			padding-top: 25px;
+			padding-bottom: 25px;
+		}
 	}
 </style>

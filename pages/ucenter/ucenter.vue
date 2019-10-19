@@ -439,4 +439,25 @@
 		border-radius: 50%;
 		border: 1px solid #ddd;
 	}
+
+	@media (min-width: 768px) {
+		.info image {
+			max-width: 18px;
+			max-height: 18px;
+			top: 3px;
+			margin-right: 6px;
+		}
+
+		.ellipsis-2row {
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.list .color-grey {
+			line-height: 200%;
+		}
+	}
 </style>

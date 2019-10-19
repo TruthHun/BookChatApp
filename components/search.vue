@@ -105,4 +105,9 @@
 		right: 30px;
 		z-index: 88;
 	}
+	@media (min-width: 768px) {
+		form image {
+			top: 5px;
+		}
+	}
 </style>

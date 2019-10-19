@@ -4,10 +4,10 @@
 	    <image src='../../static/images/404.png'></image>
 	  </view>
 	  <text class='font-lv1'>404</text>
-	  <text>确认过眼神，没找到对的人</text>
+	  <text class="font-lv3">确认过眼神，没找到对的人</text>
 	  <view class='pdt-60upx text-center go-home' @click='goHome'>
 	    <image src='../../static/images/home-selected.png'></image>
-	    <text class='color-green'>朕要肥家</text>
+	    <text class='color-green font-lv2'>朕要肥家</text>
 	  </view>
 	</view>
 </template>

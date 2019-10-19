@@ -136,4 +136,9 @@
 		box-sizing: border-box;
 		padding-left: 30upx;
 	}
+	@media (min-width: 768px) {
+		.mgt-30upx{
+			margin-top: 15upx;
+		}
+	}
 </style>

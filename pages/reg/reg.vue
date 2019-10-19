@@ -2,31 +2,31 @@
 	<view class="base-padding mgt-30upx">
 		<form @submit="submit">
 			<view class='form-body'>
-				<view class='row'>
+				<view class='row font-lv2'>
 					<view class='col-3'>邮箱</view>
 					<view class='col-9'>
 						<input name="email" placeholder="请输入邮箱地址" />
 					</view>
 				</view>
-				<view class='row'>
+				<view class='row font-lv2'>
 					<view class='col-3'>用户名</view>
 					<view class='col-9'>
 						<input name="username" placeholder="请输入用户名" />
 					</view>
 				</view>
-				<view class='row'>
+				<view class='row font-lv2'>
 					<view class='col-3'>用户昵称</view>
 					<view class='col-9'>
 						<input name="nickname" placeholder="请输入昵称" />
 					</view>
 				</view>
-				<view class='row'>
+				<view class='row font-lv2'>
 					<view class='col-3'>登录密码</view>
 					<view class='col-9'>
 						<input password name="password" placeholder="请输入密码" />
 					</view>
 				</view>
-				<view class='row'>
+				<view class='row font-lv2'>
 					<view class='col-3'>确认密码</view>
 					<view class='col-9'>
 						<input password name="re_password" placeholder="请再次输入密码" />

@@ -5,13 +5,13 @@
 				<view>
 					<image src='/static/images/logo.png'></image>
 				</view>
-				<view class='row'>
+				<view class='row font-lv2'>
 					<view class='col-3'>账号</view>
 					<view class='col-9'>
 						<input name="username" auto-focus='true' placeholder="请输入用户名或邮箱" />
 					</view>
 				</view>
-				<view class='row'>
+				<view class='row font-lv2'>
 					<view class='col-3'>密码</view>
 					<view class='col-9'>
 						<input password name="password" placeholder="请输入密码" />

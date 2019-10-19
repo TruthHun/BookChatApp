@@ -8,6 +8,7 @@
 		},
 		onLaunch: function() {
 			let info = uni.getSystemInfoSync()
+			console.log(info)
 			// 转成 upx，因为两边边距设置为 30upx
 			// let width = info.windowWidth * info.pixelRatio - 60
 			// let height = width / config.bannerRatio

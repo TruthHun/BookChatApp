@@ -138,7 +138,9 @@
 				},
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
-				fontIndexs: ['14px', '15px', '16px', '17px', '18px', '19px', '20px'],
+				fontIndexs: util.getSysInfo().windowWidth >= 768 ? ['16px', '17px', '18px', '19px', '20px', '21px', '22px'] : [
+					'14px', '15px', '16px', '17px', '18px', '19px', '20px'
+				],
 				tips: '',
 				result: [],
 				h5: false,
@@ -650,5 +652,18 @@
 
 	.cont-box {
 		overflow-y: scroll;
+	}
+
+	@media (min-width:768px) {
+		.drawer {
+			width: 65%;
+		}
+		.drawer-left.show {
+			right: 35%;
+		}
+		
+		.drawer-right.show {
+			left: 35%;
+		}
 	}
 </style>

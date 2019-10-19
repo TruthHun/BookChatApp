@@ -80,16 +80,17 @@
 		background-color: #f8f8f8;
 		line-height: 45px;
 		height: 45px;
+		margin-top: 0;
 		display: block;
 		font-size: 15px;
 		border-radius: 5px;
 		text-align: left;
-		/* vertical-align: middle; */
-		padding: 10px 65px 15px 13px;
+		padding: 0 65px 0 13px;
 	}
 
 
 	form image {
+		margin: 0;
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -101,7 +102,7 @@
 	}
 
 	form image.clear {
-		right: 30px;
+		right: 35px;
 		z-index: 88;
 	}
 </style>

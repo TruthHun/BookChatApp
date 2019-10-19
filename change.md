@@ -14,6 +14,6 @@
 	- [x] 404页            /pages/notfound/notfound
 	- [x] 登录页            /pages/login/login
 	- [x] 注册页            /pages/register/register
-	- [ ] 书籍介绍页         /pages/intro/intro
+	- [x] 书籍介绍页         /pages/intro/intro
 - [ ] Banner 等HTTP链接允许外部打开
 - [ ] 书架，长按可以将书籍从书架中移除

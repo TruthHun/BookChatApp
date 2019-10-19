@@ -154,8 +154,8 @@
 		},
 		onLoad(options) {
 			let id = options.id || options.scene
-			
-			if (config.debug) console.log(options,id)
+
+			if (config.debug) console.log(options, id)
 
 			if (!id || id == undefined || id == NaN || id <= 0) {
 				if (config.debug) {
@@ -602,5 +602,13 @@
 
 	.info navigator text {
 		margin-left: 4px;
+	}
+
+	@media (min-width: 768px) {
+		.icon-avatar {
+			max-width: 23px;
+			max-height: 23px;
+			margin-right: 5px;
+		}
 	}
 </style>

@@ -8,9 +8,7 @@
 			<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval"
 			 :duration="duration">
 				<swiper-item v-for="banner in banners" :key="banner.id">
-					<navigator :url="banner.link">
-						<image :src="banner.image" class="radius-basic" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
-					</navigator>
+					<image @click="bannerClick" :data-url="banner.link" :src="banner.image" class="radius-basic" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -165,6 +163,29 @@
 						}
 					})
 				})
+			},
+			bannerClick(e) {
+				if (config.debug) console.log("banner click", e)
+				let url = e.target.dataset.url
+				if (!url) return
+
+				// #ifdef MP
+				uni.navigateTo({
+					url
+				})
+				// #endif
+
+				// APP or H5
+				// #ifndef MP
+				if (String(url).indexOf("http://") > -1 || String(url).indexOf("https://") > -1) {
+					plus.runtime.openURL(url) // 调用外部浏览器打开
+					// plus.runtime.openWeb(url) // app 内打开
+				} else {
+					uni.navigateTo({
+						url
+					})
+				}
+				// #endif
 			}
 		}
 

@@ -522,7 +522,7 @@
 .editormd-html-preview .tag-pre {
 	border: 1px solid #ddd;
 	background: #f6f6f6;
-	padding: 10px;
+	padding: 16px 16px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-ms-border-radius: 3px;
@@ -666,10 +666,11 @@
 
 .editormd-preview-container .tag-pre.prettyprint,
 .editormd-html-preview .tag-pre.prettyprint {
-	padding: 10px;
+	padding: 12px 18px;
 	border: 1px solid #ddd;
 	white-space: -pre-wrap;
 	word-wrap: break-word;
+	box-sizing: border-box;
 }
 
 .editormd-preview-container .tag-ol.linenums,
@@ -705,7 +706,7 @@
 .editormd-html-preview .tag-pre {
 	border: 0 !important;
 	background-color: #f6f6f6;
-	line-height: 1.5;
+	line-height: 1.7;
 	font-size: 0.9em;
 }
 
@@ -714,7 +715,6 @@
 	color: #777 !important;
 	font-style: normal !important;
 	border-left: 4px solid #d6dbdf;
-	/* font-size: 14px; */
 	font-size: 0.9em;
 	background: none repeat scroll 0 0 rgba(102, 128, 153, 0.05);
 	margin: 8px 0;

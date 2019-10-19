@@ -113,4 +113,11 @@
 		border-bottom: 1upx solid #efefef;
 		line-height: 300%;
 	}
+	@media (min-width: 768px) {
+		.recycle image{
+			max-width: 18px;
+			max-height: 18px;
+			margin-top: 15px;
+		}
+	}
 </style>

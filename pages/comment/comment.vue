@@ -140,5 +140,9 @@ textarea {
   border-radius: 6upx;
   border-color: #e64340;
 }
+@media (min-width: 768px) {
+	.submit text{display: none;}
+	.submit button{font-size: 16px;}
+}
 
 </style>

@@ -4,7 +4,7 @@
 	- [x] 书籍阅读页         /pages/read/read
 	- [ ] 用户中心页         /pages/ucenter/ucenter
 	- [x] 首页              /pages/index/index
-	- [ ] 分类页            /pages/cate/cate
+	- [x] 分类页            /pages/cate/cate
 	- [ ] 书架页            /pages/bookshelf/bookshelf
 	- [ ] 列表页            /pages/list/list
 	- [ ] 个人主页          /pages/me/me

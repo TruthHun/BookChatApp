@@ -7,8 +7,8 @@
 		<view v-if="banners.length>0" class="base-padding base-margin-bottom">
 			<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval"
 			 :duration="duration">
-				<swiper-item v-for="banner in banners" :key="banner.id">
-					<image @click="bannerClick" :data-url="banner.link" :src="banner.image" class="radius-basic" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
+				<swiper-item v-for="banner in banners" :key="banner.id" class="radius-basic">
+					<image @click="bannerClick" :data-url="banner.link" :src="banner.image" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
 				</swiper-item>
 			</swiper>
 		</view>

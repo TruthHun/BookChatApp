@@ -34,7 +34,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .hor {
   display: flex;
   flex-direction: row;
@@ -52,5 +52,10 @@
 .hor navigator image {
   width: 170upx;
   height: 223.4upx;
+}
+@media (min-width:768px) {
+	.ellipsis-2row{
+		line-height: 200%;
+	}
 }
 </style>

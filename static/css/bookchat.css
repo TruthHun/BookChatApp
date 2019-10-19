@@ -374,3 +374,27 @@ navigator:active {
 .score-0 {
 	background-position-y: -299upx;
 }
+
+/* 平板样式兼容 */
+
+@media (min-width: 768px) {
+	.font-lv1 {
+		font-size: 22px !important;
+	}
+	
+	.font-lv2 {
+		font-size: 20px !important;
+	}
+	
+	.font-lv3 {
+		font-size: 18px !important;
+	}
+	
+	.font-lv4 {
+		font-size: 16px !important;
+	}
+	
+	.font-lv5 {
+		font-size: 14px !important;
+	}
+}

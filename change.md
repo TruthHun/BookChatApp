@@ -15,9 +15,10 @@
 	- [x] 登录页            /pages/login/login
 	- [x] 注册页            /pages/register/register
 	- [x] 书籍介绍页         /pages/intro/intro
+- [x] 平板适配微调
+	- [x] `tab` 内边距太大
+	- [x] 书架中书籍名称行高太大
+	- [x] 搜索输入框优化
 - [ ] Banner 等HTTP链接允许外部打开
 - [ ] 书架，长按可以将书籍从书架中移除
-- [ ] 平板适配微调
-	- [ ] `tab` 内边距太大
-	- [ ] 书架中书籍名称行高太大
-	- [x] 搜索输入框优化
+

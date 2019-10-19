@@ -169,4 +169,9 @@
 }
 
 .icon{width: 32upx;height: 32upx;}
+@media (min-width: 768px) {
+	.ellipsis-2row{
+		line-height: 2.0;
+	}
+}
 </style>

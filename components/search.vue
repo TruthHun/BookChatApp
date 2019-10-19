@@ -102,7 +102,7 @@
 	}
 
 	form image.clear {
-		right: 35px;
+		right: 30px;
 		z-index: 88;
 	}
 </style>

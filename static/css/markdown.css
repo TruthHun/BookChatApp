@@ -726,12 +726,13 @@
 }
 
 .editormd-preview-container .tag-pre.prettyprint,
-	.editormd-html-preview .tag-pre.prettyprint {
-		padding: 12px 20px;
-	}
+.editormd-html-preview .tag-pre.prettyprint {
+	padding: 12px 18px;
+}
+
 @media (min-width: 768px) {
 	.editormd-preview-container .tag-pre.prettyprint,
 	.editormd-html-preview .tag-pre.prettyprint {
-		padding: 12px 17px;
+		padding: 12px 15px;
 	}
 }

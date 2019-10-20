@@ -53,6 +53,11 @@
 				this.curTab = this.tabs[0].value
 			}
 		},
+		watch: {
+			curTab: function() {
+				this.curTab = this.activeTab
+			}
+		},
 		methods: {
 			tabClick(e) {
 				this.curTab = e.target.dataset.value

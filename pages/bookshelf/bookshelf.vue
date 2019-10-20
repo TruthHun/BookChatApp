@@ -237,6 +237,5 @@
 			height: 203.7upx;
 			margin-bottom: 8upx;
 		}
-		
 	}
 </style>

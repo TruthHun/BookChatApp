@@ -1,8 +1,11 @@
 <template>
 	<view>
-		<block v-if="books.length>0 && token!=''">
-			<view class="row mgt-15upx">
-				<view class="col-12 text-center font-lv3 color-grey">温馨提示：长按可将书籍从书架中移除</view>
+		<block v-if="books.length>0 && token!='' && showLongpressTips">
+			<view class="row mgt-15upx base-padding">
+				<view class="col-12 font-lv4 color-grey longpress-tips">
+					<text>温馨提示：长按可将书籍从书架中移除</text>
+					<text @click="closeLongpressTips" class="close-longpress-tips color-info">X</text>
+				</view>
 			</view>
 		</block>
 
@@ -59,7 +62,8 @@
 				books: [],
 				showTips: false,
 				wd: '',
-				token: ''
+				token: '',
+				showLongpressTips: false,
 			}
 		},
 		components: {
@@ -67,6 +71,7 @@
 			loading,
 		},
 		onShow: function() {
+			this.showLongpressTips = uni.getStorageSync("showLongpressTips") != "false"
 			if (config.debug) console.log("onShow", "bookshelfChanged", getApp().globalData.bookshelfChanged)
 			this.loadBooks(getApp().globalData.bookshelfChanged)
 			getApp().globalData.bookshelfChanged = false
@@ -104,6 +109,10 @@
 						}
 					}
 				})
+			},
+			closeLongpressTips: function() {
+				this.showLongpressTips = false
+				uni.setStorageSync("showLongpressTips", "false")
 			},
 			loadBooks: function(isClearAll) {
 
@@ -203,6 +212,18 @@
 	.icon {
 		width: 32upx;
 		height: 32upx;
+	}
+
+	.longpress-tips {
+		border: 1upx dashed #FF6600;
+		border-radius: 3upx;
+		box-sizing: border-box;
+		padding: 20upx 20upx 20upx 15upx;
+		border-radius: 5upx;
+	}
+
+	.longpress-tips .close-longpress-tips {
+		float: right;
 	}
 
 	@media (min-width: 768px) {

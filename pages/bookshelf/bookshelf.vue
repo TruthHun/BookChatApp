@@ -199,19 +199,10 @@
 		margin: 30upx auto;
 	}
 
-	.progress progress {
-		margin-bottom: 15upx;
-	}
-
 	.book image {
 		width: 206upx;
 		height: 271.6upx;
 		margin-bottom: 15upx;
-	}
-
-	.icon {
-		width: 32upx;
-		height: 32upx;
 	}
 
 	.longpress-tips {
@@ -228,7 +219,24 @@
 
 	@media (min-width: 768px) {
 		.ellipsis-2row {
-			line-height: 2.0;
+			line-height: 1.8;
 		}
+		.col-4{
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
+		.book {
+			width: 154.5upx;
+			max-width: 100%;
+			display: block;
+			margin: 30upx auto;
+		}
+		
+		.book image {
+			width: 154.5upx;
+			height: 203.7upx;
+			margin-bottom: 8upx;
+		}
+		
 	}
 </style>

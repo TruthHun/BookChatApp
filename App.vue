@@ -19,6 +19,7 @@
 
 				// 如果是Android平台，则检测是否有新版本
 				if (String(info.platform).toLowerCase() == "android") {
+					if (config.debug) console.log("request version api", config.api.lastestVersion)
 					util.request(config.api.lastestVersion).then(function(res) {
 						if (config.debug) console.log("latest version:", res)
 						if (res && res.data && res.data.version) {
@@ -47,12 +48,8 @@
 			});
 			// #endif
 
-
-
 			if (config.debug) console.log(info)
-
 			util.setSysInfo(info)
-
 		},
 		onShow: function() {
 			if (config.debug) console.log('App Show')

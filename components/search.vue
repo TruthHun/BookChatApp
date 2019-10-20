@@ -97,12 +97,12 @@
 		box-sizing: border-box;
 		height: 90upx;
 		width: 90upx;
-		padding: 20upx;
+		padding: 20upx 20upx;
 		z-index: 99;
 	}
 
 	form image.clear {
-		right: 30upx;
+		right: 70upx;
 		z-index: 88;
 	}
 	@media (min-width: 768px) {
@@ -122,7 +122,7 @@
 		}
 		
 		form image.clear {
-			right: 30upx;
+			right: 45upx;
 		}
 		form image {
 			top: 5upx;

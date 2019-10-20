@@ -1,5 +1,5 @@
 ## BookChatApp v1.2.0
-- [x] 平板适配
+- [x] 平板适配页面
 	- [x] 目录页            /pages/menu/menu
 	- [x] 书籍阅读页         /pages/read/read
 	- [x] 用户中心页         /pages/ucenter/ucenter
@@ -21,6 +21,5 @@
 	- [x] 搜索输入框优化
 - [x] 内容阅读页面代码块显示优化
 - [x] Banner 等HTTP链接允许外部打开
-- [x] APP版本升级（仅针对Android，iOS有App Store，不需要升级提示） 
+- [x] APP版本升级提示（仅针对Android，iOS有App Store，不需要升级提示） 
 - [x] 书架，长按可以将书籍从书架中移除
-

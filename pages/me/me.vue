@@ -118,6 +118,7 @@
 							util.request(config.api.logout) // 只需调用，不需要处理返回结果
 							util.clearUser()
 							util.toastSuccess('退出成功')
+							getApp().globalData.bookshelfChanged = true
 							that.initUser()
 						}
 					}
@@ -202,13 +203,15 @@
 		margin-bottom: 0;
 		border-bottom: 0;
 	}
+
 	@media (min-width: 768px) {
-		.base-info image{
+		.base-info image {
 			max-width: 20px;
 			max-height: 20px;
 			top: 3px;
 		}
-		.base-info .col-12{
+
+		.base-info .col-12 {
 			padding-top: 25px;
 			padding-bottom: 25px;
 		}

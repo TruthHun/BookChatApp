@@ -79,7 +79,7 @@
 
 	.book-list .color-grey {
 		line-height: 150%;
-		text-indent: 2em;
+		/* text-indent: 2em; */
 	}
 
 	.book-list .cover {

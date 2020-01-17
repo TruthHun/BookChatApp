@@ -43,10 +43,14 @@
 					</view>
 				</view>
 			</view>
-
 			<view class='intro font-lv3 color-grey'>
 				<text>{{book.description}}</text>
-				<view v-if="book.author" class='ellipsis-1row font-lv4'>来源: {{book.author}} - {{book.author_url}}</view>
+				<view v-if="book.tags.length > 0" class="tags">
+					<block v-for="tag in book.tags" :key="tag">
+						<navigator class="color-link radius-basic font-lv3" :url="'../search/search?wd='+tag">{{tag}}</navigator>
+					</block>
+				</view>
+				<view v-if="book.author" class='ellipsis-1row font-lv4 source'>来源: {{book.author}} - {{book.author_url}}</view>
 			</view>
 			<navigator :url='"/pages/menu/menu?identify="+book.book_id' class='menu row'>
 				<view class='col font-lv3'>查看目录</view>
@@ -146,6 +150,7 @@
 				size: 10,
 				myScore: 0,
 				comments: [],
+				tags: ['Hello', 'World'],
 				scrollWidth: util.getSysInfo().bannerWidth + "px",
 			}
 		},
@@ -217,6 +222,7 @@
 					book.float_score = (book.score / 10).toFixed(1)
 					book.description = book.description || book.book_name
 					book.percent = Number(book.cnt_readed / book.cnt_doc * 100).toFixed(2)
+					book.tags = book.tags == undefined ? [] : book.tags.split(',') 
 					that.book = book
 					that.relatedBooks = books
 					that.page = 1
@@ -432,6 +438,20 @@
 		padding-top: 0upx;
 		line-height: 180%;
 		text-indent: 2em;
+	}
+
+	.intro .tags,.intro .source {
+		text-indent: 0;
+	}
+
+	.intro .tags navigator {
+		display: inline-block;
+		padding: 4upx 26upx;
+		background-color: #F6F6F6;
+		margin-right: 16upx;
+		margin-top: 12upx;
+		margin-bottom: 4upx;
+		font-size: 13px !important;
 	}
 
 	.intro .ellipsis-1row {

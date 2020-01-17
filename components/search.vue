@@ -1,9 +1,11 @@
 <template>
-	<form class='search'>
-		<input :focus='focus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" name='wd' type='text' />
-		<image @click='clear' v-if='showClear' class='clear' src='/static/images/clear.png'></image>
-		<image @click='search' src='/static/images/search.png'></image>
-	</form>
+	<view>
+		<form class='search'>
+			<input :focus='focus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" name='wd' type='text' />
+			<image @click='clear' v-if='showClear' class='clear' src='/static/images/clear.png'></image>
+			<image @click='search' src='/static/images/search.png'></image>
+		</form>
+	</view>
 </template>
 
 <script>
@@ -72,10 +74,19 @@
 		margin-top: 15px;
 		position: relative;
 		display: block;
+		background-color: #f8f8f8;
+		line-height: 90upx;
+		height: 90upx;
+		border-radius: 10upx;
+		padding-right: 140upx;
 	}
 
 	form input {
-		box-sizing: border-box;
+		height: 90upx;
+		padding-left: 26upx;
+		font-size: 15px;
+	
+/* 		box-sizing: border-box;
 		width: 100%;
 		background-color: #f8f8f8;
 		line-height: 90upx;
@@ -85,7 +96,7 @@
 		font-size: 15px;
 		border-radius: 10upx;
 		text-align: left;
-		padding: 0 130upx 0 26upx;
+		padding: 0 130upx 0 26upx; */
 	}
 
 

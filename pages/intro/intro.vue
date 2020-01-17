@@ -437,11 +437,6 @@
 		padding: 30upx;
 		padding-top: 0upx;
 		line-height: 180%;
-		text-indent: 2em;
-	}
-
-	.intro .tags,.intro .source {
-		text-indent: 0;
 	}
 
 	.intro .tags navigator {

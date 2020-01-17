@@ -1,3 +1,7 @@
+## BookChatApp v1.3.0
+- [x] 书籍介绍页面显示书籍标签，以便用户快捷搜索
+- [x] 用户退出后，更新书架内容
+
 ## BookChatApp v1.2.0
 - [x] 平板适配页面
 	- [x] 目录页            /pages/menu/menu

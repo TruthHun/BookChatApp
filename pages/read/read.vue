@@ -204,7 +204,7 @@
 				}
 
 				let menuTree = util.menuToTree(menu)
-				let app = getApp().globalData
+				// let app = getApp().globalData
 
 				that.menuSortIds = util.menuSortIds(menuTree)
 				that.menuTree = menuTree
@@ -658,10 +658,11 @@
 		.drawer {
 			width: 65%;
 		}
+
 		.drawer-left.show {
 			right: 35%;
 		}
-		
+
 		.drawer-right.show {
 			left: 35%;
 		}

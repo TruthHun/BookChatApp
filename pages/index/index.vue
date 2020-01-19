@@ -36,10 +36,8 @@
 				</view>
 			</view>
 		</block>
-
+		<view v-if="platform == 'ios'" class="ios-platform">.</view>
 	</view>
-
-
 </template>
 
 <script>
@@ -69,7 +67,8 @@
 				banners: [],
 				categoryBooks: [],
 				recommendBooks: [],
-				times: 100, // 当iOS未允许访问网络的时候，没3秒请求一次数据
+				times: 100, // 当iOS未允许访问网络的时候，每3秒请求一次数据
+				platform: '',
 			}
 		},
 		onLoad() {
@@ -128,6 +127,8 @@
 							let info = util.getSysInfo()
 							let width = info.windowWidth * info.pixelRatio - 60
 							let height = width / size
+							that.platform = info.platform || ''
+							that.platform = that.platform.toLowerCase()
 							that.bannerWidth = width / info.pixelRatio + "px"
 							that.bannerHeight = height / info.pixelRatio + "px"
 						}
@@ -193,5 +194,9 @@
 </script>
 
 <style>
-
+	.ios-platform {
+		color: transparent;
+		height: 1upx;
+		overflow: hidden;
+	}
 </style>

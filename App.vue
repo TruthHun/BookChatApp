@@ -48,7 +48,10 @@
 			});
 			// #endif
 
-			if (config.debug) console.log(info)
+			if (config.debug) {
+				console.log(info)
+				console.log('platform', info.platform)
+			}
 			util.setSysInfo(info)
 		},
 		onShow: function() {

@@ -10,7 +10,7 @@
 						<navigator :url="'/pages/list/list?cid='+child.id" class='col-6 item' v-if="child.cnt>0 && child.pid==category.id && child.status">
 							<view class='row'>
 								<view class='col-4'>
-									<image lazy-load='true' v-if="child.icon" class='img-responsive' :src='child.icon'></image>
+									<image :lazy-load='true' v-if="child.icon" class='img-responsive' :src='child.icon'></image>
 									<image v-else class='img-responsive' src='/static/images/cate-default.png'></image>
 								</view>
 								<view class='col-8'>

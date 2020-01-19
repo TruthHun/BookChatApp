@@ -36,7 +36,7 @@
 				<view v-for="(book, index) in books" :key="index" class='col-4'>
 					<navigator @longpress="longpress" :data-book="book.book_name" :data-id="book.book_id" :url='"/pages/intro/intro?id="+book.book_id'
 					 class='book text-muted'>
-						<image class='box-shadow cover' :src='book.cover'></image>
+						<image class='box-shadow cover' :lazy-load="true" :src='book.cover'></image>
 						<view class='font-lv3  ellipsis-2row'>{{book.book_name}}</view>
 					</navigator>
 				</view>

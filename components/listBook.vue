@@ -3,7 +3,7 @@
 		<block v-for="(book,index) in showBooks" :key='index'>
 			<view class='row'>
 				<navigator :url="'/pages/intro/intro?id='+book.book_id" class='col-3'>
-					<image lazy-load='true' class='box-shadow cover' :src='book.cover' />
+					<image :lazy-load='true' class='box-shadow cover' :src='book.cover' />
 				</navigator>
 				<navigator :url="'/pages/intro/intro?id='+book.book_id" class='col-9'>
 					<view class='font-lv1 mgb-15 ellipsis-1row'>{{book.book_name}}</view>

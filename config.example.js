@@ -6,17 +6,12 @@ const debug = true
 
 // 程序信息，置空则不显示
 const info = {
-	// "关于我们"的文档标识
-	about: 'help/about',
-	version: 'v1.0',
+	about: 'help/about', // "关于我们"的文档标识
+	version: 'v1.2.0',
 	copyright: 'BookStack.CN',
 	license: 'Apache 2.0',
 	author: 'TruthHun',
 }
-
-// ########################### //
-// 以上配置可修改，以下配置不要修改 //
-// ########################### //
 
 const api = {
 	banners: `${host}/api/v1/banners`,
@@ -40,12 +35,15 @@ const api = {
 	userRelease: `${host}/api/v1/user/release`,
 	userFans: `${host}/api/v1/user/fans`,
 	userFollow: `${host}/api/v1/user/follow`,
+	userSign: `${host}/api/v1/user/sign`,
 	bookshelf: `${host}/api/v1/user/bookshelf`,
 	bookStar: `${host}/api/v1/book/star`,
 	comment: `${host}/api/v1/book/comment`,
 	bookRelated: `${host}/api/v1/book/related`,
 	changeAvatar: `${host}/api/v1/user/change-avatar`,
-	changePassword: `${host}/api/v1/user/change-password`
+	changePassword: `${host}/api/v1/user/change-password`,
+	lastestVersion: `${host}/api/v1/version`,
+	rank: `${host}/api/v1/rank`,
 }
 
 module.exports = {

@@ -18,7 +18,7 @@
 					</view>
 				</view>
 			</view>
-			<view class='row mgb-30upx font-lv3 color-grey'>
+			<view class='row mgb-30 font-lv3 color-grey'>
 				<navigator class='col' :url="'/pages/read/read?identify='+about">关于我们</navigator>
 				<view class='col text-right' @click='findPassword'>忘记密码？</view>
 			</view>

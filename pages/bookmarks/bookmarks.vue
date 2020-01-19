@@ -11,7 +11,7 @@
 				<image src='../../static/images/recycle.png'></image>
 			</view>
 		</view>
-		<view class='font-lv3 mgt-30upx color-grey text-center pdt-30upx'>{{tips}}</view>
+		<view class='font-lv3 mgt-30 color-grey text-center pdt-30'>{{tips}}</view>
 	</view>
 </template>
 

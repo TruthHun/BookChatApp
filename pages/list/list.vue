@@ -1,9 +1,9 @@
 <template>
 	<view>
-		<view class="mgt-30upx">
+		<view class="mgt-30">
 			<tab @tabClick="tabClick" :tabGridLen="gridLen" :activeTab="activeTab" :tabs="tabs" :showSearch="true" />
 		</view>
-		<view v-if="books.length>0" class="base-padding mgt-30upx mgb-30upx">
+		<view v-if="books.length>0" class="base-padding mgt-30 mgb-30">
 			<list-book :books="books" />
 		</view>
 		<loading :loading="loading" :tips="tips"/>

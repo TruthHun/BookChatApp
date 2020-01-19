@@ -6,7 +6,7 @@
 				<input type="number" name="score" :value="score" />
 				<input type="text" name="identify" :value="identify" />
 			</view>
-			<view class='comment-score mgt-30upx'>
+			<view class='comment-score mgt-30'>
 		  <text class='font-lv3'>书籍评分</text>
 		  <image data-score="1" @click='touchStar' :src='score > 0 ? "../../static/images/star-highlight.png":"../../static/images/star.png"'></image>
 		  <image data-score="2" @click='touchStar' :src='score > 1 ? "../../static/images/star-highlight.png":"../../static/images/star.png"'></image>

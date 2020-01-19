@@ -1,5 +1,5 @@
 <template>
-	<view class="base-padding mgt-30upx">
+	<view class="base-padding mgt-30">
 		<form @submit="submit">
 			<view class='form-body'>
 				<view class='row font-lv2'>
@@ -34,7 +34,7 @@
 				</view>
 			</view>
 			<view class='row text-center'>
-				<view class='color-grey mgb-30upx font-lv3'>以上资料项全为必填项，请认真填写</view>
+				<view class='color-grey mgb-30 font-lv3'>以上资料项全为必填项，请认真填写</view>
 			</view>
 			<view class='row'>
 				<button :loading='loading' form-type="submit" class='btn-submit btn-block'> 立即注册 </button>

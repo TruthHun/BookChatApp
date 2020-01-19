@@ -7,22 +7,22 @@
 				</view>
 				<view class='col-8'>
 					<text class='ellipsis-2row font-lv1'>{{book.book_name}}</text>
-					<view :class='"score score-"+book.score+" mgt-30upx"'>
+					<view :class='"score score-"+book.score+" mgt-30"'>
 						<text>{{book.float_score}} 分</text>
 						<text v-if="book.lang" class='pull-right'>[ <text class='color-red'>{{book.lang}}</text> ]</text>
 					</view>
-					<navigator :url='"/pages/ucenter/ucenter?uid="+book.uid' class='mgt-15upx font-lv3 color-semi'>
+					<navigator :url='"/pages/ucenter/ucenter?uid="+book.uid' class='mgt-15 font-lv3 color-semi'>
 						<image class='icon-avatar' src='../../static/images/me.png'></image>
 						<text>{{book.user}}</text>
 					</navigator>
-					<view class='progress mgt-30upx'>
+					<view class='progress mgt-30'>
 						<view class='font-lv3 color-grey'>阅读进度
 							<view class='pull-right'>
 								<text>{{book.percent}}%</text>
 								<text v-if="isLogin == false">(未登录)</text>
 							</view>
 						</view>
-						<progress class='mgt-15upx' :percent="book.percent" />
+						<progress class='mgt-15' :percent="book.percent" />
 					</view>
 				</view>
 			</view>
@@ -60,7 +60,7 @@
 
 		<view v-if="relatedBooks.length>0" class='panel related-books'>
 			<view class='panel-heading base-padding'>
-				<view class='panel-title pdt-30upx strong font-lv2'>相关书籍</view>
+				<view class='panel-title pdt-30 strong font-lv2'>相关书籍</view>
 			</view>
 			<view class='panel-body base-padding'>
 				<scroll-book :books="relatedBooks" :width="scrollWidth" />
@@ -69,7 +69,7 @@
 
 		<view v-if="book.book_id>0" class='panel comments'>
 			<view class='panel-heading base-padding'>
-				<view class='panel-title pdt-30upx strong font-lv2'>书友点评</view>
+				<view class='panel-title pdt-30 strong font-lv2'>书友点评</view>
 			</view>
 			<view class='panel-body base-padding'>
 				<block v-if="comments.length>0">
@@ -87,7 +87,7 @@
 									<view class='pull-right font-lv4 color-grey'>{{comment.created_at}}</view>
 								</view>
 							</view>
-							<view class='row comment-content color-grey font-lv3 mgt-15upx'>{{comment.content}}</view>
+							<view class='row comment-content color-grey font-lv3 mgt-15'>{{comment.content}}</view>
 						</view>
 					</view>
 				</block>

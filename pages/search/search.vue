@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<view class='search base-padding mgb-30upx'>
+		<view class='search base-padding mgb-30'>
 			<search @search="search" :focus="focus" @clear="clear" :wd="wd" />
 		</view>
 
-		<view v-if="showTab" class="mgb-30upx">
+		<view v-if="showTab" class="mgb-30">
 			<tab @tabClick="tabClick" :tabs="tabs" :tabGridLen="6" :activeTab="tabValue" />
 		</view>
 

@@ -27,45 +27,45 @@
 
 /*  margin   */
 
-.mgt-15upx {
+.mgt-15 {
 	margin-top: 15upx;
 }
 
-.mgb-15upx {
+.mgb-15 {
 	margin-bottom: 15upx;
 }
 
-.mgt-30upx {
+.mgt-30 {
 	margin-top: 30upx;
 }
 
-.mgb-30upx {
+.mgb-30 {
 	margin-bottom: 30upx;
 }
 
 /*  padding  */
 
-.pdt-15upx {
+.pdt-15 {
 	padding-top: 15upx;
 }
 
-.pdb-15upx {
+.pdb-15 {
 	padding-bottom: 15upx;
 }
 
-.pdt-30upx {
+.pdt-30 {
 	padding-top: 30upx;
 }
 
-.pdb-30upx {
+.pdb-30 {
 	padding-bottom: 30upx;
 }
 
-.pdl-30upx {
+.pdl-30 {
 	padding-left: 30upx;
 }
 
-.plr-30upx {
+.plr-30 {
 	padding-right: 30upx;
 }
 

@@ -1,5 +1,5 @@
 <template>
-	<view class='base-padding mgt-30upx'>
+	<view class='base-padding mgt-30'>
 		<block v-for="category in categories" :key='category.id'>
 			<view class='panel' v-if="category.cnt >0 && category.status">
 				<view class='panel-heading'>

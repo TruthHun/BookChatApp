@@ -1,11 +1,11 @@
 <template>
 	<view class="loading">
 		<view v-if="loading">
-			<view class='text-center font-lv3 color-grey pdb-30upx'>
+			<view class='text-center font-lv3 color-grey pdb-30'>
 			  <image src='/static/images/loading.png'></image>
 			</view>
 		</view>
-		<view v-else class='text-center font-lv4 color-grey pdb-30upx'>{{tips}}</view>
+		<view v-else class='text-center font-lv4 color-grey pdb-30'>{{tips}}</view>
 	</view>
 </template>
 

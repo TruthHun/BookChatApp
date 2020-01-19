@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<block v-if="books.length>0 && token!='' && showLongpressTips">
-			<view class="row mgt-15upx base-padding">
+			<view class="row mgt-15 base-padding">
 				<view class="col-12 font-lv4 color-grey longpress-tips">
 					<text>温馨提示：长按可将书籍从书架中移除</text>
 					<text @click="closeLongpressTips" class="close-longpress-tips color-info">X</text>

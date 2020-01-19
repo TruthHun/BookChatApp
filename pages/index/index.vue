@@ -1,6 +1,6 @@
 <template>
 	<view class="root">
-		<view v-if="showSearch" class="base-padding mgb-30upx">
+		<view v-if="showSearch" class="base-padding mgb-30">
 			<search target="/pages/search/search" />
 		</view>
 

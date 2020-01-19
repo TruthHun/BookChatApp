@@ -1,12 +1,12 @@
 <template>
 	<view>
-		<view class='base-padding row user mgt-15upx'>
+		<view class='base-padding row user mgt-15'>
 			<image :src='user.avatar'></image>
 			<view class='username font-lv2'>{{user.nickname}}</view>
 			<view class='color-grey font-lv3'>{{user.intro}}</view>
 		</view>
 
-		<view class='pdb-30upx pdt-30upx'>
+		<view class='pdb-30 pdt-30'>
 			<tab @tabClick="tabClick" :tabs="tabs" :tabGridLen="10" :activeTab="tabValue" />
 		</view>
 
@@ -18,7 +18,7 @@
 						<image lazy-load='true' class='box-shadow cover' :src='book.cover' />
 					</navigator>
 					<navigator :url='"/pages/intro/intro?id="+book.book_id' class='col-9'>
-						<view class='font-lv1 mgb-15upx ellipsis-1row'>{{book.book_name}}</view>
+						<view class='font-lv1 mgb-15 ellipsis-1row'>{{book.book_name}}</view>
 						<view class='font-lv4 color-light info'>
 							<view class='col'>
 								<image src='../../static/images/eye.png'></image>

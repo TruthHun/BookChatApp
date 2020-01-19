@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<form class='search'>
-			<input :focus='focus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" name='wd' type='text' />
+			<input :focus='focus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" confirm-type="search" name='wd'/>
 			<image @click='clear' v-if='showClear' class='clear' src='/static/images/clear.png'></image>
 			<image @click='search' src='/static/images/search.png'></image>
 		</form>
@@ -75,28 +75,17 @@
 		position: relative;
 		display: block;
 		background-color: #f8f8f8;
-		line-height: 90upx;
-		height: 90upx;
 		border-radius: 10upx;
 		padding-right: 140upx;
+		padding-top: 15upx;
+		padding-left: 30upx;
+		padding-bottom: 15upx;
 	}
 
 	form input {
-		height: 90upx;
-		padding-left: 26upx;
+		height: 60upx;
+		line-height: 60upx;
 		font-size: 15px;
-	
-/* 		box-sizing: border-box;
-		width: 100%;
-		background-color: #f8f8f8;
-		line-height: 90upx;
-		height: 90upx;
-		margin-top: 0;
-		display: block;
-		font-size: 15px;
-		border-radius: 10upx;
-		text-align: left;
-		padding: 0 130upx 0 26upx; */
 	}
 
 
@@ -116,27 +105,31 @@
 		right: 70upx;
 		z-index: 88;
 	}
+	
 	@media (min-width: 768px) {
-		form input {
-			line-height: 45upx;
-			height: 45upx;
+		form {
 			border-radius: 5upx;
+			padding-right: 70upx;
+			padding-top: 10upx;
+			padding-bottom: 10upx;
+			padding-left: 15upx;
+		}
+		
+		form input {
+			height: 30upx;
+			line-height: 30upx;
 			font-size: 17px;
-			padding: 0 65upx 0 13upx;
 		}
 		
 		
 		form image {
-			height: 45upx;
-			width: 45upx;
-			padding: 10upx;
+			height: 50upx;
+			width: 50upx;
+			padding: 10upx 10upx;
 		}
 		
 		form image.clear {
-			right: 45upx;
-		}
-		form image {
-			top: 5upx;
+			right: 35upx;
 		}
 	}
 </style>

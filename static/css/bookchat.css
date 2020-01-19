@@ -1,8 +1,4 @@
-// ============================ //
 /* bookchat global css */
-/* .root,page,.page{
-	line-height: 150%;
-} */
 .text-center {
 	text-align: center;
 }
@@ -204,7 +200,8 @@
 /**app.wxss**/
 
 .box-shadow {
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+	/* border: 1upx solid rgba(0, 0, 0, 0.08); */
 }
 
 .base-padding {
@@ -246,7 +243,6 @@ navigator:active {
 .ellipsis-2row {
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	display: box;
 	box-decoration-break: ;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -381,19 +377,19 @@ navigator:active {
 	.font-lv1 {
 		font-size: 22px !important;
 	}
-	
+
 	.font-lv2 {
 		font-size: 20px !important;
 	}
-	
+
 	.font-lv3 {
 		font-size: 18px !important;
 	}
-	
+
 	.font-lv4 {
 		font-size: 16px !important;
 	}
-	
+
 	.font-lv5 {
 		font-size: 14px !important;
 	}

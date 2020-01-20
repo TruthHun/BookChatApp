@@ -474,6 +474,9 @@
 				}
 				this.setting = setting
 				this.screenBrightness = this.defautScreenBrightness
+				uni.setScreenBrightness({
+					value: this.defautScreenBrightness
+				})
 				util.setReaderSetting(setting)
 			},
 			_clickBookmark: function(action) {

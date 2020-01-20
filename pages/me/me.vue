@@ -1,5 +1,6 @@
 <template>
 	<view class="page">
+		<iheader title="我的" :showIcon="false"></iheader>
 		<view class='base-padding row' @click='userLoginEvent'>
 			<view class='user'>
 				<image :src='user.avatar'></image>
@@ -75,8 +76,13 @@
 <script>
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
+	
+	import iheader from '../../components/header.vue'
 
 	export default {
+		components: {
+			iheader
+		},
 		data() {
 			return {
 				info: {},

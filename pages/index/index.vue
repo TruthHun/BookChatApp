@@ -1,5 +1,6 @@
 <template>
 	<view class="root">
+		<iheader :showIcon="false"></iheader>
 		<view v-if="showSearch" class="base-padding mgb-30">
 			<search target="/pages/search/search" />
 		</view>
@@ -44,6 +45,7 @@
 	import scrollBook from '../../components/scrollBook.vue'
 	import search from '../../components/search.vue'
 	import listBook from '../../components/listBook.vue'
+	import iheader from '../../components/header.vue'
 
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
@@ -54,6 +56,7 @@
 			scrollBook,
 			search,
 			listBook,
+			iheader,
 		},
 		data() {
 			return {

@@ -1,5 +1,6 @@
 <template>
 	<view class="comment">
+		<iheader title="点评"></iheader>
 		<form @submit="submit">
 			<textarea name="content" class='font-lv3 color-semi' placeholder="您的点评能帮助其他小伙伴了解内容哟" auto-focus />
 			<view v-show="false">
@@ -28,7 +29,12 @@
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
 	
+	import iheader from '../../components/header.vue'
+	
 	export default {
+		components: {
+			iheader
+		},
 		data() {
 			return {
 				beforeScore: 0,

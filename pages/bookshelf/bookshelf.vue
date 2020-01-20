@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<iheader title="书架" :showIcon="false"></iheader>
 		<block v-if="books.length>0 && token!='' && showLongpressTips">
 			<view class="row mgt-15 base-padding">
 				<view class="col-12 font-lv4 color-grey longpress-tips">
@@ -53,6 +54,7 @@
 
 	import loading from '../../components/loading.vue'
 	import search from '../../components/search.vue'
+	import iheader from '../../components/header.vue'
 
 	export default {
 		data() {
@@ -69,6 +71,7 @@
 		components: {
 			search,
 			loading,
+			iheader,
 		},
 		onShow: function() {
 			this.showLongpressTips = uni.getStorageSync("showLongpressTips") != "false"

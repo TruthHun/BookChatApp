@@ -1,5 +1,6 @@
 <template>
 	<view class="page">
+		<iheader :title="book.book_name"></iheader>
 		<view @click='pageClick' :class='"bg-theme"+setting.themeIndex' :style='"min-height:"+(sys.screenHeight - sys.statusBarHeight - 55)+"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
@@ -112,10 +113,12 @@
 	import config from '../../config.js'
 
 	import imenu from '../../components/menu.vue'
+	import iheader from '../../components/header.vue'
 
 	export default {
 		components: {
 			imenu,
+			iheader,
 		},
 		data() {
 			return {
@@ -209,9 +212,9 @@
 				that.menuSortIds = util.menuSortIds(menuTree)
 				that.menuTree = menuTree
 				that.book = book
-				uni.setNavigationBarTitle({
-					title: book.book_name
-				})
+				// uni.setNavigationBarTitle({
+				// 	title: book.book_name
+				// })
 				if (arr.length != 2) {
 					if (latestReadId > 0) {
 						identify = book.book_id + "/" + latestReadId

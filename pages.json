@@ -37,7 +37,7 @@
 		{
 			"path": "pages/list/list",
 			"style": {
-				"navigationBarTitleText": "书籍列表"
+				"navigationBarTitleText": "列表"
 			}
 		},
 		{
@@ -65,7 +65,7 @@
 		}, {
 			"path": "pages/bookmarks/bookmarks",
 			"style": {
-				"navigationBarTitleText": "我的书签"
+				"navigationBarTitleText": "书签"
 			}
 		}, {
 			"path": "pages/search/search",
@@ -108,7 +108,8 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "BookChat",
 		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF"
+		"backgroundColor": "#FFFFFF",
+		"navigationStyle":"custom"
 	},
 	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)

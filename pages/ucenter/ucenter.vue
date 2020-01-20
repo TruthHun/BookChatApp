@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<iheader title="我的"></iheader>
 		<view class='base-padding row user mgt-15'>
 			<image :src='user.avatar'></image>
 			<view class='username font-lv2'>{{user.nickname}}</view>
@@ -66,6 +67,7 @@
 <script>
 	import tab from '../../components/tab.vue'
 	import loading from '../../components/loading.vue'
+	import iheader from '../../components/header.vue'
 
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
@@ -75,6 +77,7 @@
 		components: {
 			tab,
 			loading,
+			iheader,
 		},
 		data() {
 			return {

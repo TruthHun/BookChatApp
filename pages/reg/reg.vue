@@ -1,48 +1,51 @@
 <template>
-	<view class="base-padding mgt-30">
-		<form @submit="submit">
-			<view class='form-body'>
-				<view class='row font-lv2'>
-					<view class='col-3'>邮箱</view>
-					<view class='col-9'>
-						<input name="email" placeholder="请输入邮箱地址" />
+	<view>
+		<iheader title="注册"></iheader>
+		<view class="base-padding mgt-30">
+			<form @submit="submit">
+				<view class='form-body'>
+					<view class='row font-lv2'>
+						<view class='col-3'>邮箱</view>
+						<view class='col-9'>
+							<input name="email" placeholder="请输入邮箱地址" />
+						</view>
+					</view>
+					<view class='row font-lv2'>
+						<view class='col-3'>用户名</view>
+						<view class='col-9'>
+							<input name="username" placeholder="请输入用户名" />
+						</view>
+					</view>
+					<view class='row font-lv2'>
+						<view class='col-3'>用户昵称</view>
+						<view class='col-9'>
+							<input name="nickname" placeholder="请输入昵称" />
+						</view>
+					</view>
+					<view class='row font-lv2'>
+						<view class='col-3'>登录密码</view>
+						<view class='col-9'>
+							<input password name="password" placeholder="请输入密码" />
+						</view>
+					</view>
+					<view class='row font-lv2'>
+						<view class='col-3'>确认密码</view>
+						<view class='col-9'>
+							<input password name="re_password" placeholder="请再次输入密码" />
+						</view>
 					</view>
 				</view>
-				<view class='row font-lv2'>
-					<view class='col-3'>用户名</view>
-					<view class='col-9'>
-						<input name="username" placeholder="请输入用户名" />
-					</view>
+				<view class='row text-center'>
+					<view class='color-grey mgb-30 font-lv3'>以上资料项全为必填项，请认真填写</view>
 				</view>
-				<view class='row font-lv2'>
-					<view class='col-3'>用户昵称</view>
-					<view class='col-9'>
-						<input name="nickname" placeholder="请输入昵称" />
-					</view>
+				<view class='row'>
+					<button :loading='loading' form-type="submit" class='btn-submit btn-block'> 立即注册 </button>
 				</view>
-				<view class='row font-lv2'>
-					<view class='col-3'>登录密码</view>
-					<view class='col-9'>
-						<input password name="password" placeholder="请输入密码" />
-					</view>
+				<view class='row'>
+					<button class='btn-block btn-login' @click='toLogin'> 马上登录 </button>
 				</view>
-				<view class='row font-lv2'>
-					<view class='col-3'>确认密码</view>
-					<view class='col-9'>
-						<input password name="re_password" placeholder="请再次输入密码" />
-					</view>
-				</view>
-			</view>
-			<view class='row text-center'>
-				<view class='color-grey mgb-30 font-lv3'>以上资料项全为必填项，请认真填写</view>
-			</view>
-			<view class='row'>
-				<button :loading='loading' form-type="submit" class='btn-submit btn-block'> 立即注册 </button>
-			</view>
-			<view class='row'>
-				<button class='btn-block btn-login' @click='toLogin'> 马上登录 </button>
-			</view>
-		</form>
+			</form>
+		</view>
 	</view>
 </template>
 
@@ -50,8 +53,13 @@
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
+	
+	import iheader from '../../components/header.vue'
 
 	export default {
+		components: {
+			iheader
+		},
 		data() {
 			return {
 				loading: false,

@@ -4,7 +4,9 @@
 
 	export default {
 		globalData: {
-			bookshelfChanged: false
+			bookshelfChanged: false,
+			statusBarHeight: 0,
+			titleBarHeight: 0
 		},
 		onLaunch: function() {
 			let info = uni.getSystemInfoSync()

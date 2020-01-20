@@ -1,34 +1,37 @@
 <template>
-	<view class='base-padding'>
-		<form @submit="formSubmit">
-			<view class='form-body'>
-				<view>
-					<image src='/static/images/logo.png'></image>
-				</view>
-				<view class='row font-lv2'>
-					<view class='col-3'>账号</view>
-					<view class='col-9'>
-						<input name="username" auto-focus='true' placeholder="请输入用户名或邮箱" />
+	<view>
+		<iheader title="登录"></iheader>
+		<view class='base-padding'>
+			<form @submit="formSubmit">
+				<view class='form-body'>
+					<view>
+						<image src='/static/images/logo.png'></image>
+					</view>
+					<view class='row font-lv2'>
+						<view class='col-3'>账号</view>
+						<view class='col-9'>
+							<input name="username" auto-focus='true' placeholder="请输入用户名或邮箱" />
+						</view>
+					</view>
+					<view class='row font-lv2'>
+						<view class='col-3'>密码</view>
+						<view class='col-9'>
+							<input password name="password" placeholder="请输入密码" />
+						</view>
 					</view>
 				</view>
-				<view class='row font-lv2'>
-					<view class='col-3'>密码</view>
-					<view class='col-9'>
-						<input password name="password" placeholder="请输入密码" />
-					</view>
+				<view class='row mgb-30 font-lv3 color-grey'>
+					<navigator class='col' :url="'/pages/read/read?identify='+about">关于我们</navigator>
+					<view class='col text-right' @click='findPassword'>忘记密码？</view>
 				</view>
-			</view>
-			<view class='row mgb-30 font-lv3 color-grey'>
-				<navigator class='col' :url="'/pages/read/read?identify='+about">关于我们</navigator>
-				<view class='col text-right' @click='findPassword'>忘记密码？</view>
-			</view>
-			<view class='row'>
-				<button class='btn-submit btn-block' :loading='loading' form-type='submit'> 码上登录 </button>
-			</view>
-			<view class='row'>
-				<button @click="toReg" class='btn-login btn-block'> 注册账号 </button>
-			</view>
-		</form>
+				<view class='row'>
+					<button class='btn-submit btn-block' :loading='loading' form-type='submit'> 码上登录 </button>
+				</view>
+				<view class='row'>
+					<button @click="toReg" class='btn-login btn-block'> 注册账号 </button>
+				</view>
+			</form>
+		</view>
 	</view>
 </template>
 
@@ -36,8 +39,13 @@
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
+	
+	import iheader from '../../components/header.vue'
 
 	export default {
+		components: {
+			iheader
+		},
 		data() {
 			return {
 				loading: false,

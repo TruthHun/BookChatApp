@@ -1,5 +1,6 @@
 <template>
 	<view class="intro-page">
+		<iheader :title="book.book_name"></iheader>
 		<block v-if="book.book_id>0">
 			<view class='row info'>
 				<view class='col-4'>
@@ -134,12 +135,16 @@
 
 <script>
 	import scrollBook from '../../components/scrollBook.vue'
+	import iheader from '../../components/header.vue'
 
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
 	import config from '../../config.js'
 
 	export default {
+		components: {
+			iheader
+		},
 		data() {
 			return {
 				bookId: 0,
@@ -222,7 +227,7 @@
 					book.float_score = (book.score / 10).toFixed(1)
 					book.description = book.description || book.book_name
 					book.percent = Number(book.cnt_readed / book.cnt_doc * 100).toFixed(2)
-					book.tags = book.tags == undefined ? [] : book.tags.split(',') 
+					book.tags = book.tags == undefined ? [] : book.tags.split(',')
 					that.book = book
 					that.relatedBooks = books
 					that.page = 1

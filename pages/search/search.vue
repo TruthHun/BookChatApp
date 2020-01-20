@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<iheader :title="title"></iheader>
 		<view class='search base-padding mgb-30'>
 			<search @search="search" :focus="focus" @clear="clear" :wd="wd" />
 		</view>
@@ -41,6 +42,7 @@
 	import search from '../../components/search.vue'
 	import listBook from '../../components/listBook.vue'
 	import tab from '../../components/tab.vue'
+	import iheader from '../../components/header.vue'
 
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
@@ -51,13 +53,15 @@
 			loading,
 			listBook,
 			search,
-			tab
+			tab,
+			iheader,
 		},
 		data() {
 			return {
 				tips: '',
 				lists: [],
 				wd: '',
+				title: '搜索',
 				page: 1,
 				size: 10,
 				tabValue: "book",
@@ -127,9 +131,10 @@
 				
 				that.showTab = true
 				
-				uni.setNavigationBarTitle({
-					title: this.wd+" · 搜索"
-				})
+				that.title = that.wd+" · 搜索"
+				// uni.setNavigationBarTitle({
+				// 	title: this.wd+" · 搜索"
+				// })
 				
 				if (that.pedding) return
 

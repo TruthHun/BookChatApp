@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<iheader :title="'目录 · '+ book.book_name"></iheader>
 		<imenu :book="book" :wd="wd" :menu="menuTree" :token="token" :result="result" 
 		@search="search" 
 		@itemClick="itemClick"
@@ -14,11 +15,13 @@
 	import api from '../../utils/api.js'
 
 	import imenu from '../../components/menu.vue'
+	import iheader from '../../components/header.vue'
 
 
 	export default {
 		components: {
-			imenu
+			imenu,
+			iheader,
 		},
 		data() {
 			return {

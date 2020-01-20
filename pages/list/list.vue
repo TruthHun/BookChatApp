@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<iheader :title="title"></iheader>
 		<view class="mgt-30">
 			<tab @tabClick="tabClick" :tabGridLen="gridLen" :activeTab="activeTab" :tabs="tabs" :showSearch="true" />
 		</view>
@@ -14,6 +15,7 @@
 	import tab from '../../components/tab.vue'
 	import listBook from '../../components/listBook.vue'
 	import loading from '../../components/loading.vue'
+	import iheader from '../../components/header.vue'
 	
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
@@ -30,6 +32,7 @@
 				loading: false,
 				activeTitle: '最新',
 				tips: '',
+				title: '列表',
 				tabs: [{
 				  title: '热门',
 				  value: 'popular'
@@ -47,6 +50,7 @@
 			tab,
 			listBook,
 			loading,
+			iheader,
 		},
 		onLoad(op) {
 			let cid = op.cid;
@@ -105,9 +109,10 @@
 			    }).catch((e) => {
 			      console.log(e)
 			    }).finally(function() {
-					uni.setNavigationBarTitle({
-						title: categoryTitle + ' · ' + tabTitle
-					})
+					that.title = categoryTitle + ' · ' + tabTitle
+					// uni.setNavigationBarTitle({
+					// 	title: categoryTitle + ' · ' + tabTitle
+					// })
 			    })
 			},
 			loadBooks(isClearAll) {

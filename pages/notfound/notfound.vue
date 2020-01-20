@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<iheader title="没找到对象"></iheader>
 	  <view>
 	    <image src='../../static/images/404.png'></image>
 	  </view>
@@ -13,7 +14,11 @@
 </template>
 
 <script>
+	import iheader from '../../components/header.vue'
 	export default {
+		components: {
+			iheader
+		},
 		data() {
 			return {}
 		},

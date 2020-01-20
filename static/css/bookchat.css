@@ -43,6 +43,14 @@
 	margin-bottom: 30upx;
 }
 
+.mgl-30{
+	margin-left: 30upx;
+}
+
+.mgr-30{
+	margin-right: 30upx;
+}
+
 /*  padding  */
 
 .pdt-15 {
@@ -200,7 +208,7 @@
 /**app.wxss**/
 
 .box-shadow {
-	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08);
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.09);
 	/* border: 1upx solid rgba(0, 0, 0, 0.08); */
 }
 

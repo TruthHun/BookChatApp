@@ -1,6 +1,6 @@
 <template>
-	<view :style="'height:' + titleBarHeight + 'px;padding-top:' + statusBarHeight + 'px'">
-		<view class="header" :style="'height:' + titleBarHeight + 'px;padding-top:' + statusBarHeight + 'px'">
+	<view :style="customBarStyle">
+		<view class="header" :style="customBarStyle">
 			<view class="row">
 				<view class="col-3">
 					<view v-if="showIcon" class="title-bar">
@@ -19,12 +19,12 @@
 					<view class="header-title">{{title}}</view>
 				</view>
 				<view class="col-3">
-					<view class="search">
+					<!-- <view class="search">
 						<image src="/static/images/search.png"></image>
 					</view>
 					<view class="sign">
 						<image src="/static/images/sign.png"></image>
-					</view>
+					</view> -->
 				</view>
 			</view>
 		</view>
@@ -35,9 +35,10 @@
 	export default {
 		data() {
 			return {
-				statusBarHeight: 0,
-				titleBarHeight: 0,
 				currentPagesLength: 0,
+				customBarStyle: '',
+				isMP: false,
+				titleBarHeight: 44,
 			};
 		},
 		props: {
@@ -48,19 +49,40 @@
 			showIcon: {
 				type: Boolean,
 				default: true,
+			},
+			showSearch: {
+				type: Boolean,
+				default: false,
+			},
+			showSign: {
+				type: Boolean,
+				default: false,
+			},
+			showRank: {
+				type: Boolean,
+				default: false,
+			},
+			showScan: {
+				type: Boolean,
+				default: false,
 			}
 		},
 		created() {
-			let that = this
 			let app = getApp()
+			let that = this
+			let statusBarHeight = 0
+			let titleBarHeight = that.titleBarHeight
+
+			// #ifdef MP
+			that.isMP = true
+			// #endif
 
 			that.currentPagesLength = getCurrentPages().length
 
 			if (app.globalData && app.globalData.statusBarHeight && app.globalData.titleBarHeight) {
-				that.statusBarHeight = app.globalData.statusBarHeight
-				that.titleBarHeight = app.globalData.titleBarHeight
+				statusBarHeight = app.globalData.statusBarHeight
+				titleBarHeight = app.globalData.titleBarHeight
 			} else {
-				let that = this
 				uni.getSystemInfo({
 					success: function(res) {
 						if (!app.globalData) {
@@ -72,15 +94,14 @@
 							app.globalData.titleBarHeight = 48
 						}
 						app.globalData.statusBarHeight = res.statusBarHeight
-						that.statusBarHeight = app.globalData.statusBarHeight
-						that.titleBarHeight = app.globalData.titleBarHeight
-					},
-					failure() {
-						that.statusBarHeight = 0
-						that.titleBarHeight = 0
+						statusBarHeight = app.globalData.statusBarHeight
+						titleBarHeight = app.globalData.titleBarHeight
 					}
 				})
 			}
+			that.customBarStyle =
+				`height: ${titleBarHeight}px;line-height: ${titleBarHeight}px;padding-top: ${statusBarHeight}px`
+			that.titleBarHeight = titleBarHeight
 		},
 		methods: {
 			headerBack() {
@@ -111,33 +132,42 @@
 		z-index: 9999;
 	}
 
+	.header .title-bar {
+		height: 100%;
+	}
+
+	.header .title-bar view {
+		display: inline-block;
+	}
+
 	.header .line {
 		border: 0;
-		width: 1px;
-		background-color: #EEEEEE;
+		width: 1upx;
+		background-color: #999999;
 		height: 16px;
+		margin: 0 5upx 0 0upx;
 	}
 
 	.header .back,
 	.header .home {
 		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		padding: 0 16upx;
+	}
+	.header .back{
+		padding-left: 24upx;
 	}
 
-	.header .title-bar {
-		height: 30px;
-		border: 1upx solid #EEEEEE;
+	.header .border {
+		border: 1upx solid #e5e5e5;
 		border-radius: 16px;
-		margin-left: 30upx;
+		text-align: center;
 	}
+
 	.header image {
 		width: 16px;
 		height: 16px;
 		background: transparent;
-		vertical-align: top;
-		margin: 0 12px;
+		vertical-align: center;
 	}
 
 	.header .header-title {

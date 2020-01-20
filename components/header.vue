@@ -1,18 +1,32 @@
 <template>
 	<view :style="'height:' + titleBarHeight + 'px;padding-top:' + statusBarHeight + 'px'">
 		<view class="header" :style="'height:' + titleBarHeight + 'px;padding-top:' + statusBarHeight + 'px'">
-			<view v-if="showIcon" class="title-bar">
-				<block v-if="currentPagesLength>1">
-					<view class="back" @click="headerBack">
-						<image src="/static/images/header-back.png"></image>
+			<view class="row">
+				<view class="col-3">
+					<view v-if="showIcon" class="title-bar">
+						<block v-if="currentPagesLength>1">
+							<view class="back" @click="headerBack">
+								<image src="/static/images/header-back.png"></image>
+							</view>
+							<view class="line"></view>
+						</block>
+						<view class="home" @click="headerHome">
+							<image src="/static/images/header-home.png"></image>
+						</view>
 					</view>
-					<view class="line"></view>
-				</block>
-				<view class="home" @click="headerHome">
-					<image src="/static/images/header-home.png"></image>
+				</view>
+				<view class="col-6">
+					<view class="header-title">{{title}}</view>
+				</view>
+				<view class="col-3">
+					<view class="search">
+						<image src="/static/images/search.png"></image>
+					</view>
+					<view class="sign">
+						<image src="/static/images/sign.png"></image>
+					</view>
 				</view>
 			</view>
-			<view class="header-title">{{title}}</view>
 		</view>
 	</view>
 </template>
@@ -90,8 +104,6 @@
 
 <style>
 	.header {
-		display: flex;
-		align-items: center;
 		top: 0;
 		position: fixed;
 		width: 100%;
@@ -115,16 +127,12 @@
 	}
 
 	.header .title-bar {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
 		height: 30px;
 		border: 1upx solid #EEEEEE;
 		border-radius: 16px;
 		margin-left: 30upx;
 	}
-
-	.header .title-bar image {
+	.header image {
 		width: 16px;
 		height: 16px;
 		background: transparent;
@@ -133,9 +141,6 @@
 	}
 
 	.header .header-title {
-		position: absolute;
-		width: 40%;
-		left: 30%;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;

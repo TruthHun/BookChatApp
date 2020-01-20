@@ -8,7 +8,7 @@
     /* 5+App特有相关 */
     "app-plus" : {
         "kernel" : {
-            "ios" : "UIWebview" // UIWebview 或者 "WKWebview"  
+            "ios" : "WKWebview" // UIWebview 或者 "WKWebview"  
         },
         "usingComponents" : true,
         "splashscreen" : {

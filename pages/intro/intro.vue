@@ -143,7 +143,8 @@
 
 	export default {
 		components: {
-			iheader
+			iheader,
+			scrollBook,
 		},
 		data() {
 			return {

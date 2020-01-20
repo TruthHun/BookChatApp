@@ -101,7 +101,7 @@
 
 	.header .line {
 		border: 0;
-		width: 1upx;
+		width: 1px;
 		background-color: #EEEEEE;
 		height: 16px;
 	}

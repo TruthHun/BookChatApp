@@ -1,7 +1,8 @@
 <template>
 	<view>
 		<form class='search'>
-			<input :focus='focus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" confirm-type="search" name='wd'/>
+			<input :focus='focus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" confirm-type="search"
+			 name='wd' />
 			<image @click='clear' v-if='showClear' class='clear' src='/static/images/clear.png'></image>
 			<image @click='search' src='/static/images/search.png'></image>
 		</form>
@@ -37,7 +38,7 @@
 			this.init()
 		},
 		methods: {
-			init(){
+			init() {
 				if (this.wd) this.showClear = true
 				this.searchWd = this.wd
 			},
@@ -52,17 +53,19 @@
 				this.searchWd = wd
 			},
 			search() {
-				if(this.target){
+				if (this.target) {
 					uni.navigateTo({
-						url: this.target +"?wd="+this.searchWd
+						url: this.target + "?wd=" + this.searchWd
 					})
-				}else{
-					this.$emit('search', { wd: this.searchWd})
+				} else {
+					this.$emit('search', {
+						wd: this.searchWd
+					})
 				}
 			}
 		},
-		watch:{
-			wd:function(){
+		watch: {
+			wd: function() {
 				this.init()
 			}
 		}
@@ -75,17 +78,20 @@
 		position: relative;
 		display: block;
 		background-color: #f8f8f8;
-		border-radius: 10upx;
-		padding-right: 140upx;
-		padding-top: 15upx;
-		padding-left: 30upx;
-		padding-bottom: 15upx;
+		border-radius: 5px;
+		padding-right: 70px;
+		padding-top: 8px;
+		padding-left: 15px;
+		padding-bottom: 8px;
+		height: 40px;
+		box-sizing: border-box;
 	}
 
 	form input {
-		height: 60upx;
-		line-height: 60upx;
+		height: 24px;
+		line-height: 24px;
 		font-size: 15px;
+		min-height: 24px;
 	}
 
 
@@ -95,41 +101,44 @@
 		top: 0;
 		right: 0;
 		box-sizing: border-box;
-		height: 90upx;
-		width: 90upx;
-		padding: 20upx 20upx;
+		height: 40px;
+		width: 40px;
+		padding: 8px 8px;
 		z-index: 99;
 	}
 
 	form image.clear {
-		right: 70upx;
+		right: 35px;
 		z-index: 88;
 	}
-	
+
 	@media (min-width: 768px) {
 		form {
-			border-radius: 5upx;
-			padding-right: 70upx;
-			padding-top: 10upx;
-			padding-bottom: 10upx;
-			padding-left: 15upx;
+			height: 50px;
+			border-radius: 5px;
+			padding-right: 70px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 15px;
+			box-sizing: border-box;
 		}
-		
+
 		form input {
-			height: 30upx;
-			line-height: 30upx;
 			font-size: 17px;
+			height: 30px;
+			line-height: 30px;
+			min-height: 30px;
 		}
-		
-		
+
+
 		form image {
-			height: 50upx;
-			width: 50upx;
-			padding: 10upx 10upx;
+			height: 50px;
+			width: 50px;
+			padding: 10px 10px;
 		}
-		
+
 		form image.clear {
-			right: 35upx;
+			right: 35px;
 		}
 	}
 </style>

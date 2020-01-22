@@ -9,7 +9,7 @@
 		</view>
 
 		<view :class='"drawer drawer-left " + [showMenu ? "show":""]'>
-			<view class='drawer-content' style='padding-bottom: 70px'>
+			<view class='drawer-content' :style="'padding-bottom: 70px;'+menuStyle">
 				<imenu :book="book" :currentDocId="article.id" :wd="wd" :menu="menuTree" :result="result" :tips="tips" @search="search"
 				 @clear="clear" @itemClick="itemClick" />
 			</view>
@@ -134,6 +134,7 @@
 				preDisable: false,
 				nextDisable: false,
 				identify: '',
+				menuStyle: '',
 				wd: '', //搜索关键字
 				setting: {
 					themeIndex: 0,
@@ -207,8 +208,9 @@
 				}
 
 				let menuTree = util.menuToTree(menu)
-				// let app = getApp().globalData
-
+				let app = getApp()
+				let paddingTop = app.globalData.titleBarHeight + app.globalData.statusBarHeight
+				that.menuStyle= `padding-top: ${paddingTop}px;`
 				that.menuSortIds = util.menuSortIds(menuTree)
 				that.menuTree = menuTree
 				that.book = book

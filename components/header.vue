@@ -102,6 +102,8 @@
 			that.customBarStyle =
 				`height: ${titleBarHeight}px;line-height: ${titleBarHeight}px;padding-top: ${statusBarHeight}px`
 			that.titleBarHeight = titleBarHeight
+			app.globalData.statusBarHeight = statusBarHeight
+			app.globalData.titleBarHeight = titleBarHeight
 		},
 		methods: {
 			headerBack() {

@@ -84,11 +84,11 @@
 			}
 		},
 		onPageScroll(options) {
-			if (config.debug) console.log(options)
+			if (config.debug) console.log("onPageScroll", options)
 			if (options.scrollTop > 110) {
 				if (this.showHeaderSearch == false) this.showHeaderSearch = true
 			} else {
-				if (this.showHeaderSearch == true) this.showHeaderBorder = false
+				if (this.showHeaderSearch == true) this.showHeaderSearch = false
 			}
 		},
 		methods: {

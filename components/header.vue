@@ -3,14 +3,14 @@
 		<view :class="['header', showBorder ? 'header-border' : '' ]" :style="customBarStyle">
 			<view class="row">
 				<view class="col-3">
-					<view v-if="showIcon" class="header-icon icon-left" :style="iconStyle">
+					<view v-if="showIcon" class="header-icon icon-left">
 						<block v-if="currentPagesLength>1">
-							<view class="back" @click="headerBack">
+							<view class="back" @click="headerBack" :style="iconPadding">
 								<image src="/static/images/header-back.png"></image>
 							</view>
-							<view class="line"></view>
+							<view class="line" :style="lineMargin"></view>
 						</block>
-						<view class="home" @click="headerHome">
+						<view class="home" @click="headerHome" :style="iconPadding">
 							<image src="/static/images/header-home.png"></image>
 						</view>
 					</view>
@@ -19,11 +19,11 @@
 					<view class="header-title">{{title}}</view>
 				</view>
 				<view class="col-3">
-					<view class="header-icon icon-right" :style="iconStyle">
-						<view v-if="showSearch" @click="headerSearch" class="search">
+					<view class="header-icon icon-right">
+						<view v-if="showSearch" @click="headerSearch" :style="iconPadding" class="search">
 							<image src="/static/images/search-black.png"></image>
 						</view>
-						<view v-if="showSign" class="sign">
+						<view v-if="showSign" class="sign" :style="iconPadding">
 							<image src="/static/images/sign.png"></image>
 						</view>
 					</view>
@@ -39,7 +39,8 @@
 			return {
 				currentPagesLength: 0,
 				customBarStyle: '',
-				iconStyle: 'padding-top:16px;',
+				iconPadding: 'padding-top:16px;padding-bottom:16px',
+				lineMargin: 'margin-top: 16px;',
 				titleBarHeight: 44,
 			};
 		},
@@ -106,8 +107,10 @@
 			that.titleBarHeight = titleBarHeight
 			app.globalData.statusBarHeight = statusBarHeight
 			app.globalData.titleBarHeight = titleBarHeight
-			let paddingTop = (titleBarHeight - 16 - 2) / 2
-			that.iconStyle = `padding-top: ${paddingTop}px`
+			let top = (titleBarHeight - 16 - 2) / 2
+			let bottom = titleBarHeight - 16 - top
+			that.iconPadding = `padding-top: ${top}px;padding-bottom: ${bottom}px;`
+			that.lineMargin = `margin-top: ${top}px`
 		},
 		methods: {
 			headerBack() {
@@ -125,7 +128,7 @@
 					url: '/pages/index/index'
 				})
 			},
-			headerSearch(){
+			headerSearch() {
 				uni.navigateTo({
 					url: '/pages/search/search'
 				})
@@ -160,7 +163,6 @@
 	.header .header-icon>view {
 		height: 16px;
 		padding: 0upx 16upx;
-		box-sizing: border-box;
 	}
 
 	.header .header-icon .line {

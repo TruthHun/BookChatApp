@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<form class='search'>
-			<input :focus='focus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" confirm-type="search"
+		<form class='search' @click="focusSearch">
+			<input :focus='focus || clickFocus' :value='searchWd' :placeholder='placeholder' @input="change" @confirm="search" confirm-type="search"
 			 name='wd' />
-			<image @click='clear' v-if='showClear' class='clear' src='/static/images/clear.png'></image>
-			<image @click='search' src='/static/images/search.png'></image>
+			<image @click.stop='clear' v-if='showClear' class='clear' src='/static/images/clear.png'></image>
+			<image @click.stop='search' src='/static/images/search.png'></image>
 		</form>
 	</view>
 </template>
@@ -15,7 +15,8 @@
 		data() {
 			return {
 				showClear: false,
-				searchWd: ''
+				searchWd: '',
+				clickFocus: false,
 			}
 		},
 		props: {
@@ -62,6 +63,9 @@
 						wd: this.searchWd
 					})
 				}
+			},
+			focusSearch(){
+				this.clickFocus=true
 			}
 		},
 		watch: {

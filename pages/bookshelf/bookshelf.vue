@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<iheader title="书架" :showIcon="false"></iheader>
+		<iheader title="书架" :showIcon="false" :showSearch="true"></iheader>
 		<block v-if="books.length>0 && token!='' && showLongpressTips">
 			<view class="row mgt-15 base-padding">
 				<view class="col-12 font-lv4 color-grey longpress-tips">

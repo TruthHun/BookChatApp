@@ -145,6 +145,6 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	@import url("../../static/css/reg-login.css");
 </style>

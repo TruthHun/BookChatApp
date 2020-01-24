@@ -1,6 +1,6 @@
 <template>
 	<view :style="customBarStyle">
-		<view class="header" :style="customBarStyle">
+		<view :class="['header', showBorder ? 'header-border' : '' ]" :style="customBarStyle">
 			<view class="row">
 				<view class="col-3">
 					<view v-if="showIcon" class="header-icon icon-left" :style="iconStyle">
@@ -19,17 +19,14 @@
 					<view class="header-title">{{title}}</view>
 				</view>
 				<view class="col-3">
-					<!-- <view class="header-icon icon-right" :style="iconStyle">
-						<view class="search">
-							<image src="/static/images/search.png"></image>
+					<view class="header-icon icon-right" :style="iconStyle">
+						<view v-if="showSearch" @click="headerSearch" class="search">
+							<image src="/static/images/search-black.png"></image>
 						</view>
-					</view> -->
-					<!-- <view class="search">
-						<image src="/static/images/search.png"></image>
+						<view v-if="showSign" class="sign">
+							<image src="/static/images/sign.png"></image>
+						</view>
 					</view>
-					<view class="sign">
-						<image src="/static/images/sign.png"></image>
-					</view> -->
 				</view>
 			</view>
 		</view>
@@ -43,7 +40,6 @@
 				currentPagesLength: 0,
 				customBarStyle: '',
 				iconStyle: 'padding-top:16px;',
-				isMP: false,
 				titleBarHeight: 44,
 			};
 		},
@@ -55,6 +51,10 @@
 			showIcon: {
 				type: Boolean,
 				default: true,
+			},
+			showBorder: {
+				type: Boolean,
+				default: false,
 			},
 			showSearch: {
 				type: Boolean,
@@ -78,10 +78,6 @@
 			let that = this
 			let statusBarHeight = 0
 			let titleBarHeight = that.titleBarHeight
-
-			// #ifdef MP
-			that.isMP = true
-			// #endif
 
 			that.currentPagesLength = getCurrentPages().length
 
@@ -128,12 +124,17 @@
 				uni.switchTab({
 					url: '/pages/index/index'
 				})
+			},
+			headerSearch(){
+				uni.navigateTo({
+					url: '/pages/search/search'
+				})
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 	.header {
 		top: 0;
 		position: fixed;
@@ -142,13 +143,18 @@
 		z-index: 9999;
 		vertical-align: center;
 	}
-	
-	.header-button-border{
+
+	.header-border {
 		border-bottom: 1upx solid #EFEFEF;
 	}
 
 	.header .header-icon {
 		display: flex;
+	}
+
+	.header .icon-right {
+		flex-direction: row-reverse;
+		padding-right: 30upx;
 	}
 
 	.header .header-icon>view {
@@ -168,12 +174,6 @@
 
 	.header .back {
 		padding-left: 30upx;
-	}
-
-	.header .border {
-		border: 1upx solid #e5e5e5;
-		border-radius: 16px;
-		text-align: center;
 	}
 
 	.header image {

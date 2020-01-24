@@ -1,8 +1,8 @@
 <template>
 	<view>
-		<iheader :title="title"></iheader>
+		<iheader :title="title" :showSearch="true"></iheader>
 		<view class="mgt-30">
-			<tab @tabClick="tabClick" :tabGridLen="gridLen" :activeTab="activeTab" :tabs="tabs" :showSearch="true" />
+			<tab @tabClick="tabClick" :tabGridLen="gridLen" :activeTab="activeTab" :tabs="tabs" />
 		</view>
 		<view v-if="books.length>0" class="base-padding mgt-30 mgb-30">
 			<list-book :books="books" />

@@ -1,6 +1,6 @@
 <template>
 	<view class="root">
-		<iheader :showIcon="false"></iheader>
+		<iheader :showIcon="false" :showSearch="showHeaderSearch"></iheader>
 		<view v-if="showSearch" class="base-padding mgb-30">
 			<search target="/pages/search/search" />
 		</view>
@@ -67,6 +67,7 @@
 				bannerWidth: '100%',
 				bannerHeight: 'auto',
 				showSearch: false, // 内容完全加载完成之后再显示搜索框
+				showHeaderSearch: false,
 				banners: [],
 				categoryBooks: [],
 				recommendBooks: [],
@@ -80,6 +81,14 @@
 		onShow() {
 			if (this.categoryBooks.length == 0) {
 				this.loadData()
+			}
+		},
+		onPageScroll(options) {
+			if (config.debug) console.log(options)
+			if (options.scrollTop > 110) {
+				if (this.showHeaderSearch == false) this.showHeaderSearch = true
+			} else {
+				if (this.showHeaderSearch == true) this.showHeaderBorder = false
 			}
 		},
 		methods: {

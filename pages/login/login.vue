@@ -39,7 +39,7 @@
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
-	
+
 	import iheader from '../../components/header.vue'
 
 	export default {
@@ -129,8 +129,9 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	@import url("../../static/css/reg-login.css");
+
 	image {
 		width: 180upx;
 		height: 180upx;

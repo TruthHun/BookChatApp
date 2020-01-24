@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<iheader title="分类" :showIcon="false"></iheader>
+		<iheader title="分类" :showIcon="false" :showSearch="true"></iheader>
 		<view class='base-padding mgt-30'>
 			<block v-for="category in categories" :key='category.id'>
 				<view class='panel' v-if="category.cnt >0 && category.status">

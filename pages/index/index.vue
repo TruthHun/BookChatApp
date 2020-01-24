@@ -75,10 +75,6 @@
 			}
 		},
 		onLoad() {
-			let info = util.getSysInfo()
-			// this.bannerWidth = info.bannerWidth + "px"
-			// this.bannerHeight = info.bannerHeight + "px"
-			// if (config.debug) console.log(this.bannerWidth, this.bannerHeight)
 			this.loadData()
 		},
 		onShow() {

@@ -3,7 +3,7 @@
 		<view class="header" :style="customBarStyle">
 			<view class="row">
 				<view class="col-3">
-					<view v-if="showIcon" class="title-bar">
+					<view v-if="showIcon" class="header-icon icon-left" :style="iconStyle">
 						<block v-if="currentPagesLength>1">
 							<view class="back" @click="headerBack">
 								<image src="/static/images/header-back.png"></image>
@@ -19,6 +19,11 @@
 					<view class="header-title">{{title}}</view>
 				</view>
 				<view class="col-3">
+					<!-- <view class="header-icon icon-right" :style="iconStyle">
+						<view class="search">
+							<image src="/static/images/search.png"></image>
+						</view>
+					</view> -->
 					<!-- <view class="search">
 						<image src="/static/images/search.png"></image>
 					</view>
@@ -37,6 +42,7 @@
 			return {
 				currentPagesLength: 0,
 				customBarStyle: '',
+				iconStyle: 'padding-top:16px;',
 				isMP: false,
 				titleBarHeight: 44,
 			};
@@ -104,6 +110,8 @@
 			that.titleBarHeight = titleBarHeight
 			app.globalData.statusBarHeight = statusBarHeight
 			app.globalData.titleBarHeight = titleBarHeight
+			let paddingTop = (titleBarHeight - 16 - 2) / 2
+			that.iconStyle = `padding-top: ${paddingTop}px`
 		},
 		methods: {
 			headerBack() {
@@ -132,31 +140,34 @@
 		width: 100%;
 		background-color: #FFFFFF;
 		z-index: 9999;
+		vertical-align: center;
+	}
+	
+	.header-button-border{
+		border-bottom: 1upx solid #EFEFEF;
 	}
 
-	.header .title-bar {
-		height: 100%;
+	.header .header-icon {
+		display: flex;
 	}
 
-	.header .title-bar view {
-		display: inline-block;
+	.header .header-icon>view {
+		height: 16px;
+		padding: 0upx 16upx;
+		box-sizing: border-box;
 	}
 
-	.header .line {
+	.header .header-icon .line {
 		border: 0;
 		width: 1upx;
-		background-color: #999999;
+		background-color: #CCCCCC;
 		height: 16px;
+		padding: 0;
 		margin: 0 5upx 0 0upx;
 	}
 
-	.header .back,
-	.header .home {
-		height: 100%;
-		padding: 0 16upx;
-	}
-	.header .back{
-		padding-left: 24upx;
+	.header .back {
+		padding-left: 30upx;
 	}
 
 	.header .border {
@@ -168,8 +179,8 @@
 	.header image {
 		width: 16px;
 		height: 16px;
+		display: block;
 		background: transparent;
-		vertical-align: center;
 	}
 
 	.header .header-title {

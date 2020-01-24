@@ -160,9 +160,6 @@
 				scrollWidth: util.getSysInfo().bannerWidth + "px",
 			}
 		},
-		components: {
-			scrollBook
-		},
 		onLoad(options) {
 			let id = options.id || options.scene
 

@@ -2,80 +2,102 @@
 	<view class="page">
 		<iheader title="我的" :showIcon="false"></iheader>
 		<view class='base-padding row' @click='userLoginEvent'>
-			<view :class='["user", user.uid > 0 && moreInfo.uid>0? "col-8": ""]'>
+			<view class='user'>
 				<image :src='user.avatar'></image>
 				<view class='username font-lv2'>{{user.nickname}}</view>
 			</view>
-			<view v-if="user.uid>0" class="col-4 font-lv4 user-func color-grey">
-				<view class="func-item row"><text class="col">加入组织</text> <text class="col text-right"><text class="color-red font-lv3">{{moreInfo.join_day}}</text>&nbsp;
-						天</text></view>
-				<view class="func-item row"><text class="col">累计签到</text> <text class="col text-right"><text class="color-red font-lv3">{{moreInfo.total_sign}}</text>&nbsp;
-						天</text></view>
-				<view class="func-item row"><text class="col">连续签到</text> <text class="col text-right"><text class="color-red font-lv3">{{moreInfo.total_continuous_sign}}</text>&nbsp;
-						天</text></view>
-			</view>
 			<view v-if="user.intro" class='color-grey font-lv3 user-intro'>{{user.intro}}</view>
 		</view>
-		<view v-if="user.uid>0" class="row text-center font-lv4 text-muted reading-time">
-			<view class="col">
+		<view v-if="moreInfo.uid>0" class="row col-title font-lv2">
+			<view class="col font-lv2">
+				<image class="me-icon" src="/static/images/report.png"></image>
+				<text>我的成就</text>
+			</view>
+			<view class="col text-right">
+				<navigator class="color-link" url="">
+					<image class="me-icon" src="/static/images/rank.png"></image>
+					<text>榜单</text>
+				</navigator>
+			</view>
+		</view>
+		<view v-if="moreInfo.uid>0" class="row text-center font-lv4 text-muted reading-time">
+			<view class="col-4">
 				<view><text class="font-lv3">{{moreInfo.today_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.today_reading_min}}</text>
 					分</view>
 				<view class="font-lv5">今日阅读</view>
 			</view>
-			<view class="col month-reading">
+			<view class="col-4">
 				<view><text class="font-lv3">{{moreInfo.month_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.month_reading_min}}</text>
 					分</view>
 				<view class="font-lv5">本月阅读</view>
 			</view>
-			<view class="col">
+			<view class="col-4">
 				<view><text class="font-lv3">{{moreInfo.total_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.total_reading_min}}</text>
 					分</view>
 				<view class="font-lv5">累计阅读</view>
 			</view>
+			<view class="col-4">
+				<view><text class="font-lv3">{{moreInfo.join_day}}</text> 天</view>
+				<view class="font-lv5">加入组织</view>
+			</view>
+			<view class="col-4">
+				<view><text class="font-lv3">{{moreInfo.total_sign}}</text> 天</view>
+				<view class="font-lv5">累计签到</view>
+			</view>
+			<view class="col-4">
+				<view><text class="font-lv3">{{moreInfo.total_continuous_sign}}</text> 天</view>
+				<view class="font-lv5">连续签到</view>
+			</view>
+
 		</view>
 		<view class='base-padding row base-info font-lv2'>
 			<navigator url='/pages/search/search' class='col-12'>
-				<image src='../../static/images/search.png'></image>
+				<image class="me-icon" src='../../static/images/search.png'></image>
 				<text>书籍搜索</text>
-				<image class='pull-right' src='../../static/images/right-angle.png'></image>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
+			</navigator>
+			<navigator v-if="user.uid == 0" url='/pages/rank/rank' class='col-12'>
+				<image class="me-icon" src='../../static/images/rank.png'></image>
+				<text>热门榜单</text>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
 		</view>
 		<view class='base-padding row base-info font-lv2'>
 			<navigator :url="user.uid>0 ? '/pages/ucenter/ucenter?tab=release':'/pages/login/login'" class='col-12'>
-				<image src='../../static/images/book.png'></image>
+				<image class="me-icon" src='../../static/images/book.png'></image>
 				我的发布
-				<image class='pull-right' src='../../static/images/right-angle.png'></image>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
 			<navigator :url='user.uid>0?"/pages/ucenter/ucenter?tab=star":"/pages/login/login"' class='col-12'>
-				<image src='../../static/images/star.png'></image>
+				<image class="me-icon" src='../../static/images/star.png'></image>
 				我的收藏
-				<image class='pull-right' src='../../static/images/right-angle.png'></image>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
 			<navigator :url='user.uid>0?"/pages/ucenter/ucenter?tab=follow":"/pages/login/login"' class='col-12'>
-				<image src='../../static/images/follow.png'></image>
+				<image class="me-icon" src='../../static/images/follow.png'></image>
 				我的关注
-				<image class='pull-right' src='../../static/images/right-angle.png'></image>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
 			<navigator :url='user.uid>0?"/pages/ucenter/ucenter?tab=fans":"/pages/login/login"' class='col-12'>
-				<image src='../../static/images/fans.png'></image>
+				<image class="me-icon" src='../../static/images/fans.png'></image>
 				我的粉丝
-				<image class='pull-right' src='../../static/images/right-angle.png'></image>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
 		</view>
 
 		<view class='base-padding row base-info font-lv2'>
 			<navigator :url='"/pages/read/read?identify="+info.about' class='col-12'>
-				<image src='../../static/images/about-us.png'></image>
+				<image class="me-icon" src='../../static/images/about-us.png'></image>
 				关于我们
-				<image class='pull-right' src='../../static/images/right-angle.png'></image>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
 		</view>
 
 		<view v-if="user.uid>0" class='base-padding row base-info font-lv2'>
 			<view @click='logout' class='col-12'>
-				<image src='../../static/images/login.png'></image>
+				<image class="me-icon" src='../../static/images/login.png'></image>
 				退出登录
-				<image class='pull-right' src='/static/images/right-angle.png'></image>
+				<image class='pull-right me-icon' src='/static/images/right-angle.png'></image>
 			</view>
 		</view>
 
@@ -112,24 +134,7 @@
 			return {
 				info: {},
 				user: {},
-				moreInfo: {
-					uid: 0,
-					signed_at: 0,
-					created_at: 0,
-					total_sign: 0,
-					total_continuous_sign: 0,
-					history_continuous_sign: 0,
-					today_reading: 0,
-					month_reading: 0,
-					total_reading: 0,
-					today_reading_hour: 0,
-					today_reading_min: 0,
-					month_reading_hour: 0,
-					month_reading_min: 0,
-					total_reading_hour: 0,
-					total_reading_min: 0,
-					join_day: 0
-				},
+				moreInfo: {},
 				moreInfoCacheTime: 0,
 				now: new Date().getFullYear(),
 				redirect: encodeURIComponent('/pages/me/me')
@@ -155,6 +160,24 @@
 						'nickname': '游客，请戳我登录',
 						'avatar': '../../static/images/logo.png',
 						'intro': '分享知识，共享智慧；知识，因分享，传承久远'
+					}
+					that.moreInfo = {
+						uid: 0,
+						signed_at: 0,
+						created_at: 0,
+						total_sign: 0,
+						total_continuous_sign: 0,
+						history_continuous_sign: 0,
+						today_reading: 0,
+						month_reading: 0,
+						total_reading: 0,
+						today_reading_hour: 0,
+						today_reading_min: 0,
+						month_reading_hour: 0,
+						month_reading_min: 0,
+						total_reading_hour: 0,
+						total_reading_min: 0,
+						join_day: 0
 					}
 				}
 				that.user = user
@@ -240,14 +263,19 @@
 		display: block;
 		width: 100%;
 	}
-	
-	.month-reading{
+
+	.month-reading {
 		border-left: 1px solid #f1f1f1;
 		border-right: 1px solid #f1f1f1;
 	}
 
 	.user .text-muted {
 		text-align: center;
+	}
+
+	.col-title {
+		margin-bottom: 1px;
+		color: #666;
 	}
 
 	.username {
@@ -264,15 +292,12 @@
 	}
 
 	.base-info image {
-		height: 40upx;
-		width: 40upx;
-		position: relative;
-		top: 8upx;
-		margin-right: 30upx;
+		margin-right: 30upx !important;
 	}
 
 	.base-info image.pull-right {
-		margin-right: 0upx;
+		margin-right: 0 !important;
+		top: 0;
 	}
 
 	.base-info {
@@ -299,15 +324,12 @@
 
 	.user-func {
 		line-height: 40upx;
-	}
-
-	.user-func .func-item:first-of-type {
-		margin-top: -10upx;
+		border: 1px solid #000000;
 	}
 
 	.user-func .func-item {
 		line-height: 300%;
-		border-bottom: 1px solid #f1f1f1;
+		border-bottom: 1upx dashed #f1f1f1;
 		padding: 0;
 		margin: 0;
 	}
@@ -321,11 +343,46 @@
 		color: red;
 	}
 
+	.reading-time .col-4 {
+		box-sizing: border-box;
+	}
+
+	.reading-time .col-4:nth-child(1),
+	.reading-time .col-4:nth-child(2),
+	.reading-time .col-4:nth-child(3) {
+		border-bottom: 1px solid #f6f6f6;
+		padding-bottom: 16upx;
+	}
+
+	.reading-time .col-4:nth-child(4),
+	.reading-time .col-4:nth-child(5),
+	.reading-time .col-4:nth-child(6) {
+		padding-top: 16upx;
+	}
+
+	.reading-time .col-4:nth-child(2),
+	.reading-time .col-4:nth-child(5) {
+		border-left: 1px solid #f6f6f6;
+		border-right: 1px solid #f6f6f6;
+	}
+
+	image.me-icon {
+		width: 40upx;
+		height: 40upx;
+		vertical-align: middle;
+		margin-right: 6upx;
+		position: relative;
+		top: -4upx;
+	}
+
+
 	@media (min-width: 768px) {
-		.base-info image {
+
+		.base-info image,
+		image.me-icon {
 			max-width: 20px;
 			max-height: 20px;
-			top: 3px;
+			top: -2upx;
 		}
 
 		.base-info .col-12 {

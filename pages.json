@@ -73,7 +73,11 @@
 				"navigationBarTitleText": "搜索"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/rank/rank",
+            "style" : {}
+        }
+    ],
 	"tabBar": {
 		"list": [{
 				"pagePath": "pages/index/index",

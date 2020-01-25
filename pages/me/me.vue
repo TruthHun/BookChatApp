@@ -2,10 +2,35 @@
 	<view class="page">
 		<iheader title="我的" :showIcon="false"></iheader>
 		<view class='base-padding row' @click='userLoginEvent'>
-			<view class='user'>
+			<view :class='["user", user.uid > 0 && moreInfo.uid>0? "col-8": ""]'>
 				<image :src='user.avatar'></image>
 				<view class='username font-lv2'>{{user.nickname}}</view>
-				<view v-if="user.intro" class='color-grey font-lv3'>{{user.intro}}</view>
+			</view>
+			<view v-if="user.uid>0" class="col-4 font-lv4 user-func color-grey">
+				<view class="func-item row"><text class="col">加入组织</text> <text class="col text-right"><text class="color-red font-lv3">{{moreInfo.join_day}}</text>&nbsp;
+						天</text></view>
+				<view class="func-item row"><text class="col">累计签到</text> <text class="col text-right"><text class="color-red font-lv3">{{moreInfo.total_sign}}</text>&nbsp;
+						天</text></view>
+				<view class="func-item row"><text class="col">连续签到</text> <text class="col text-right"><text class="color-red font-lv3">{{moreInfo.total_continuous_sign}}</text>&nbsp;
+						天</text></view>
+			</view>
+			<view v-if="user.intro" class='color-grey font-lv3 user-intro'>{{user.intro}}</view>
+		</view>
+		<view v-if="user.uid>0" class="row text-center font-lv4 text-muted reading-time">
+			<view class="col">
+				<view><text class="font-lv3">{{moreInfo.today_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.today_reading_min}}</text>
+					分</view>
+				<view class="font-lv5">今日阅读</view>
+			</view>
+			<view class="col month-reading">
+				<view><text class="font-lv3">{{moreInfo.month_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.month_reading_min}}</text>
+					分</view>
+				<view class="font-lv5">本月阅读</view>
+			</view>
+			<view class="col">
+				<view><text class="font-lv3">{{moreInfo.total_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.total_reading_min}}</text>
+					分</view>
+				<view class="font-lv5">累计阅读</view>
 			</view>
 		</view>
 		<view class='base-padding row base-info font-lv2'>
@@ -76,7 +101,7 @@
 <script>
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
-	
+
 	import iheader from '../../components/header.vue'
 
 	export default {
@@ -87,6 +112,25 @@
 			return {
 				info: {},
 				user: {},
+				moreInfo: {
+					uid: 0,
+					signed_at: 0,
+					created_at: 0,
+					total_sign: 0,
+					total_continuous_sign: 0,
+					history_continuous_sign: 0,
+					today_reading: 0,
+					month_reading: 0,
+					total_reading: 0,
+					today_reading_hour: 0,
+					today_reading_min: 0,
+					month_reading_hour: 0,
+					month_reading_min: 0,
+					total_reading_hour: 0,
+					total_reading_min: 0,
+					join_day: 0
+				},
+				moreInfoCacheTime: 0,
 				now: new Date().getFullYear(),
 				redirect: encodeURIComponent('/pages/me/me')
 			}
@@ -98,6 +142,7 @@
 		},
 		onShow() {
 			this.initUser()
+			this.getUserMoreInfo()
 		},
 		methods: {
 			initUser: function() {
@@ -138,6 +183,38 @@
 					})
 				}
 			},
+			getUserMoreInfo: function() {
+				let that = this
+				if (that.user.uid == 0) return
+				let now = new Date().getTime() / 1000
+
+				// 缓存 10 秒
+				if (config.debug) console.log('now', now, 'moreInfoCacheTime', that.moreInfoCacheTime)
+				if (now - that.moreInfoCacheTime <= 10) return
+
+				util.request(config.api.userMoreInfo, {
+					'uid': that.user.uid
+				}).then(function(res) {
+					if (config.debug) console.log(config.api.userMoreInfo, res)
+					let moreInfo = res.data.info
+					let todayReading = util.formatReading(moreInfo.today_reading)
+					moreInfo.today_reading_hour = todayReading.hour
+					moreInfo.today_reading_min = todayReading.min
+					let monthReading = util.formatReading(moreInfo.month_reading)
+					moreInfo.month_reading_hour = monthReading.hour
+					moreInfo.month_reading_min = monthReading.min
+					let totalReading = util.formatReading(moreInfo.total_reading)
+					moreInfo.total_reading_hour = totalReading.hour
+					moreInfo.total_reading_min = totalReading.min
+					moreInfo.join_day = parseInt((now - moreInfo.created_at) / (24 * 3600)) + 1
+					that.moreInfo = moreInfo
+					console.log(moreInfo)
+				}).catch(function(e) {
+					console.log(e)
+				}).finally(function() {
+					that.moreInfoCacheTime = new Date().getTime() / 1000
+				})
+			}
 		}
 	}
 </script>
@@ -162,6 +239,11 @@
 		text-align: center;
 		display: block;
 		width: 100%;
+	}
+	
+	.month-reading{
+		border-left: 1px solid #f1f1f1;
+		border-right: 1px solid #f1f1f1;
 	}
 
 	.user .text-muted {
@@ -208,6 +290,35 @@
 	.base-info .col-12:last-of-type {
 		margin-bottom: 0;
 		border-bottom: 0;
+	}
+
+	.user-intro {
+		width: 100%;
+		text-align: center;
+	}
+
+	.user-func {
+		line-height: 40upx;
+	}
+
+	.user-func .func-item:first-of-type {
+		margin-top: -10upx;
+	}
+
+	.user-func .func-item {
+		line-height: 300%;
+		border-bottom: 1px solid #f1f1f1;
+		padding: 0;
+		margin: 0;
+	}
+
+	.user-func .color-red {
+		margin-right: 8upx;
+	}
+
+	.reading-time text {
+		margin: auto 8upx;
+		color: red;
 	}
 
 	@media (min-width: 768px) {

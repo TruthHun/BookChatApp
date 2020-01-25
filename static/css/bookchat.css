@@ -3,6 +3,8 @@
 	text-align: center;
 }
 
+.block{display: block !important;}
+
 /*  字体大小规范  */
 
 .font-lv1 {
@@ -270,9 +272,9 @@ navigator:active {
 
 .text-muted {
 	color: #888;
-	font-size: 28upx;
+	/* font-size: 28upx; */
 	line-height: 170%;
-	text-align: left;
+	/* text-align: left; */
 }
 
 .cover {

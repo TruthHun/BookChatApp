@@ -331,7 +331,9 @@
 					uni.showToast({
 						title: book.is_star ? '收藏书籍成功' : '移除收藏成功',
 					})
-					getApp().globalData.bookshelfChanged = true
+					let sysInfo = util.getSysInfo()
+					sysInfo.bookshelfChanged = true
+					util.setSysInfo(sysInfo)
 				}).catch(function(e) {
 					util.toastError(e.message || e.errMsg)
 				})

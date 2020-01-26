@@ -192,8 +192,10 @@
 							util.request(config.api.logout) // 只需调用，不需要处理返回结果
 							util.clearUser()
 							util.toastSuccess('退出成功')
-							getApp().globalData.bookshelfChanged = true
 							that.initUser()
+							let sysInfo = util.getSysInfo()
+							sysInfo.bookshelfChanged = true
+							util.setSysInfo(sysInfo)
 						}
 					}
 				})

@@ -208,15 +208,12 @@
 				}
 
 				let menuTree = util.menuToTree(menu)
-				let app = getApp()
-				let paddingTop = app.globalData.titleBarHeight + app.globalData.statusBarHeight
+				let sysInfo = util.getSysInfo()
+				let paddingTop = sysInfo.titleBarHeight + sysInfo.statusBarHeight
 				that.menuStyle= `padding-top: ${paddingTop}px;`
 				that.menuSortIds = util.menuSortIds(menuTree)
 				that.menuTree = menuTree
 				that.book = book
-				// uni.setNavigationBarTitle({
-				// 	title: book.book_name
-				// })
 				if (arr.length != 2) {
 					if (latestReadId > 0) {
 						identify = book.book_id + "/" + latestReadId

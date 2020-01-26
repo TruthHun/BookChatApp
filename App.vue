@@ -3,15 +3,17 @@
 	import util from 'utils/util.js'
 
 	export default {
-		globalData: {
-			bookshelfChanged: false,
-			statusBarHeight: 0,
-			titleBarHeight: 0
-		},
 		onLaunch: function() {
 			let info = uni.getSystemInfoSync()
 			info.versionCode = 0
 			info.version = "v1.0.0"
+			info.bookshelfChanged = false
+			
+			if (info.model && info.model.indexOf('iPhone') !== -1) {
+				info.titleBarHeight = 44
+			} else {
+				info.titleBarHeight = 48
+			}
 
 			// #ifdef APP-PLUS
 			// 查询版本信息

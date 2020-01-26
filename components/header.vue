@@ -34,6 +34,7 @@
 </template>
 
 <script>
+	import util from '../utils/util.js'
 	export default {
 		data() {
 			return {
@@ -75,38 +76,15 @@
 			}
 		},
 		created() {
-			let app = getApp()
+			let sysInfo = util.getSysInfo()
 			let that = this
-			let statusBarHeight = 0
-			let titleBarHeight = that.titleBarHeight
+			let statusBarHeight = sysInfo.statusBarHeight
+			let titleBarHeight = sysInfo.titleBarHeight
 
 			that.currentPagesLength = getCurrentPages().length
-
-			if (app.globalData && app.globalData.statusBarHeight && app.globalData.titleBarHeight) {
-				statusBarHeight = app.globalData.statusBarHeight
-				titleBarHeight = app.globalData.titleBarHeight
-			} else {
-				uni.getSystemInfo({
-					success: function(res) {
-						if (!app.globalData) {
-							app.globalData = {}
-						}
-						if (res.model.indexOf('iPhone') !== -1) {
-							app.globalData.titleBarHeight = 44
-						} else {
-							app.globalData.titleBarHeight = 48
-						}
-						app.globalData.statusBarHeight = res.statusBarHeight
-						statusBarHeight = app.globalData.statusBarHeight
-						titleBarHeight = app.globalData.titleBarHeight
-					}
-				})
-			}
 			that.customBarStyle =
 				`height: ${titleBarHeight}px;line-height: ${titleBarHeight}px;padding-top: ${statusBarHeight}px`
 			that.titleBarHeight = titleBarHeight
-			app.globalData.statusBarHeight = statusBarHeight
-			app.globalData.titleBarHeight = titleBarHeight
 			let top = (titleBarHeight - 16 - 2) / 2
 			let bottom = titleBarHeight - 16 - top
 			that.iconPadding = `padding-top: ${top}px;padding-bottom: ${bottom}px;`

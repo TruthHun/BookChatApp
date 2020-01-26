@@ -65,7 +65,7 @@
 				showTips: false,
 				wd: '',
 				token: '',
-				showLongpressTips: false,
+				showLongpressTips: false, // 是否显示长按可移除书架收藏书籍的提示
 			}
 		},
 		components: {
@@ -75,9 +75,13 @@
 		},
 		onShow: function() {
 			this.showLongpressTips = uni.getStorageSync("showLongpressTips") != "false"
-			if (config.debug) console.log("onShow", "bookshelfChanged", getApp().globalData.bookshelfChanged)
-			this.loadBooks(getApp().globalData.bookshelfChanged)
-			getApp().globalData.bookshelfChanged = false
+			
+			let sysInfo = util.getSysInfo()
+			
+			if (config.debug) console.log("onShow", "bookshelfChanged", sysInfo.bookshelfChanged)
+			this.loadBooks(sysInfo.bookshelfChanged)
+			sysInfo.bookshelfChanged = false
+			util.setSysInfo(sysInfo)
 		},
 		onReachBottom: function() {
 			this.loadBooks()

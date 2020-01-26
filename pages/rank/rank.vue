@@ -41,9 +41,9 @@
 			}
 		},
 		onLoad() {
-			let app = getApp()
-			let top = 50 + app.globalData.statusBarHeight + app.globalData.titleBarHeight
-			console.log('statusBarHeight', app.globalData.statusBarHeight, 'titleBarHeight', app.globalData.titleBarHeight)
+			let sysInfo = util.getSysInfo()
+			let top = 50 + sysInfo.statusBarHeight + sysInfo.titleBarHeight
+			console.log('statusBarHeight', sysInfo.statusBarHeight, 'titleBarHeight', sysInfo.titleBarHeight)
 			this.menuStyle = `top: ${top}px;`
 		},
 		methods: {

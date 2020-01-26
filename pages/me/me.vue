@@ -14,7 +14,7 @@
 				<text>我的成就</text>
 			</view>
 			<view class="col text-right">
-				<navigator class="color-link" url="">
+				<navigator class="color-link" url="/pages/rank/rank">
 					<image class="me-icon" src="/static/images/rank.png"></image>
 					<text>榜单</text>
 				</navigator>

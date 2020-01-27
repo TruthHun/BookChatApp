@@ -299,12 +299,16 @@
 		left: 0;
 		right: 0;
 		background-color: #FFFFFF;
+		border-bottom: 1px solid #F1F1F1;
 	}
 
-	.top .active text {
-		border-bottom: 1px solid red;
-		line-height: 35px;
-		display: inline-block;
+	.top .color-red {
+		border-bottom: 1px solid #FFFFFF;
+		z-index: 999;
+		border-left: 1px solid #F1F1F1;
+		border-right: 1px solid #F1F1F1;
+		margin-top: -1px;
+		box-sizing: border-box;
 	}
 
 	.content-left {
@@ -332,14 +336,14 @@
 
 	.content-right {
 		margin-left: 20%;
-		margin-top: 65px;
+		margin-top: 55px;
 		padding-right: 0 !important;
 	}
 
 	.content-right .row {
 		line-height: 30px;
 		padding: 8px 0;
-		border-bottom: 1upx dashed #F1F1F1;
+		border-bottom: 1px dashed #F1F1F1;
 	}
 
 	.rank-number text {

@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<iheader title="排行榜" :showBorder='true'></iheader>
-		<view class="row top base-padding text-center font-lv3">
+		<view class="row top base-padding text-center font-lv3 color-semi">
 			<block v-for="item in tabs" :key='item.tab'>
 				<view @click="changeTab" :class="['col', tab == item.tab ? 'color-red': '']" :data-tab="item.tab"><text>{{item.title}}</text></view>
 			</block>
 		</view>
 		<view class="row content">
-			<view class="col-3 content-left font-lv3 text-center" :style="menuStyle">
+			<view class="col-3 content-left font-lv3 text-center color-semi" :style="menuStyle">
 				<block v-for="(item,idx) in tabs" :key='idx'>
 					<block v-if="tab == item.tab">
 						<view @click="changeSubTab" :class="subTab == subItem.tab ? 'color-red': ''" v-for="subItem in item.subTabs"
@@ -15,8 +15,15 @@
 					</block>
 				</block>
 			</view>
-			<view class="col-9 content-right pdt-30 base-padding">
-				右侧内容
+			<view class="col-9 content-right base-padding font-lv3">
+				<view v-for="(list,index) in lists" :key="index" class="row">
+					<view :class="['col-2', 'rank-number', 'rank-no'+(index+1)]"><text>{{index + 1}}</text></view>
+					<view class="col-7 rank-main">
+						<navigator v-if="list.uid" :url="'/pages/ucenter/ucenter?uid='+list.uid">{{list.nickname}}</navigator>
+						<navigator v-else :url="'/pages/intro/intro?book_id='+list.book_id">{{list.book_name}}</navigator>
+					</view>
+					<view class="col-3 text-right text-muted font-lv4"><text>{{list.info}}</text></view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -35,6 +42,24 @@
 				menuStyle: 'top: 85px;',
 				tab: 'all', // all、reading、sign、popular、star,
 				subTab: 'total_reading',
+				data: {},
+				lists: [],
+				dataAll: {
+					gotAt: 0
+				},
+				dataReading: {
+					gotAt: 0
+				},
+				dataSign: {
+					gotAt: 0
+				},
+				dataPopular: {
+					gotAt: 0
+				},
+				dataStar: {
+					gotAt: 0
+				},
+				interval: 60,
 				tabs: [{
 					title: '总榜',
 					tab: 'all',
@@ -64,7 +89,7 @@
 						}
 					]
 				}, {
-					title: '阅读',
+					title: '时长',
 					tab: 'reading',
 					subTabs: [{
 							title: '阅读总榜',
@@ -168,6 +193,7 @@
 			let top = 50 + sysInfo.statusBarHeight + sysInfo.titleBarHeight
 			console.log('statusBarHeight', sysInfo.statusBarHeight, 'titleBarHeight', sysInfo.titleBarHeight)
 			this.menuStyle = `top: ${top}px;`
+			this.loadData()
 		},
 		methods: {
 			changeTab: function(e) {
@@ -185,10 +211,82 @@
 			},
 			changeSubTab: function(e) {
 				if (config.debug) console.log('changeSubTab', e)
+				if (e.currentTarget.dataset.tab == this.subTab) return
 				this.subTab = e.currentTarget.dataset.tab
+				this.loadData()
 			},
 			loadData: function() {
 				if (config.debug) console.log('loadData with tab', this.tab)
+
+				let that = this
+				if (that.data[that.tab]) {
+					that._showData()
+					return
+				}
+
+				util.request(config.api.rank, {
+					tab: that.tab,
+					limit: 100,
+				}).then(function(res) {
+					if (config.debug) console.log(config.api.rank, res)
+					let data = that.data
+					data[that.tab] = res.data
+					that.data = data
+					that._showData()
+				}).catch((e) => {
+					console.log(e)
+				})
+			},
+			_showData() {
+				let that = this
+				let lists = that.data[that.tab][that.subTab]
+				lists.map(item => {
+					if (item.member_id) {
+						item.uid = item.member_id
+					}
+					switch (that.tab) {
+						case 'all':
+							if (that.subTab == 'total_reading') {
+								let r = util.formatReading(item.total_reading_time)
+								if (r.min < 10) r.min = '0' + r.min
+								item.info = `${r.hour} 时 ${r.min} 分`
+							} else if (that.subTab == 'continuous_sign') {
+								item.info = item.total_continuous_sign + ' 天'
+							} else if (that.subTab == 'total_sign') {
+								item.info = item.total_sign + ' 天'
+							} else if (that.subTab == 'comment_books') {
+								item.info = item.CntComment || item.cnt_comment
+							}else if (that.subTab == 'star_books'){
+								item.info = item.star
+							}else if(that.subTab == 'vcnt_books'){
+								item.info = item.vcnt
+							}
+							break;
+						case 'reading':
+							let r = util.formatReading(item.sum_time)
+							if (r.min < 10) r.min = '0' + r.min
+							item.info = `${r.hour} 时 ${r.min} 分`
+							break;
+						case 'sign':
+							if (that.subTab == 'continuous_sign') {
+								item.info = item.total_continuous_sign + ' 天'
+							} else if (that.subTab == 'history_continuous_sign') {
+								item.info = item.history_total_continuous_sign + ' 天'
+							} else {
+								item.info = item.total_sign + ' 天'
+							}
+							break;
+						case 'star':
+						case 'popular':
+							item.info = item.cnt
+							break;
+					}
+				})
+				that.lists = lists
+				uni.pageScrollTo({
+					duration: 100,
+					scrollTop: 0
+				})
 			}
 		}
 	}
@@ -221,6 +319,9 @@
 
 	.content-left>view {
 		cursor: pointer;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.content-left .color-red {
@@ -232,5 +333,43 @@
 	.content-right {
 		margin-left: 20%;
 		margin-top: 65px;
+		padding-right: 0 !important;
+	}
+
+	.content-right .row {
+		line-height: 30px;
+		padding: 8px 0;
+		border-bottom: 1upx dashed #F1F1F1;
+	}
+
+	.rank-number text {
+		display: block;
+		height: 30px;
+		width: 30px;
+		background-color: #EFEFEF;
+		text-align: center;
+		font-size: 0.9em;
+	}
+
+	.rank-no1 text {
+		background-color: #bf2c24;
+		color: #FFFFFF;
+	}
+
+	.rank-no2 text {
+		background-color: #e67225;
+		color: #FFFFFF;
+	}
+
+	.rank-no3 text {
+		background-color: #e6bf25;
+		color: #FFFFFF;
+	}
+
+	.rank-main navigator {
+		display: block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 </style>

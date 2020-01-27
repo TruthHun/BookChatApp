@@ -302,15 +302,6 @@
 		border-bottom: 1px solid #F1F1F1;
 	}
 
-	.top .color-red {
-		border-bottom: 1px solid #FFFFFF;
-		z-index: 999;
-		border-left: 1px solid #F1F1F1;
-		border-right: 1px solid #F1F1F1;
-		margin-top: -1px;
-		box-sizing: border-box;
-	}
-
 	.content-left {
 		background-color: #EFEFEF;
 		line-height: 360%;

@@ -14,6 +14,14 @@
 				<text>我的成就</text>
 			</view>
 			<view class="col text-right">
+				<view v-if="isSignedToday" class="text-muted font-lv4 signed">
+					<image class="me-icon" src="/static/images/signed.png">已签到</image>
+				</view>
+				<view v-else class="color-link" @click="sign">
+					<image class="me-icon" src="/static/images/sign.png"></image>
+					<text>签到</text>
+				</view>
+				<text class="line">|</text>
 				<navigator class="color-link" url="/pages/rank/rank">
 					<image class="me-icon" src="/static/images/rank.png"></image>
 					<text>榜单</text>
@@ -132,6 +140,7 @@
 		},
 		data() {
 			return {
+				isSignedToday: false,
 				info: {},
 				user: {},
 				moreInfo: {},
@@ -193,6 +202,7 @@
 							util.clearUser()
 							util.toastSuccess('退出成功')
 							that.initUser()
+							util.setSignedAt(0)
 							let sysInfo = util.getSysInfo()
 							sysInfo.bookshelfChanged = true
 							util.setSysInfo(sysInfo)
@@ -208,11 +218,25 @@
 					})
 				}
 			},
+			sign: function(){
+				let that = this
+				util.request(config.api.userSign, {}, 'POST').then(function(res){
+					util.setSignedAt(res.data.signed_at)
+					uni.showToast({
+						title: res.data.message,
+						duration: 5000,
+						icon: 'none',
+					})
+					that.isSignedToday = util.isSignedToday()
+				}).catch(function(e){
+					console.log(e)
+					util.toastError(e.message || e.errMsg)
+				})
+			},
 			getUserMoreInfo: function() {
 				let that = this
 				if (that.user.uid == 0) return
-				let now = new Date().getTime() / 1000
-
+				let now = util.now()
 				// 缓存 10 秒
 				if (config.debug) console.log('now', now, 'moreInfoCacheTime', that.moreInfoCacheTime)
 				if (now - that.moreInfoCacheTime <= 10) return
@@ -232,12 +256,13 @@
 					moreInfo.total_reading_hour = totalReading.hour
 					moreInfo.total_reading_min = totalReading.min
 					moreInfo.join_day = parseInt((now - moreInfo.created_at) / (24 * 3600)) + 1
+					util.setSignedAt(moreInfo.signed_at)
 					that.moreInfo = moreInfo
-					console.log(moreInfo)
 				}).catch(function(e) {
 					console.log(e)
 				}).finally(function() {
-					that.moreInfoCacheTime = new Date().getTime() / 1000
+					that.moreInfoCacheTime = util.now()
+					that.isSignedToday = util.isSignedToday()
 				})
 			}
 		}
@@ -278,6 +303,10 @@
 	.col-title {
 		margin-bottom: 1px;
 		color: #666;
+	}
+
+	.col-title navigator {
+		display: inline-block;
 	}
 
 	.username {
@@ -377,6 +406,23 @@
 		top: -4upx;
 	}
 
+	.signed image {
+		width: 25upx;
+		height: 25upx;
+	}
+
+	.signed.text-muted {
+		color: #CCCCCC;
+	}
+
+	.col-title .text-right .line {
+		color: #EFEFEF;
+		margin: 0 10px;
+	}
+
+	.col-title .text-right>view {
+		display: inline-block;
+	}
 
 	@media (min-width: 768px) {
 

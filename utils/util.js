@@ -1,7 +1,8 @@
 const keyUser = 'user'
 const keyMenu = 'menu'
 const keyReaderSetting = 'reader-setting'
-const keyScreenInfo = 'screen-info'
+const keySysInfo = 'sys-info'
+const keySign = 'sign'
 
 const formatTime = date => {
 	const year = date.getFullYear()
@@ -12,6 +13,14 @@ const formatTime = date => {
 	const second = date.getSeconds()
 
 	return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+const timestampToDate = (timestamp) => {
+	let date = new Date(timestamp * 1000)
+	const year = date.getFullYear()
+	const month = date.getMonth() + 1
+	const day = date.getDate()
+	return [year, month, day].map(formatNumber).join('/')
 }
 
 const formatNumber = n => {
@@ -252,7 +261,7 @@ const getReaderSetting = () => {
 }
 
 const setSysInfo = (obj) => {
-	uni.setStorageSync(keyScreenInfo, JSON.stringify(obj))
+	uni.setStorageSync(keySysInfo, JSON.stringify(obj))
 }
 
 const formatReading = (seconds) => {
@@ -270,7 +279,7 @@ const formatReading = (seconds) => {
 }
 
 const getSysInfo = () => {
-	let val = uni.getStorageSync(keyScreenInfo)
+	let val = uni.getStorageSync(keySysInfo)
 	if (!val) {
 		return {
 			windowWidth: 0,
@@ -281,6 +290,21 @@ const getSysInfo = () => {
 	}
 	return JSON.parse(val)
 }
+
+const setSignedAt = (timestamp) => {
+	// timestamp = 0 表示重置签到时间
+	if (timestamp == 0 || timestamp > getSignedAt()) uni.setStorageSync(keySign, timestamp)
+}
+
+const getSignedAt = () => {
+	let signedAt = uni.getStorageSync(keySign) || 0
+	return parseInt(signedAt)
+}
+
+const isSignedToday = () => {
+	return timestampToDate(now()) == timestampToDate(getSignedAt())
+}
+
 
 module.exports = {
 	formatTime,
@@ -305,4 +329,7 @@ module.exports = {
 	setSysInfo,
 	fixView,
 	formatReading,
+	setSignedAt,
+	getSignedAt,
+	isSignedToday,
 }

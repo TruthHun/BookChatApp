@@ -44,22 +44,6 @@
 				subTab: 'total_reading',
 				data: {},
 				lists: [],
-				dataAll: {
-					gotAt: 0
-				},
-				dataReading: {
-					gotAt: 0
-				},
-				dataSign: {
-					gotAt: 0
-				},
-				dataPopular: {
-					gotAt: 0
-				},
-				dataStar: {
-					gotAt: 0
-				},
-				interval: 60,
 				tabs: [{
 					title: '总榜',
 					tab: 'all',

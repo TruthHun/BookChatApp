@@ -88,6 +88,7 @@
 		background-color: #fff;
 		border-top-left-radius: 6upx;
 		border-top-right-radius: 6upx;
+		box-sizing: border-box;
 	}
 
 	.tab navigator {

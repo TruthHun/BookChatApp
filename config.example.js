@@ -7,7 +7,7 @@ const debug = true
 // 程序信息，置空则不显示
 const info = {
 	about: 'help/about', // "关于我们"的文档标识
-	version: 'v1.2.0',
+	version: 'v1.3.0',
 	copyright: 'BookStack.CN',
 	license: 'Apache 2.0',
 	author: 'TruthHun',
@@ -32,6 +32,7 @@ const api = {
 	bookmark: `${host}/api/v1/book/bookmark`,
 	read: `${host}/api/v1/book/read`,
 	userInfo: `${host}/api/v1/user/info`,
+	userMoreInfo: `${host}/api/v1/user/more-info`,
 	userRelease: `${host}/api/v1/user/release`,
 	userFans: `${host}/api/v1/user/fans`,
 	userFollow: `${host}/api/v1/user/follow`,

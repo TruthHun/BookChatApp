@@ -181,7 +181,7 @@
 		onLoad() {
 			let sysInfo = util.getSysInfo()
 			let top = 50 + sysInfo.statusBarHeight + sysInfo.titleBarHeight
-			console.log('statusBarHeight', sysInfo.statusBarHeight, 'titleBarHeight', sysInfo.titleBarHeight)
+			if (config.debug) console.log('statusBarHeight', sysInfo.statusBarHeight, 'titleBarHeight', sysInfo.titleBarHeight)
 			this.menuStyle = `top: ${top}px;`
 			this.loadData()
 		},
@@ -191,10 +191,10 @@
 				let tab = e.currentTarget.dataset.tab
 				for (let item of this.tabs) { // set subTab's default value
 					if (item.tab == tab && item.subTabs && item.subTabs.length > 0) {
-						console.log(item.subTabs[0].tab)
+						if (config.debug) console.log(item.subTabs[0].tab)
 						this.subTab = item.subTabs[0].tab
 					}
-					console.log(item)
+					if (config.debug) console.log(item)
 				}
 				this.tab = tab
 				this.loadData()
@@ -295,7 +295,7 @@
 
 	.content-left {
 		background-color: #EFEFEF;
-		line-height: 300%;
+		line-height: 360%;
 		position: fixed;
 		width: 20%;
 		top: 94px;
@@ -359,9 +359,10 @@
 		text-overflow: ellipsis;
 	}
 
-	.loading{
+	.loading {
 		border-bottom: 0 !important;
 	}
+
 	.loading image {
 		width: 32px;
 		height: 32px;

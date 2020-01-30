@@ -32,7 +32,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 image{width: 60%;margin:80upx auto;display: block;}
 text.font-lv1{font-size: 60upx !important;color: #353535;}
 text{display: block;text-align: center;color: #888888;margin: 30upx 0;}

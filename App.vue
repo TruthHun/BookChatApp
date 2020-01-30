@@ -30,7 +30,7 @@
 							if (config.debug) console.log("当前版本", info.versionCode, "最新版本", res.data.version)
 							if (info.versionCode < res.data.version) {
 								uni.showModal({
-									title: "高能预警",
+									title: "温馨提示",
 									content: "发现新版本APP，您是否要升级体验？",
 									cancelText: "暂时忽略",
 									confirmText: "码上升级",

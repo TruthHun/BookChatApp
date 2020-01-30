@@ -16,11 +16,16 @@
 				</block>
 			</view>
 			<view class="col-9 content-right base-padding font-lv3">
-				<view v-for="(list,index) in lists" :key="index" class="row">
+				<view v-if="loading" class="row loading">
+					<view class="col-12">
+						<image src="/static/images/loading.png"></image>
+					</view>
+				</view>
+				<view v-else v-for="(list,index) in lists" :key="index" class="row">
 					<view :class="['col-2', 'rank-number', 'rank-no'+(index+1)]"><text>{{index + 1}}</text></view>
 					<view class="col-7 rank-main">
 						<navigator v-if="list.uid" :url="'/pages/ucenter/ucenter?uid='+list.uid">{{list.nickname}}</navigator>
-						<navigator v-else :url="'/pages/intro/intro?book_id='+list.book_id">{{list.book_name}}</navigator>
+						<navigator v-else :url="'/pages/intro/intro?id='+list.book_id">{{list.book_name}}</navigator>
 					</view>
 					<view class="col-3 text-right text-muted font-lv4"><text>{{list.info}}</text></view>
 				</view>
@@ -44,6 +49,7 @@
 				subTab: 'total_reading',
 				data: {},
 				lists: [],
+				loading: true,
 				tabs: [{
 					title: '总榜',
 					tab: 'all',
@@ -240,9 +246,9 @@
 								item.info = item.total_sign + ' 天'
 							} else if (that.subTab == 'comment_books') {
 								item.info = item.CntComment || item.cnt_comment
-							}else if (that.subTab == 'star_books'){
+							} else if (that.subTab == 'star_books') {
 								item.info = item.star
-							}else if(that.subTab == 'vcnt_books'){
+							} else if (that.subTab == 'vcnt_books') {
 								item.info = item.vcnt
 							}
 							break;
@@ -266,6 +272,7 @@
 							break;
 					}
 				})
+				that.loading = false
 				that.lists = lists
 				uni.pageScrollTo({
 					duration: 100,
@@ -288,7 +295,7 @@
 
 	.content-left {
 		background-color: #EFEFEF;
-		line-height: 360%;
+		line-height: 300%;
 		position: fixed;
 		width: 20%;
 		top: 94px;
@@ -317,7 +324,7 @@
 
 	.content-right .row {
 		line-height: 30px;
-		padding: 8px 0;
+		padding: 20upx 0;
 		border-bottom: 1px dashed #F1F1F1;
 	}
 
@@ -350,5 +357,15 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+
+	.loading{
+		border-bottom: 0 !important;
+	}
+	.loading image {
+		width: 32px;
+		height: 32px;
+		margin: 30px auto;
+		display: block;
 	}
 </style>

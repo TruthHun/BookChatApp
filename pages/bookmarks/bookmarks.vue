@@ -98,7 +98,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.recycle image {
 		width: 20upx;
 		height: 20upx;

@@ -154,6 +154,7 @@
 						}
 					}).catch(function(e) {
 						console.log(e)
+						util.toastError(e.data.message || e.ErrMsg)
 					}).finally(function() {
 						that.banners = banners
 						that.categoryBooks = categories

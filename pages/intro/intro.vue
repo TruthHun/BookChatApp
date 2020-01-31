@@ -335,7 +335,7 @@
 					sysInfo.bookshelfChanged = true
 					util.setSysInfo(sysInfo)
 				}).catch(function(e) {
-					util.toastError(e.message || e.errMsg)
+					util.toastError(e.data.message || e.errMsg)
 				})
 			},
 

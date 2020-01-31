@@ -230,7 +230,7 @@
 					that.isSignedToday = util.isSignedToday()
 				}).catch(function(e){
 					console.log(e)
-					util.toastError(e.message || e.errMsg)
+					util.toastError(e.data.message || e.errMsg)
 				})
 			},
 			getUserMoreInfo: function() {

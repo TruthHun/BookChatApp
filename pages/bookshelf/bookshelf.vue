@@ -111,7 +111,7 @@
 									return book.book_id != bookId
 								})
 							}).catch(function(e) {
-								util.toastError(e.message || e.errMsg)
+								util.toastError(e.data.message || e.errMsg)
 							})
 						}
 					}
@@ -161,7 +161,7 @@
 
 				}).catch(function(e) {
 					if (config.debug) console.log("error", e)
-					util.toastError(e.message || e.errMsg)
+					util.toastError(e.data.message || e.errMsg)
 				}).finally(function() {
 					that.books = books
 					that.showTips = books.length == 0

@@ -382,7 +382,6 @@
 
 	.list .color-grey {
 		line-height: 150%;
-		text-indent: 2em;
 	}
 
 	.breadcrumb {

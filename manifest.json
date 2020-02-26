@@ -2,8 +2,8 @@
     "name" : "BookChat",
     "appid" : "__UNI__8FAB29C",
     "description" : "",
-    "versionName" : "1.3.2",
-    "versionCode" : 132,
+    "versionName" : "1.4.0",
+    "versionCode" : 140,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -33,7 +33,13 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {},
+            "sdkConfigs" : {
+                "ad" : {
+                    "360" : {},
+                    "csj" : {},
+                    "gdt" : {}
+                }
+            },
             "icons" : {
                 "android" : {
                     "hdpi" : "unpackage/res/icons/72x72.png",
@@ -66,7 +72,9 @@
                     }
                 }
             }
-        }
+        },
+        "compilerVersion" : 3,
+        "nvueLaunchMode" : "fast"
     },
     /* 快应用特有相关 */
     "quickapp" : {},

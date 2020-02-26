@@ -106,7 +106,6 @@
 </template>
 
 <script>
-	import '../../static/css/markdown.css'
 
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
@@ -499,6 +498,8 @@
 </script>
 
 <style>
+	@import url("../../static/css/markdown.css");
+	
 	.page,
 	page {
 		min-height: 100%;

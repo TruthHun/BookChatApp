@@ -20,6 +20,9 @@
 				</view>
 				<view class="col-3">
 					<view class="header-icon icon-right">
+						<view wx:if="showShare" :style="iconPadding" @click="share">
+							<image src="/static/images/share.png"></image>
+						</view>
 						<view v-if="showSearch" @click="headerSearch" :style="iconPadding" class="search">
 							<image src="/static/images/search-black.png"></image>
 						</view>
@@ -35,6 +38,7 @@
 
 <script>
 	import util from '../utils/util.js'
+	import config from '../config.js'
 	export default {
 		data() {
 			return {
@@ -73,6 +77,14 @@
 			showScan: {
 				type: Boolean,
 				default: false,
+			},
+			shareSummary: {
+				type: String,
+				default: ''
+			},
+			sharePath: {
+				type: String,
+				default: '/read/help/app.md'
 			}
 		},
 		created() {
@@ -89,6 +101,10 @@
 			let bottom = titleBarHeight - 16 - top
 			that.iconPadding = `padding-top: ${top}px;padding-bottom: ${bottom}px;`
 			that.lineMargin = `margin-top: ${top}px`
+			
+			// #ifdef APP-PLUS
+			that.showShare = true
+			// #endif
 		},
 		methods: {
 			headerBack() {
@@ -109,6 +125,12 @@
 			headerSearch() {
 				uni.navigateTo({
 					url: '/pages/search/search'
+				})
+			},
+			share(){
+				uni.shareWithSystem({
+				  summary: this.shareSummary || config.shareSummary,
+				  href: config.shareHost + this.sharePath
 				})
 			}
 		}

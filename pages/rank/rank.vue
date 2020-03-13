@@ -120,6 +120,14 @@
 							title: '累计签到',
 							tab: 'total_sign'
 						},
+						{
+							title: '本月累签',
+							tab: 'this_month_sign'
+						},
+						{
+							title: '上月累签',
+							tab: 'last_month_sign'
+						},
 					]
 				}, {
 					title: '人气',
@@ -229,7 +237,7 @@
 			},
 			_showData() {
 				let that = this
-				let lists = that.data[that.tab][that.subTab]
+				let lists = that.data[that.tab][that.subTab] || []
 				lists.map(item => {
 					if (item.member_id) {
 						item.uid = item.member_id

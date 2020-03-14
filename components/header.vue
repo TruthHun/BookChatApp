@@ -77,14 +77,6 @@
 			showScan: {
 				type: Boolean,
 				default: false,
-			},
-			shareSummary: {
-				type: String,
-				default: ''
-			},
-			sharePath: {
-				type: String,
-				default: '/read/help/app.md'
 			}
 		},
 		created() {
@@ -101,7 +93,7 @@
 			let bottom = titleBarHeight - 16 - top
 			that.iconPadding = `padding-top: ${top}px;padding-bottom: ${bottom}px;`
 			that.lineMargin = `margin-top: ${top}px`
-			
+
 			// #ifdef APP-PLUS
 			that.showShare = true
 			// #endif
@@ -127,11 +119,13 @@
 					url: '/pages/search/search'
 				})
 			},
-			share(){
-				uni.shareWithSystem({
-				  summary: this.shareSummary || config.shareSummary,
-				  href: config.shareHost + this.sharePath
+			share() {
+				// #ifdef APP-PLUS
+				plus.share.sendWithSystem({
+					content: config.shareContent,
+					href: config.shareLink,
 				})
+				// #endif
 			}
 		}
 	}

@@ -444,9 +444,9 @@
 			},
 			setBrightnessScreen: function(e) {
 				if (config.debug) console.log(e)
-				this.screenBrightness = e.detail.value
+				this.screenBrightness = parseFloat(e.detail.value).toFixed(1)
 				uni.setScreenBrightness({
-					value: e.detail.value,
+					value: screenBrightness,
 				})
 			},
 			initReaderSetting: function() {

@@ -1,11 +1,11 @@
 // api host，末尾不要带斜杠。后端程序是BookStack (https://github.com/truthhun/BookStack)
 let host = 'http://localhost:8181/bookchat'
 
-// 分享站点的域名。末尾不要带斜杠
-let shareHost = 'http://localhost:8181'
+
 
 // 默认分享的内容
-let shareSummary = 'BookChat，程序员IT互联网开源编程书籍免费阅读'
+let shareContent = 'BookChat，程序员IT互联网开源编程书籍免费阅读'
+let shareLink = 'https://www.bookstack.cn/read/help/app.md'
 
 // 是否是调试模式。如果是生产环境，请设置为false
 const debug = true
@@ -57,6 +57,6 @@ module.exports = {
 	api,
 	debug,
 	info,
-	shareHost,
-	shareSummary,
+	shareContent,
+	shareLink,
 }

@@ -195,6 +195,7 @@
 		},
 		methods: {
 			changeTab: function(e) {
+				this.loading = true
 				if (config.debug) console.log('changeTab', e)
 				let tab = e.currentTarget.dataset.tab
 				for (let item of this.tabs) { // set subTab's default value
@@ -238,6 +239,7 @@
 			_showData() {
 				let that = this
 				let lists = that.data[that.tab][that.subTab] || []
+				
 				lists.map(item => {
 					if (item.member_id) {
 						item.uid = item.member_id
@@ -279,6 +281,7 @@
 							item.info = item.cnt
 							break;
 					}
+					this.loading = false
 				})
 				that.loading = false
 				that.lists = lists

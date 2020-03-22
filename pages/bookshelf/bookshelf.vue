@@ -107,7 +107,6 @@
 		},
 		methods: {
 			changeCate: function(e) {
-				console.log(e.currentTarget.offsetLeft)
 				this.cid = e.currentTarget.dataset.cid
 				this.scrollLeft = e.currentTarget.offsetLeft - 100
 				this.loadBooks(true)

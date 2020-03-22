@@ -1,13 +1,29 @@
 <template>
 	<view>
-		<iheader title="书架" :showIcon="false" :showSearch="true"></iheader>
-		<block v-if="books.length>0 && token!='' && showLongpressTips">
-			<view class="row mgt-15 base-padding">
-				<view class="col-12 font-lv4 color-grey longpress-tips">
-					<text>温馨提示：长按可将书籍从书架中移除</text>
-					<text @click="closeLongpressTips" class="close-longpress-tips color-info">X</text>
+		<iheader title="书架" :showIcon="false" :showBorder='true' :showSearch="true"></iheader>
+		<block v-if="books.length>0 && token!=''">
+			<view class="fix">
+				<block v-if="showLongpressTips">
+					<view class="row mgt-15">
+						<!-- 30px -->
+						<view class="col-12 font-lv4 color-grey longpress-tips">
+							<text>分类可左右滑动；长按可将相应书籍从书架中移除</text>
+							<text @click="closeLongpressTips" class="close-longpress-tips color-info">X</text>
+						</view>
+					</view>
+				</block>
+				<view class="row">
+					<!-- 40px -->
+					<view class="col-12 font-lv3 color-semi tabs">
+						<scroll-view scroll-with-animation :scroll-left="scrollLeft" class="hor" scroll-x>
+							<view @click="changeCate" :data-cid="cate.id" :class="['scroll-item', cate.id == cid ? 'active': '']"
+							 v-for="(cate,idx) in categories" :key="idx">{{cate.title}}</view>
+						</scroll-view>
+					</view>
 				</view>
 			</view>
+			<view style="height: 40px;">&nbsp;</view>
+			<view v-if="showLongpressTips" style="height: 30px;">&nbsp;</view>
 		</block>
 
 		<view class='row box'>
@@ -31,7 +47,6 @@
 					</view>
 				</view>
 			</view>
-
 
 			<block v-if="books.length>0 && token!=''">
 				<view v-for="(book, index) in books" :key="index" class='col-4'>
@@ -63,8 +78,12 @@
 				size: 24,
 				books: [],
 				showTips: false,
+				categories: [],
 				wd: '',
 				token: '',
+				cid: 0,
+				scrollLeft: 100,
+				fixHeight: "height: 70px",
 				showLongpressTips: false, // 是否显示长按可移除书架收藏书籍的提示
 			}
 		},
@@ -75,9 +94,9 @@
 		},
 		onShow: function() {
 			this.showLongpressTips = uni.getStorageSync("showLongpressTips") != "false"
-			
+
 			let sysInfo = util.getSysInfo()
-			
+
 			if (config.debug) console.log("onShow", "bookshelfChanged", sysInfo.bookshelfChanged)
 			this.loadBooks(sysInfo.bookshelfChanged)
 			sysInfo.bookshelfChanged = false
@@ -87,6 +106,12 @@
 			this.loadBooks()
 		},
 		methods: {
+			changeCate: function(e) {
+				console.log(e.currentTarget.offsetLeft)
+				this.cid = e.currentTarget.dataset.cid
+				this.scrollLeft = e.currentTarget.offsetLeft - 100
+				this.loadBooks(true)
+			},
 			longpress: function(e) {
 				if (config.debug) console.log("longpress", e)
 				let that = this
@@ -146,11 +171,25 @@
 				util.request(config.api.bookshelf, {
 					page: page,
 					size: size,
+					'with-cate': 1,
+					cid: that.cid,
 				}).then((res) => {
 					if (config.debug) console.log(config.api.bookshelf, res)
-					if (res.data && res.data.books) {
-						res.data.books.length >= size ? page++ : page = 0
-						books = isClearAll ? res.data.books : that.books.concat(res.data.books)
+					if (res.data) {
+						if (res.data.books) {
+							res.data.books.length >= size ? page++ : page = 0
+							books = isClearAll ? res.data.books : that.books.concat(res.data.books)
+						}
+						if (res.data.categories) {
+							let categories = [{
+								id: 0,
+								pid: 0,
+								title: '全部'
+							}].concat(res.data.categories)
+							that.categories = categories.filter(item => {
+								if (item.pid > 0 || item.id == 0) return true
+							})
+						}
 					} else {
 						if (page == 1) {
 							books = []
@@ -186,6 +225,37 @@
 		padding: 15upx;
 	}
 
+	.fix {
+		position: fixed;
+		width: 100%;
+		padding: 0 30rpx;
+		box-sizing: border-box;
+		border-bottom: 1rpx solid #F1F1F1;
+		background-color: #FFFFFF;
+		z-index: 999;
+	}
+
+	.hor {
+		display: flex;
+		flex-direction: row;
+		box-sizing: border-box;
+	}
+
+	.scroll-item {
+		max-width: 130px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		display: inline;
+		padding: 0 12px;
+		height: 40px;
+		line-height: 40px;
+	}
+
+	.tabs .active {
+		color: red;
+	}
+
 	.tips {
 		width: 100%;
 		box-sizing: border-box;
@@ -216,7 +286,8 @@
 		border: 1upx dashed #FF6600;
 		border-radius: 3upx;
 		box-sizing: border-box;
-		padding: 20upx 20upx 20upx 15upx;
+		padding: 0 10px;
+		line-height: 30px;
 		border-radius: 5upx;
 	}
 
@@ -228,17 +299,19 @@
 		.ellipsis-2row {
 			line-height: 1.8;
 		}
-		.col-4{
+
+		.col-4 {
 			flex: 0 0 25%;
 			max-width: 25%;
 		}
+
 		.book {
 			width: 154.5upx;
 			max-width: 100%;
 			display: block;
 			margin: 30upx auto;
 		}
-		
+
 		.book image {
 			width: 154.5upx;
 			height: 203.7upx;

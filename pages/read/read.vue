@@ -444,7 +444,8 @@
 			},
 			setBrightnessScreen: function(e) {
 				if (config.debug) console.log(e)
-				this.screenBrightness = parseFloat(e.detail.value).toFixed(1)
+				let screenBrightness = parseFloat(e.detail.value).toFixed(1)
+				this.screenBrightness = screenBrightness
 				uni.setScreenBrightness({
 					value: screenBrightness,
 				})

@@ -5,7 +5,7 @@
 			<view class="fix">
 				<block v-if="showLongpressTips">
 					<view class="row mgt-15">
-						<!-- 30px -->
+						<!-- 35px -->
 						<view class="col-12 font-lv4 color-grey longpress-tips">
 							<text>分类可左右滑动；长按可将相应书籍从书架中移除</text>
 							<text @click="closeLongpressTips" class="close-longpress-tips color-info">X</text>
@@ -13,7 +13,7 @@
 					</view>
 				</block>
 				<view class="row">
-					<!-- 40px -->
+					<!-- 45px -->
 					<view class="col-12 font-lv3 color-semi tabs">
 						<scroll-view scroll-with-animation :scroll-left="scrollLeft" class="hor" scroll-x>
 							<view @click="changeCate" :data-cid="cate.id" :class="['scroll-item', cate.id == cid ? 'active': '']"
@@ -22,8 +22,8 @@
 					</view>
 				</view>
 			</view>
-			<view style="height: 40px;">&nbsp;</view>
-			<view v-if="showLongpressTips" style="height: 30px;">&nbsp;</view>
+			<view style="height: 45px;">&nbsp;</view>
+			<view v-if="showLongpressTips" style="height: 35px;">&nbsp;</view>
 		</block>
 
 		<view class='row box'>
@@ -82,7 +82,7 @@
 				wd: '',
 				token: '',
 				cid: 0,
-				scrollLeft: 100,
+				scrollLeft: 0,
 				fixHeight: "height: 70px",
 				showLongpressTips: false, // 是否显示长按可移除书架收藏书籍的提示
 			}
@@ -108,7 +108,7 @@
 		methods: {
 			changeCate: function(e) {
 				this.cid = e.currentTarget.dataset.cid
-				this.scrollLeft = e.currentTarget.offsetLeft - 100
+				this.scrollLeft = e.currentTarget.offsetLeft - (util.getSysInfo().screenWidth / 2 -50)
 				this.loadBooks(true)
 			},
 			longpress: function(e) {
@@ -247,8 +247,8 @@
 		overflow: hidden;
 		display: inline;
 		padding: 0 12px;
-		height: 40px;
-		line-height: 40px;
+		height: 45px;
+		line-height: 45px;
 	}
 
 	.tabs .active {
@@ -286,7 +286,7 @@
 		border-radius: 3upx;
 		box-sizing: border-box;
 		padding: 0 10px;
-		line-height: 30px;
+		line-height: 35px;
 		border-radius: 5upx;
 	}
 

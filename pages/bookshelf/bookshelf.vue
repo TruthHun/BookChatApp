@@ -15,7 +15,7 @@
 				<view class="row">
 					<!-- 45px -->
 					<view class="col-12 font-lv3 color-semi tabs">
-						<scroll-view scroll-with-animation :scroll-left="scrollLeft" class="hor" scroll-x>
+						<scroll-view @scroll="scroll" scroll-with-animation :scroll-left="scrollLeft" class="hor" scroll-x>
 							<view @click="changeCate" :data-cid="cate.id" :class="['scroll-item', cate.id == cid ? 'active': '']"
 							 v-for="(cate,idx) in categories" :key="idx">{{cate.title}}</view>
 						</scroll-view>
@@ -83,6 +83,7 @@
 				token: '',
 				cid: 0,
 				scrollLeft: 0,
+				scrollByUser: 0,
 				fixHeight: "height: 70px",
 				showLongpressTips: false, // 是否显示长按可移除书架收藏书籍的提示
 			}
@@ -101,6 +102,11 @@
 			this.loadBooks(sysInfo.bookshelfChanged)
 			sysInfo.bookshelfChanged = false
 			util.setSysInfo(sysInfo)
+			if(parseInt(this.scrollByUser)!=parseInt(this.scrollLeft)){
+				let scollLeft = this.scrollLeft - 1
+				this.scrollLeft = scollLeft
+				this.scrollByUser = scollLeft
+			}
 		},
 		onReachBottom: function() {
 			this.loadBooks()
@@ -108,8 +114,14 @@
 		methods: {
 			changeCate: function(e) {
 				this.cid = e.currentTarget.dataset.cid
-				this.scrollLeft = e.currentTarget.offsetLeft - (util.getSysInfo().screenWidth / 2 -50)
+				let scrollLeft = e.currentTarget.offsetLeft - (util.getSysInfo().screenWidth / 2 -50)
+				this.scrollLeft = scrollLeft
+				this.scrollByUser = scrollLeft
 				this.loadBooks(true)
+			},
+			scroll:function(e){
+				if(config.debug) console.log(e)
+				this.scrollByUser = e.detail.scrollLeft
 			},
 			longpress: function(e) {
 				if (config.debug) console.log("longpress", e)

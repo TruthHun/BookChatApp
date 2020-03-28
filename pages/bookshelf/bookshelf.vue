@@ -143,10 +143,19 @@
 									title: res.data.data && res.data.data.is_cancel ? '移除收藏成功' : '收藏书籍成功',
 								})
 								// 去除被移除了的书籍
-								that.books = books.filter(function(book) {
+								books = books.filter(function(book) {
 									return book.book_id != bookId
 								})
+								if (books.length>0) {
+									that.books = books
+								}else{
+									that.cid = 0
+									that.scrollLeft = 0
+									that.scrollByUser = 0
+									that.loadBooks(true)
+								}
 							}).catch(function(e) {
+								if (config.debug) console.log(e)
 								util.toastError(e.data.message || e.errMsg)
 							})
 						}

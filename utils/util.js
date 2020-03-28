@@ -137,6 +137,7 @@ const request = (api, params = {}, method = "GET", header = {}) => {
 				if (res.statusCode == 200) {
 					resolve(res.data);
 				} else {
+					if(res.statusCode == 401) clearUser()
 					reject(res);
 				}
 			},

@@ -31,6 +31,7 @@ const api = {
 	bookLists: `${host}/api/v1/book/lists`,
 	bookListsByCids: `${host}/api/v1/book/lists-by-cids`,
 	bookInfo: `${host}/api/v1/book/info`,
+	historyReadBook: `${host}/api/v1/book/history`,
 	bookMenu: `${host}/api/v1/book/menu`,
 	bookDownload: `${host}/api/v1/book/download`,
 	searchBook: `${host}/api/v1/search/book`,

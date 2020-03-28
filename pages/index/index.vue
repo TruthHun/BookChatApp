@@ -17,7 +17,10 @@
 		<!--  推荐  -->
 		<view v-if="recommendBooks.length>0" class='panel base-padding recommend base-margin-bottom'>
 			<view class='panel-heading'>
-				<view class='panel-title font-lv1 strong'>最新推荐</view>
+				<view class='panel-title font-lv1 strong'>
+					<text>最新推荐</text>
+					<navigator class="history-link color-grey" url="/pages/history/history">最近阅读</navigator>
+				</view>
 			</view>
 			<view class='panel-body'>
 				<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
@@ -207,5 +210,9 @@
 		color: transparent;
 		height: 1upx;
 		overflow: hidden;
+	}
+	.history-link{
+		display: inline-block;
+		margin-left: 30px;
 	}
 </style>

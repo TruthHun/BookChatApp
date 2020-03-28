@@ -59,6 +59,7 @@
 
 		</view>
 		<view class='base-padding row base-info font-lv2'>
+			
 			<navigator url='/pages/search/search' class='col-12'>
 				<image class="me-icon" src='../../static/images/search.png'></image>
 				<text>书籍搜索</text>
@@ -67,6 +68,11 @@
 			<navigator v-if="user.uid == 0" url='/pages/rank/rank' class='col-12'>
 				<image class="me-icon" src='../../static/images/rank.png'></image>
 				<text>热门榜单</text>
+				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
+			</navigator>
+			<navigator url='/pages/history/history' class='col-12'>
+				<image class="me-icon" src='../../static/images/history.png'></image>
+				<text>最近阅读</text>
 				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
 		</view>

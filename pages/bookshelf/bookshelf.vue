@@ -199,6 +199,9 @@
 						if (res.data.books) {
 							res.data.books.length >= size ? page++ : page = 0
 							books = isClearAll ? res.data.books : that.books.concat(res.data.books)
+						}else{
+							if(page == 1) books = []
+							page = 0
 						}
 						if (res.data.categories) {
 							let categories = [{
@@ -209,6 +212,8 @@
 							that.categories = categories.filter(item => {
 								if (item.pid > 0 || item.id == 0) return true
 							})
+						}else{
+							that.categories=[]
 						}
 					} else {
 						if (page == 1) {
@@ -222,6 +227,13 @@
 					if (config.debug) console.log("error", e)
 					util.toastError(e.data.message || e.errMsg)
 				}).finally(function() {
+					if (that.cid>0 && books.length == 0){
+						that.cid = 0
+						that.scrollLeft = 0
+						that.scrollByUser = 0
+						that.loadBooks(true)
+						return
+					}
 					that.books = books
 					that.showTips = books.length == 0
 					that.page = page

@@ -25,7 +25,6 @@
 			<view style="height: 45px;">&nbsp;</view>
 			<view v-if="showLongpressTips" style="height: 35px;">&nbsp;</view>
 		</block>
-
 		<view class='row box'>
 			<view v-if="showTips && books.length ==0 " class='tips col-12 font-lv2'>
 				<view v-if="token">
@@ -271,6 +270,8 @@
 		display: flex;
 		flex-direction: row;
 		box-sizing: border-box;
+		/* 这行CSS样式很重要，不然里面的元素会出现换行，没法实现水平滚动 */
+		white-space: nowrap;
 	}
 
 	.scroll-item {

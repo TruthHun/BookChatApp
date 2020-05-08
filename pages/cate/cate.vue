@@ -73,7 +73,7 @@
 		data() {
 			return {
 				// 是否是格子布局。true表示分类使用格子布局，false则表示使用类似通讯录的页面布局
-				grid: true,
+				grid: false,
 				categories: [],
 				fixTop: '0px',
 				currentScrollTop: 0,

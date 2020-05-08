@@ -249,7 +249,7 @@
 							if (that.subTab == 'total_reading') {
 								let r = util.formatReading(item.total_reading_time)
 								if (r.min < 10) r.min = '0' + r.min
-								item.info = `${r.hour} 时 ${r.min} 分`
+								item.info = `${r.hour}时${r.min}分`
 							} else if (that.subTab == 'continuous_sign') {
 								item.info = item.total_continuous_sign + ' 天'
 							} else if (that.subTab == 'total_sign') {
@@ -265,7 +265,7 @@
 						case 'reading':
 							let r = util.formatReading(item.sum_time)
 							if (r.min < 10) r.min = '0' + r.min
-							item.info = `${r.hour} 时 ${r.min} 分`
+							item.info = `${r.hour}时${r.min}分`
 							break;
 						case 'sign':
 							if (that.subTab == 'continuous_sign') {

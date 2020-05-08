@@ -2,8 +2,8 @@
     "name" : "BookChat",
     "appid" : "__UNI__8FAB29C",
     "description" : "",
-    "versionName" : "1.4.0",
-    "versionCode" : 140,
+    "versionName" : "1.5.0",
+    "versionCode" : 150,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -13,7 +13,7 @@
         "usingComponents" : true,
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
-            "waiting" : true,
+            "waiting" : false,
             "autoclose" : true,
             "delay" : 0
         },
@@ -27,7 +27,8 @@
                     "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
-                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>"
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ],
                 "schemes" : ""
             },
@@ -37,11 +38,7 @@
             },
             /* SDK配置 */
             "sdkConfigs" : {
-                "ad" : {
-                    "360" : {},
-                    "csj" : {},
-                    "gdt" : {}
-                },
+                "ad" : {},
                 "speech" : {}
             },
             "icons" : {
@@ -79,7 +76,8 @@
         },
         "uniStatistics" : {
             "enable" : true
-        }
+        },
+        "compilerVersion" : 2
     },
     /* 快应用特有相关 */
     "quickapp" : {},
@@ -126,3 +124,5 @@
         "enable" : true
     }
 }
+/* ios打包配置 *//* SDK配置 */
+

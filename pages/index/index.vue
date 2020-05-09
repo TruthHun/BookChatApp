@@ -113,6 +113,7 @@
 				let that = this
 				let cids = []
 				let categories = []
+				let bookLists = []
 				api.getCategories().then(function(res) {
 					if (res.length > 0) {
 						categories = res.filter(function(category) {
@@ -127,7 +128,6 @@
 				}).finally(function() {
 					let banners = []
 					let recommendBooks = []
-					let bookLists = []
 					Promise.all([util.request(config.api.banners), util.request(config.api.bookLists, {
 						page: 1,
 						size: 12,
@@ -155,6 +155,7 @@
 						}
 						if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks = resRecommendBooks.data.books
 						if (resBookLists.data && resBookLists.data.books) {
+							bookLists = resBookLists.data.books
 							categories = categories.map(function(category) {
 								let book = resBookLists.data.books[category.id]
 								if (book != undefined && book.length > 0) {
@@ -169,12 +170,8 @@
 						console.log(e)
 						util.toastError(e.data.message || e.ErrMsg)
 					}).finally(function() {
-						that.banners = banners
-						that.categoryBooks = categories
-						that.recommendBooks = recommendBooks
-						that.showSearch = true
 						uni.hideLoading()
-						if (that.times > 0 && (!categories || categories.length == 0)) {
+						if (that.times > 0 && bookLists.length == 0) {
 							if (config.debug) console.log("reload")
 							let iload = setTimeout(function() {
 								clearTimeout(iload)
@@ -184,7 +181,13 @@
 						} else {
 							that.times = 0
 						}
-						util.setPageCache("index", {'banners': banners, 'categoryBooks': categories, 'recommendBooks':recommendBooks})
+						if(bookLists.length>0){
+							that.banners = banners
+							that.categoryBooks = categories
+							that.recommendBooks = recommendBooks
+							that.showSearch = true
+							util.setPageCache("index", {'banners': banners, 'categoryBooks': categories, 'recommendBooks':recommendBooks})
+						}
 					})
 				})
 			},

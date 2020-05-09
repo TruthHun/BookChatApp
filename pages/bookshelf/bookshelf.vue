@@ -7,7 +7,7 @@
 					<view class="row mgt-15">
 						<!-- 35px -->
 						<view class="col-12 font-lv4 color-grey longpress-tips">
-							<text>分类可左右滑动；长按可将相应书籍从书架中移除</text>
+							<text>分类可左右滑动；长按可操作书架收藏的书籍</text>
 							<text @click="closeLongpressTips" class="close-longpress-tips color-info">X</text>
 						</view>
 					</view>
@@ -16,8 +16,8 @@
 					<!-- 45px -->
 					<view class="col-12 font-lv3 color-semi tabs">
 						<scroll-view @scroll="scroll" scroll-with-animation :scroll-left="scrollLeft" class="hor" scroll-x>
-							<view @click="changeCate" :data-cid="cate.id" :class="['scroll-item', cate.id == cid ? 'active': '']"
-							 v-for="(cate,idx) in categories" :key="idx">{{cate.title}}</view>
+							<view @click="changeCate" :data-cid="cate.id" :class="['scroll-item', cate.id == cid ? 'active': '']" v-for="(cate,idx) in categories"
+							 :key="idx">{{cate.title}}</view>
 						</scroll-view>
 					</view>
 				</view>
@@ -101,7 +101,7 @@
 			this.loadBooks(sysInfo.bookshelfChanged)
 			sysInfo.bookshelfChanged = false
 			util.setSysInfo(sysInfo)
-			if(parseInt(this.scrollByUser)!=parseInt(this.scrollLeft)){
+			if (parseInt(this.scrollByUser) != parseInt(this.scrollLeft)) {
 				let scollLeft = this.scrollLeft - 1
 				this.scrollLeft = scollLeft
 				this.scrollByUser = scollLeft
@@ -113,13 +113,13 @@
 		methods: {
 			changeCate: function(e) {
 				this.cid = e.currentTarget.dataset.cid
-				let scrollLeft = e.currentTarget.offsetLeft - (util.getSysInfo().screenWidth / 2 -50)
+				let scrollLeft = e.currentTarget.offsetLeft - (util.getSysInfo().screenWidth / 2 - 50)
 				this.scrollLeft = scrollLeft
 				this.scrollByUser = scrollLeft
 				this.loadBooks(true)
 			},
-			scroll:function(e){
-				if(config.debug) console.log(e)
+			scroll: function(e) {
+				if (config.debug) console.log(e)
 				this.scrollByUser = e.detail.scrollLeft
 			},
 			longpress: function(e) {
@@ -127,39 +127,69 @@
 				let that = this
 				let bookName = e.currentTarget.dataset.book
 				let bookId = e.currentTarget.dataset.id
-				let books = that.books
-				uni.showModal({
-					title: "温馨提示",
-					content: `您是否要将书籍《${bookName}》从书架中移除？`,
-					success: (action) => {
-						if (action.confirm) {
-							if (config.debug) console.log("确定移除")
-							util.request(config.api.bookStar, {
-								identify: bookId
-							}).then(function(res) {
-								if (config.debug) console.log(config.api.bookStar, res)
-								uni.showToast({
-									title: res.data.data && res.data.data.is_cancel ? '移除收藏成功' : '收藏书籍成功',
+				uni.showActionSheet({
+					itemList: ['阅读书籍', '查看目录', '从书架移除', '查看书籍信息'],
+					success: function(res) {
+						switch (res.tapIndex) {
+							case 0: // 阅读书籍
+								uni.navigateTo({
+									url: '/pages/read/read?identify=' + bookId
 								})
-								// 去除被移除了的书籍
-								books = books.filter(function(book) {
-									return book.book_id != bookId
+								break;
+							case 1: // 查看目录
+								uni.navigateTo({
+									url: '/pages/menu/menu?identify=' + bookId
 								})
-								if (books.length>0) {
-									that.books = books
-								}else{
-									that.cid = 0
-									that.scrollLeft = 0
-									that.scrollByUser = 0
-									that.loadBooks(true)
-								}
-							}).catch(function(e) {
-								if (config.debug) console.log(e)
-								util.toastError(e.data.message || e.errMsg)
-							})
+								break;
+							case 2: // 从书架移除
+								let books = that.books
+								uni.showModal({
+									title: "温馨提示",
+									content: `您是否要将书籍《${bookName}》从书架中移除？`,
+									success: (action) => {
+										if (action.confirm) {
+											if (config.debug) console.log("确定移除")
+											util.request(config.api.bookStar, {
+												identify: bookId
+											}).then(function(res) {
+												if (config.debug) console.log(config.api.bookStar, res)
+												uni.showToast({
+													title: res.data.data && res.data.data.is_cancel ? '移除收藏成功' : '收藏书籍成功',
+												})
+												// 去除被移除了的书籍
+												books = books.filter(function(book) {
+													return book.book_id != bookId
+												})
+												if (books.length > 0) {
+													that.books = books
+												} else {
+													that.cid = 0
+													that.scrollLeft = 0
+													that.scrollByUser = 0
+													that.loadBooks(true)
+												}
+											}).catch(function(e) {
+												if (config.debug) console.log(e)
+												util.toastError(e.data.message || e.errMsg)
+											})
+										}
+									}
+								})
+								break;
+							case 3: // 查看书籍信息
+								uni.navigateTo({
+									url: '/pages/intro/intro?id=' + bookId
+								})
+								break;
+
 						}
+					},
+					fail: function(res) {
+						console.log(res.errMsg);
 					}
 				})
+
+
 			},
 			closeLongpressTips: function() {
 				this.showLongpressTips = false
@@ -198,8 +228,8 @@
 						if (res.data.books) {
 							res.data.books.length >= size ? page++ : page = 0
 							books = isClearAll ? res.data.books : that.books.concat(res.data.books)
-						}else{
-							if(page == 1) books = []
+						} else {
+							if (page == 1) books = []
 							page = 0
 						}
 						if (res.data.categories) {
@@ -211,8 +241,8 @@
 							that.categories = categories.filter(item => {
 								if (item.pid > 0 || item.id == 0) return true
 							})
-						}else{
-							that.categories=[]
+						} else {
+							that.categories = []
 						}
 					} else {
 						if (page == 1) {
@@ -226,7 +256,7 @@
 					if (config.debug) console.log("error", e)
 					util.toastError(e.data.message || e.errMsg)
 				}).finally(function() {
-					if (that.cid>0 && books.length == 0){
+					if (that.cid > 0 && books.length == 0) {
 						that.cid = 0
 						that.scrollLeft = 0
 						that.scrollByUser = 0

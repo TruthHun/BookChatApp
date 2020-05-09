@@ -1,6 +1,7 @@
 ## BookChatApp v1.5.0
 - [x] 增加显示最近阅读的书籍
 - [x] 移除书架书籍引起的书架空白问题的bug
+- [x] 使用`ActionSheet`组件优化书架书籍管理方式
 - [x] 增加类似通讯录的分类布局。（[修改配置方式](https://gitee.com/truthhun/BookChatApp/blob/master/pages/cate/cate.vue#L76)）
 - [x] 修复 Android内容阅读亮度调节跳转系统设置的问题(APP请求的手机权限不足的问题造成)（[#I1DMRB](https://gitee.com/truthhun/BookChatApp/issues/I1DMRB)）
 - [x] 书架收藏的书籍分类太多时，部分机型会出现分类换行显示，导致下边显示的书籍封面被盖住（[#I1DMRC](https://gitee.com/truthhun/BookChatApp/issues/I1DMRC)）

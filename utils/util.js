@@ -73,25 +73,6 @@ const setUser = (user) => {
 	uni.setStorageSync(keyUser, JSON.stringify(user))
 }
 
-const setPageCache = (page, data) => {
-	let key="pagecache_"+page
-	uni.setStorageSync(key, JSON.stringify(data))
-}
-
-const getPageCache = (page) => {
-	let key="pagecache_"+page
-	try {
-		let value = uni.getStorageSync(key)
-		if (value) {
-			return JSON.parse(value)
-		}
-	} catch (e) {
-		// Do something when catch error
-		console.log(e)
-		return ""
-	}
-}
-
 const getUser = () => {
 	try {
 		var value = uni.getStorageSync(keyUser)
@@ -352,6 +333,4 @@ module.exports = {
 	setSignedAt,
 	getSignedAt,
 	isSignedToday,
-	setPageCache,
-	getPageCache,
 }

@@ -79,7 +79,6 @@
 			}
 		},
 		onLoad() {
-			this.loadFromCache()
 			this.loadData()
 		},
 		onShow() {
@@ -96,15 +95,6 @@
 			}
 		},
 		methods: {
-			loadFromCache(){
-				let cache = util.getPageCache('index')
-				if(cache){
-					this.showSearch = true
-					this.banners = cache.banners
-					this.recommendBooks = cache.recommendBooks
-					this.categoryBooks = cache.categoryBooks
-				}
-			},
 			loadData() {
 				// #ifdef MP
 				util.loading('玩命加载中...')
@@ -181,13 +171,10 @@
 						} else {
 							that.times = 0
 						}
-						if(bookLists.length>0){
-							that.banners = banners
-							that.categoryBooks = categories
-							that.recommendBooks = recommendBooks
-							that.showSearch = true
-							util.setPageCache("index", {'banners': banners, 'categoryBooks': categories, 'recommendBooks':recommendBooks})
-						}
+						that.banners = banners
+						that.categoryBooks = categories
+						that.recommendBooks = recommendBooks
+						that.showSearch = true
 					})
 				})
 			},

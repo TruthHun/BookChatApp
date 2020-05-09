@@ -72,7 +72,9 @@
 		},
 		data() {
 			return {
-				// 是否是格子布局。true表示分类使用格子布局，false则表示使用类似通讯录的页面布局
+				// grid表示是否是格子布局。
+				// 	true表示分类使用格子布局
+				// 	false则表示使用类似通讯录的页面布局，这时请把下方CSS中的 page 被注释掉的样式打开
 				grid: true,
 				categories: [],
 				fixTop: '0px',
@@ -127,6 +129,11 @@
 </script>
 
 <style>
+	/* 采用类似通讯录布局方式的时候，把下面的page注释掉的样式打开 */
+	/* page {
+		background-color: #F1F1F1;
+	} */
+	
 	.layout-grid {
 		background-color: #FFFFFF;
 		padding-top: 30upx;
@@ -181,11 +188,6 @@
 			max-width: 80px;
 			max-height: 80px;
 		}
-	}
-
-	/* =================== */
-	page {
-		background-color: #F1F1F1;
 	}
 
 	.layout-list .img-responsive {

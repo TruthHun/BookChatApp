@@ -116,6 +116,12 @@ Promise.prototype.finally = function(callback) {
 	);
 }
 
+const _getVersion = () => {
+	let version = getSysInfo().appVersion
+	if (version != undefined && version != "") return version
+	return ''
+}
+
 // 只有请求结果返回 200 的时候，才会resolve，否则reject
 const request = (api, params = {}, method = "GET", header = {}) => {
 	return new Promise(function(resolve, reject) {
@@ -127,6 +133,8 @@ const request = (api, params = {}, method = "GET", header = {}) => {
 
 		let token = getToken()
 		if (token) header['authorization'] = token
+		
+		header['x-version'] = _getVersion()
 
 		uni.request({
 			url: api,

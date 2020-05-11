@@ -6,7 +6,8 @@
 		onLaunch: function() {
 			let info = uni.getSystemInfoSync()
 			info.versionCode = 0
-			info.version = "v1.0.0"
+			info.version = config.info.version
+			info.appVersion = config.info.version
 			info.bookshelfChanged = false
 			
 			if (info.model && info.model.indexOf('iPhone') !== -1) {

@@ -157,7 +157,8 @@
 
 
 	.img-responsive {
-		border-radius: 6upx;
+		/* border-radius: 6upx; */
+		border-radius: 50%;
 		border: 1px solid #efefef;
 		max-width: 100upx;
 		height: 100upx;

@@ -1,5 +1,6 @@
 // api host，末尾不要带斜杠。后端程序是BookStack (https://github.com/truthhun/BookStack)
-let host = 'http://localhost:8181/bookchat'
+// let host = 'http://localhost:8181/bookchat'
+let host = 'https://www.bookstack.cn/bookchat'
 
 
 

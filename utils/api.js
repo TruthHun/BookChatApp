@@ -3,7 +3,7 @@ import util from "./util.js"
 
 const keyCategories = 'categories';
 const keyCacheExpire = 'categories-expire';
-const expire = 60; // 600 second
+const expire = 1800; // 1800 seconds
 
 // 获取书籍分类
 const getCategories = () => {

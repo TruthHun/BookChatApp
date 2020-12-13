@@ -91,7 +91,6 @@
 					item.firstWord = String(item.title).substr(0, 1)
 					return item
 				})
-				console.log(categories)
 				this.categories = categories
 			}).catch((e) => {
 				console.log(e)

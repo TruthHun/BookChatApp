@@ -4,7 +4,23 @@
 		<view @click='pageClick' :class='"bg-theme"+setting.themeIndex' :style='"min-height:"+(sys.screenHeight - sys.statusBarHeight - 55)+"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
-				<rich-text :nodes="nodes"></rich-text>
+				<block v-for="node of nodes" :key='node'>
+					<block v-if="node.type == 'img'">
+						<image @click="imgPreview" :src="node.data[0].attrs['src']" :data-src="node.data[0].attrs['src']" mode="widthFix"></image>
+					</block>
+					<block v-else-if="node.type == 'audio'">
+						<audio :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']" controls></audio>
+					</block>
+					<block v-else-if="node.type == 'video'">
+						<video :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']" controls></video>
+					</block>
+					<block v-else-if="node.type == 'iframe'">
+						<web-view :src="node.data[0].attrs['src']"></web-view>
+					</block>
+					<block v-else>
+						<rich-text :nodes="node.data"></rich-text>
+					</block>
+				</block>
 			</view>
 		</view>
 
@@ -240,7 +256,8 @@
 				let that = this
 				let params = {
 					identify: identify,
-					'from-app': true
+					// 'from-app': true,
+					'enhance-richtext': true,
 				}
 
 				util.request(config.api.read, params).then(function(res) {
@@ -307,6 +324,12 @@
 			clickMore: function(e) {
 				this.showMore = !this.showMore
 				this.showMenu = false
+			},
+			imgPreview: function(e){
+				if(config.debug) console.log("imgPreview", e)
+				uni.previewImage({
+					urls: [e.currentTarget.dataset.src]
+				})
 			},
 			clickNext: function() {
 				let that = this
@@ -673,5 +696,8 @@
 		.drawer-right.show {
 			left: 35%;
 		}
+	}
+	.markdown-body audio,.markdown-body video,.markdown-body image{
+		max-width: 100% !important;
 	}
 </style>

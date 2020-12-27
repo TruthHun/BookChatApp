@@ -172,7 +172,7 @@
 						}
 					}).catch(function(e) {
 						console.log(e)
-						util.toastError(e.data.message || e.ErrMsg)
+						util.toastError(e.data.message || e.errMsg)
 					}).finally(function() {
 						uni.hideLoading()
 						if (that.times > 0 && bookLists.length == 0) {

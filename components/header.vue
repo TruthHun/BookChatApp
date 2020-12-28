@@ -20,7 +20,8 @@
 				</view>
 				<view class="col-3">
 					<view class="header-icon icon-right">
-						<view wx:if="showShare" :style="iconPadding" @click="share">
+						<!-- #ifdef APP-PLUS -->
+						<view v-if="showShare" :style="iconPadding" @click="share">
 							<image src="/static/images/share.png"></image>
 						</view>
 						<view v-if="showSearch" @click="headerSearch" :style="iconPadding" class="search">
@@ -29,6 +30,7 @@
 						<view v-if="showSign" class="sign" :style="iconPadding">
 							<image src="/static/images/sign.png"></image>
 						</view>
+						<!-- #endif -->
 					</view>
 				</view>
 			</view>

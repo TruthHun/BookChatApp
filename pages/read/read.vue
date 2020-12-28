@@ -545,8 +545,8 @@
 	/* footer */
 
 	.footer {
-		box-shadow: 0 0 5px #efefef;
-		border-top: 1px solid #efefef;
+		/* box-shadow: 0 0 5px #efefef; */
+		border-top: 1px solid rgb(213, 213, 213);
 		position: fixed;
 		height: 48px;
 		line-height: 48px;
@@ -697,7 +697,10 @@
 			left: 35%;
 		}
 	}
-	.markdown-body audio,.markdown-body video,.markdown-body image{
+	.markdown-body image{
 		max-width: 100% !important;
+	}
+	.markdown-body audio,.markdown-body video{
+		width: 100%;
 	}
 </style>

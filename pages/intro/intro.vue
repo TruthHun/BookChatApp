@@ -510,7 +510,8 @@
 		width: 100%;
 		text-align: center;
 		background-color: #fff;
-		box-shadow: 0upx 0upx 10upx #ddd;
+		/* box-shadow: 0upx 0upx 10upx #ddd; */
+		border-top: 1px solid rgb(213,213,213);
 		height: 48px;
 	}
 

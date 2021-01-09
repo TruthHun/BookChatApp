@@ -118,7 +118,7 @@
 		<view class='base-padding row base-info footer'>
 			<view class='col-12 text-center'>
 				<view v-if="info.copyright">
-					<text class='font-lv4 color-grey'>Copyright © 2018-{{now}} {{info.copyright}}</text>
+					<text class='font-lv4 color-grey'>Copyright © {{now}} {{info.copyright}}</text>
 				</view>
 				<view v-if="info.license">
 					<text class='font-lv4 color-grey'>License：{{info.license}}</text>

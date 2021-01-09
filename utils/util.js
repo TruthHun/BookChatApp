@@ -1,4 +1,5 @@
 const keyUser = 'user'
+const keyWeChatUser = 'wechat-user'
 const keyMenu = 'menu'
 const keyReaderSetting = 'reader-setting'
 const keySysInfo = 'sys-info'
@@ -86,6 +87,23 @@ const getUser = () => {
 	}
 }
 
+const setWeChatUser = (user) => {
+	uni.setStorageSync(keyWeChatUser, JSON.stringify(user))
+}
+
+const getWeChatUser = () => {
+	try {
+		var value = uni.getStorageSync(keyWeChatUser)
+		if (value) {
+			return JSON.parse(value)
+		}
+	} catch (e) {
+		// Do something when catch error
+		console.log(e)
+		return {}
+	}
+}
+
 const getToken = () => {
 	let user = getUser()
 	if (user && user.token != undefined) {
@@ -94,6 +112,18 @@ const getToken = () => {
 	return ""
 }
 
+const redirect = (uriWithDecode) => {
+  // 带问号的，用 redirectTo，不带问号的，用switchTab
+  if (uriWithDecode.indexOf("?") > -1) {
+    uni.redirectTo({
+      url: uriWithDecode,
+    })
+  } else {
+    uni.switchTab({
+      url: uriWithDecode,
+    })
+  }
+}
 
 //添加事件结束
 Promise.prototype.finally = function(callback) {
@@ -325,8 +355,10 @@ module.exports = {
 	toastError,
 	toastSuccess,
 	setUser,
+	setWeChatUser,
 	clearUser,
 	getUser,
+	getWeChatUser,
 	getToken,
 	menuToTree,
 	menuSortIds,
@@ -341,4 +373,5 @@ module.exports = {
 	setSignedAt,
 	getSignedAt,
 	isSignedToday,
+	redirect,
 }

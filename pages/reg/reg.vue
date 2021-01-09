@@ -41,6 +41,13 @@
 				<view class='row'>
 					<button :loading='loading' form-type="submit" class='btn-submit btn-block'> 立即注册 </button>
 				</view>
+				<!-- #ifdef MP-WEIXIN -->
+				<view class="row">
+					<button @getuserinfo='wechatLogin' :loading='loadingWechat' open-type="getUserInfo" class='btn-auth btn-block'>
+						微信登录
+					</button>
+				</view>
+				<!-- #endif -->
 				<view class='row'>
 					<button class='btn-block btn-login' @click='toLogin'> 马上登录 </button>
 				</view>
@@ -63,7 +70,8 @@
 		data() {
 			return {
 				loading: false,
-				redirect: encodeURIComponent('/pages/me/me')
+				redirect: encodeURIComponent('/pages/me/me'),
+				loadingWechat: false,
 			}
 		},
 		onLoad(op) {
@@ -141,6 +149,53 @@
 					url: '/pages/login/login?redirect=' + this.redirect
 				})
 			},
+			wechatLogin: function(e) {
+				let that = this
+				let weUser = e.detail
+			
+				if (that.loadingWechat) return
+				that.loadingWechat = true
+			
+				uni.login({
+					success(res) {
+						if (config.debug) console.log("微信登录", res, weUser)
+						if (res.code) {
+							util.request(config.api.loginByWechat, {
+								code: res.code,
+								userInfo: weUser.rawData,
+							}, 'POST').then(function(res) { // 登录成功
+								let user = res.data.user
+								if (user == undefined || user.uid <= 0 || user.token == '') {
+									util.toastError('登录失败：未知错误')
+									that.loadingWechat = false
+									return
+								}
+								util.setUser(user)
+								util.toastSuccess('登录成功')
+								setTimeout(function() {
+									util.redirect(decodeURIComponent(that.redirect))
+								}, 1500)
+							}).catch(function(e) { // 如果是 401，则跳转到信息绑定页面，否则直接提示相关错误信息
+								if (config.debug) console.log(e)
+								if (e.statusCode == 401) {
+									util.setWeChatUser(weUser)
+									uni.navigateTo({
+										url: '/pages/bind/bind?redirect=' + that.redirect + "&sess=" + encodeURIComponent(e.data.data.sess),
+									})
+								} else {
+									util.toastError(e.data.message || e.errMsg)
+								}
+								that.loadingWechat = false
+							})
+						} else {
+							util.toastError('登录失败！' + res.errMsg)
+						}
+					},
+					fail: function(e) {
+						util.toastError(e.errMsg)
+					}
+				})
+			}
 		}
 	}
 </script>

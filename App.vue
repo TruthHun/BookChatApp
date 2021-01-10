@@ -64,7 +64,7 @@
 		},
 		onHide: function() {
 			if (config.debug) console.log('App Hide')
-		}
+		},
 	}
 </script>
 

@@ -116,8 +116,6 @@
 				</view>
 			</view>
 		</view>
-
-
 	</view>
 </template>
 
@@ -166,8 +164,6 @@
 			}
 		},
 		onLoad: function(options) {
-			util.loading("loading...")
-
 			// 步骤：
 			// 1. 先获取书籍目录
 			// 2. 如果没传文档标识参数，则用目录的首个章节作为默认获取的文章
@@ -249,6 +245,7 @@
 		},
 		methods: {
 			getArticle: function(identify) {
+				util.loading("loading...")
 				let article = {}
 				let that = this
 				let params = {
@@ -268,29 +265,7 @@
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
 					if (!article.content) article.content = []
-					
-					let nodes = article.content.filter(node=>{
-						if (node.type == "img" || node.type == "iframe"){
-							try{
-								node["src"]=node.data[0].attrs['src']
-							}catch(e){
-								console.log(e)
-								return false
-							}
-						}else if (node.type == "audio" || node.type == "video"){
-							try{
-								node["src"] = node.data[0].attrs['src']
-								node["poster"] = node.data[0].attrs['poster']
-								node["text"] = node.data[0].children[0]['text']
-							}catch(e){
-								console.log(e)
-								return false
-							}
-						}
-						return true
-					})
-					
-					that.nodes = nodes
+					that.nodes = []
 					that.article = article
 					that.identify = identify
 					that.showMenu = false
@@ -298,11 +273,34 @@
 					that.nextDisable = nextDisable
 					that.preDisable = preDisable
 					that.menuTree = util.menuTreeReaded(that.menuTree, article.id)
-					uni.pageScrollTo({
-						scrollTop: 0,
-						duration: 100
-					});
-					uni.hideLoading()
+					
+					setTimeout(function(){
+						that.nodes = article.content.filter(node => {
+							if (node.type == "img" || node.type == "iframe") {
+								try {
+									node["src"] = node.data[0].attrs['src']
+								} catch (e) {
+									console.log(e)
+									return false
+								}
+							} else if (node.type == "audio" || node.type == "video") {
+								try {
+									node["src"] = node.data[0].attrs['src']
+									node["poster"] = node.data[0].attrs['poster']
+									node["text"] = node.data[0].children[0]['text']
+								} catch (e) {
+									console.log(e)
+									return false
+								}
+							}
+							return true
+						})
+						uni.pageScrollTo({
+							scrollTop: 0,
+							duration: 100
+						});
+						uni.hideLoading()
+					},10)
 				})
 			},
 			pageClick: function(e) {
@@ -330,7 +328,6 @@
 				idx++
 				that.nextDisable = true
 				if (idx < that.menuSortIds.length) {
-					util.loading('loading...')
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -346,7 +343,6 @@
 				that.preDisable = true
 				idx--
 				if (idx > -1) {
-					util.loading('loading...')
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -357,7 +353,6 @@
 				}
 			},
 			itemClick: function(e) {
-				util.loading()
 				this.getArticle(e.identify)
 			},
 			search: function(e) {

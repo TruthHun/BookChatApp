@@ -187,6 +187,7 @@
 			}
 		},
 		onLoad() {
+			util.loading("loading...")
 			let sysInfo = util.getSysInfo()
 			let top = 50 + sysInfo.statusBarHeight + sysInfo.titleBarHeight
 			if (config.debug) console.log('statusBarHeight', sysInfo.statusBarHeight, 'titleBarHeight', sysInfo.titleBarHeight)
@@ -234,6 +235,8 @@
 					that._showData()
 				}).catch((e) => {
 					console.log(e)
+				}).finally(function(){
+					uni.hideLoading()
 				})
 			},
 			_showData() {

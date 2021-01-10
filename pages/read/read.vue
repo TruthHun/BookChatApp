@@ -167,6 +167,8 @@
 			}
 		},
 		onLoad: function(options) {
+			util.loading("loading...")
+			
 			// 步骤：
 			// 1. 先获取书籍目录
 			// 2. 如果没传文档标识参数，则用目录的首个章节作为默认获取的文章
@@ -189,11 +191,7 @@
 			}
 
 			that.initReaderSetting()
-
-			util.loading()
-
 			let latestReadId = 0
-
 			Promise.all([util.request(config.api.bookMenu, {
 				identify: arr[0]
 			}), util.request(config.api.bookInfo, {

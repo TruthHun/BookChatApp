@@ -22,6 +22,9 @@
 		data() {
 			return {}
 		},
+		onLoad() {
+			uni.hideLoading()
+		},
 		methods: {
 			goHome: function(e) {
 				uni.switchTab({

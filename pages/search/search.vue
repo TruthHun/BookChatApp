@@ -86,6 +86,7 @@
 				this.focus = true
 				return
 			}
+			util.loading("loading...")
 			this.wd = wd
 			this.showTab = true
 			this.execSearch()
@@ -185,6 +186,7 @@
 					that.tips = e.data.message || e.errMsg
 					that.page = 0
 				}).finally(function() {
+					uni.hideLoading()
 					that.pending = false
 				})
 			},

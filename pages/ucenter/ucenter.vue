@@ -103,6 +103,8 @@
 			}
 		},
 		onLoad: function(options) {
+			util.loading("loading...")
+			
 			if (config.debug) console.log("params", options)
 			if (options.tab) this.tabValue = options.tab
 
@@ -194,6 +196,7 @@
 						this.getFans()
 						break;
 				}
+				uni.hideLoading()
 			},
 			getRelease: function() {
 				this._getBooks(config.api.userRelease)

@@ -92,11 +92,12 @@
 			loading,
 			iheader,
 		},
+		onLoad() {
+			util.loading("loading...")
+		},
 		onShow: function() {
 			this.showLongpressTips = uni.getStorageSync("showLongpressTips") != "false"
-
 			let sysInfo = util.getSysInfo()
-
 			if (config.debug) console.log("onShow", "bookshelfChanged", sysInfo.bookshelfChanged)
 			this.loadBooks(sysInfo.bookshelfChanged)
 			sysInfo.bookshelfChanged = false
@@ -256,6 +257,7 @@
 					if (config.debug) console.log("error", e)
 					util.toastError(e.data.message || e.errMsg)
 				}).finally(function() {
+					uni.hideLoading()
 					if (that.cid > 0 && books.length == 0) {
 						that.cid = 0
 						that.scrollLeft = 0

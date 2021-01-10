@@ -82,7 +82,7 @@
 			}
 		},
 		onLoad() {
-			util.loading()
+			util.loading("loading...")
 			let sysInfo = util.getSysInfo()
 			this.fixTop = (sysInfo.statusBarHeight + sysInfo.titleBarHeight) + "px"
 			api.getCategories().then((categories) => {

@@ -38,6 +38,7 @@
 			}
 		},
 		onLoad: function(op) {
+			util.loading("loading...")
 			if (config.debug) console.log("op", op)
 			if (op.identify) this.identify = op.identify
 		},
@@ -48,7 +49,6 @@
 			loadBookmarks: function() {
 				let that = this
 				let bookmarks = []
-				util.loading()
 				util.request(config.api.bookmark, {
 					identify: that.identify
 				}).then(function(res) {

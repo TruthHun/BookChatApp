@@ -62,15 +62,10 @@
 		},
 		methods: {
 			submit(e) {
-				
 				if (config.debug) console.log("submit", e)
-				
 			    let that = this
-				
 				let obj = e.detail.value
-				
 			    if (that.loading) return
-				
 			    if (obj.score == 0) {
 					util.toastError('忘了打个分？')
 					return
@@ -82,7 +77,6 @@
 			    }
 			
 			    that.loading = true
-			
 			    util.request(config.api.comment, obj, 'POST').then(function(res) {
 			      if (config.debug) console.log(config.api.comment, res)
 			      uni.showToast({

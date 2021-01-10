@@ -161,6 +161,8 @@
 			}
 		},
 		onLoad(options) {
+			util.loading("loading...")
+			
 			let id = options.id || options.scene
 
 			if (config.debug) console.log(options, id)
@@ -215,6 +217,7 @@
 				}).catch(function(e) {
 					util.toastError(e.data.message || e.errMsg)
 				}).finally(function() {
+					uni.hideLoading()
 					if (book.book_id <= 0) {
 						uni.redirectTo({
 							url: '/pages/notfound/notfound',

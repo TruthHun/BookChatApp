@@ -190,7 +190,7 @@ const loading = (title) => {
 	title = title ? title : '玩命加载中...'
 	uni.showLoading({
 		title: title,
-		mask: true,
+		mask: false,
 	})
 }
 

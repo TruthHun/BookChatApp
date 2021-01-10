@@ -30,6 +30,9 @@
 			loading,
 			iheader,
 		},
+		onLoad() {
+			util.loading("loading...")
+		},
 		onReady() {
 			this.loadBooks()
 		},
@@ -73,6 +76,7 @@
 				}).catch(e => {
 					console.log(e)
 				}).finally(() => {
+					uni.hideLoading()
 					that.loading = false
 					uni.stopPullDownRefresh()
 				})

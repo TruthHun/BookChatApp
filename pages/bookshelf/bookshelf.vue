@@ -94,6 +94,9 @@
 		},
 		onLoad() {
 			util.loading("loading...")
+			setTimeout(function(){
+				uni.hideLoading()
+			},2000)
 		},
 		onShow: function() {
 			this.showLongpressTips = uni.getStorageSync("showLongpressTips") != "false"

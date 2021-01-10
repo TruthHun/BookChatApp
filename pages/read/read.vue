@@ -9,15 +9,17 @@
 						<image @click="imgPreview" :src="node.data[0].attrs['src']" :data-src="node.data[0].attrs['src']" mode="widthFix"></image>
 					</block>
 					<block v-else-if="node.type == 'audio'">
-						<audio :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']" controls></audio>
+						<audio :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']"
+						 controls></audio>
 					</block>
 					<block v-else-if="node.type == 'video'">
-						<video :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']" controls></video>
+						<video :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']"
+						 controls></video>
 					</block>
 					<block v-else-if="node.type == 'iframe'">
 						<web-view :src="node.data[0].attrs['src']"></web-view>
 					</block>
-					<block v-else>
+					<block v-else-if="node.type == 'richtext'">
 						<rich-text :nodes="node.data"></rich-text>
 					</block>
 				</block>
@@ -122,7 +124,6 @@
 </template>
 
 <script>
-
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
 	import config from '../../config.js'
@@ -168,7 +169,7 @@
 		},
 		onLoad: function(options) {
 			util.loading("loading...")
-			
+
 			// 步骤：
 			// 1. 先获取书籍目录
 			// 2. 如果没传文档标识参数，则用目录的首个章节作为默认获取的文章
@@ -223,7 +224,7 @@
 				let menuTree = util.menuToTree(menu)
 				let sysInfo = util.getSysInfo()
 				let paddingTop = sysInfo.titleBarHeight + sysInfo.statusBarHeight
-				that.menuStyle= `padding-top: ${paddingTop}px;`
+				that.menuStyle = `padding-top: ${paddingTop}px;`
 				that.menuSortIds = util.menuSortIds(menuTree)
 				that.menuTree = menuTree
 				that.book = book
@@ -268,26 +269,8 @@
 				}).finally(function() {
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
-
 					if (!article.content) article.content = []
-
-					// #ifndef APP-PLUS
-					if (config.debug) console.log("article", article.content)
-					// #endif
-
-					let nodes = [{
-						"name": "img",
-						"attrs": {
-							"src": that.setting.themeIndex == 3 ? "./static/images/loading-white.png" : "./static/images/loading.png",
-							"style": "display:block;margin:200px auto;"
-						}
-					}]
-
-					// #ifndef APP-PLUS
-					nodes = article.content
-					// #endif
-
-					that.nodes = nodes
+					that.nodes = article.content
 					that.article = article
 					that.identify = identify
 					that.showMenu = false
@@ -295,19 +278,11 @@
 					that.nextDisable = nextDisable
 					that.preDisable = preDisable
 					that.menuTree = util.menuTreeReaded(that.menuTree, article.id)
-
-					uni.hideLoading()
-
-					// #ifndef APP-PLUS
 					uni.pageScrollTo({
 						scrollTop: 0,
-						duration: 300
+						duration: 100
 					});
-					// #endif
-
-					// #ifdef APP-PLUS
-					that.renderContent(article.content)
-					// #endif
+					uni.hideLoading()
 				})
 			},
 			pageClick: function(e) {
@@ -323,8 +298,8 @@
 				this.showMore = !this.showMore
 				this.showMenu = false
 			},
-			imgPreview: function(e){
-				if(config.debug) console.log("imgPreview", e)
+			imgPreview: function(e) {
+				if (config.debug) console.log("imgPreview", e)
 				uni.previewImage({
 					urls: [e.currentTarget.dataset.src]
 				})
@@ -335,9 +310,7 @@
 				idx++
 				that.nextDisable = true
 				if (idx < that.menuSortIds.length) {
-					// #ifdef MP
-					util.loading('加载下一章节...')
-					// #endif
+					util.loading('loading...')
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -353,9 +326,7 @@
 				that.preDisable = true
 				idx--
 				if (idx > -1) {
-					// #ifdef MP
-					util.loading('加载上一章节...')
-					// #endif
+					util.loading('loading...')
 					that.getArticle(that.book.book_id + "/" + that.menuSortIds[idx])
 				} else {
 					uni.showToast({
@@ -521,7 +492,7 @@
 
 <style>
 	@import url("../../static/css/markdown.css");
-	
+
 	.page,
 	page {
 		min-height: 100%;
@@ -695,10 +666,13 @@
 			left: 35%;
 		}
 	}
-	.markdown-body image{
+
+	.markdown-body image {
 		max-width: 100% !important;
 	}
-	.markdown-body audio,.markdown-body video{
+
+	.markdown-body audio,
+	.markdown-body video {
 		width: 100%;
 	}
 </style>

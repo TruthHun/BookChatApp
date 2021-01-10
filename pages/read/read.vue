@@ -4,20 +4,18 @@
 		<view @click='pageClick' :class='"bg-theme"+setting.themeIndex' :style='"min-height:"+(sys.screenHeight - sys.statusBarHeight - 55)+"px"'>
 			<view :class='"markdown-body editormd-preview-container bg-theme"+setting.themeIndex' :style='"line-height:1.8;font-size:"+fontIndexs[setting.fontIndex]'>
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
-				<block v-for="node of nodes" :key='node'>
+				<block v-for="(node, idx) of nodes" :key='idx'>
 					<block v-if="node.type == 'img'">
-						<image @click="imgPreview" :src="node.data[0].attrs['src']" :data-src="node.data[0].attrs['src']" mode="widthFix"></image>
+						<image @click="imgPreview" :src="node['src']" :data-src="node['src']" mode="widthFix"></image>
 					</block>
 					<block v-else-if="node.type == 'audio'">
-						<audio :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']"
-						 controls></audio>
+						<audio :src="node['src']" :poster="node['poster']" :name="node['text']" controls></audio>
 					</block>
 					<block v-else-if="node.type == 'video'">
-						<video :src="node.data[0].attrs['src']" :poster="node.data[0].attrs['poster']" :name="node.data[0].children[0]['text']"
-						 controls></video>
+						<video :src="node['src']" :poster="node['poster']" :name="node['text']" controls></video>
 					</block>
 					<block v-else-if="node.type == 'iframe'">
-						<web-view :src="node.data[0].attrs['src']"></web-view>
+						<web-view :src="node['src']"></web-view>
 					</block>
 					<block v-else-if="node.type == 'richtext'">
 						<rich-text :nodes="node.data"></rich-text>
@@ -270,7 +268,29 @@
 					let nextDisable = that.menuSortIds.indexOf(article.id) + 1 == that.menuSortIds.length
 					let preDisable = that.menuSortIds.indexOf(article.id) == 0
 					if (!article.content) article.content = []
-					that.nodes = article.content
+					
+					let nodes = article.content.filter(node=>{
+						if (node.type == "img" || node.type == "iframe"){
+							try{
+								node["src"]=node.data[0].attrs['src']
+							}catch(e){
+								console.log(e)
+								return false
+							}
+						}else if (node.type == "audio" || node.type == "video"){
+							try{
+								node["src"] = node.data[0].attrs['src']
+								node["poster"] = node.data[0].attrs['poster']
+								node["text"] = node.data[0].children[0]['text']
+							}catch(e){
+								console.log(e)
+								return false
+							}
+						}
+						return true
+					})
+					
+					that.nodes = nodes
 					that.article = article
 					that.identify = identify
 					that.showMenu = false

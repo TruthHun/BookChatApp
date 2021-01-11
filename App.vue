@@ -9,12 +9,32 @@
 			info.version = config.info.version
 			info.appVersion = config.info.version
 			info.bookshelfChanged = false
-			
+
 			if (info.model && info.model.indexOf('iPhone') !== -1) {
 				info.titleBarHeight = 44
 			} else {
 				info.titleBarHeight = 48
 			}
+
+			// 新版小程序升级检测
+			// #ifdef MP-WEIXIN
+			if (uni.canIUse('getUpdateManager')) {
+				const updateManager = uni.getUpdateManager()
+				updateManager.onCheckForUpdate(function(res) {
+					if (res.hasUpdate) {
+						updateManager.onUpdateReady(function() {
+							uni.showModal({
+								title: '升级提示',
+								content: '新版本已经为您准备就绪，是否升级应用？',
+								success: function(res) {
+									if (res.confirm) updateManager.applyUpdate()
+								}
+							})
+						})
+					}
+				})
+			}
+			// #endif
 
 			// #ifdef APP-PLUS
 			// 查询版本信息

@@ -59,6 +59,13 @@
 			</navigator>
 		</block>
 
+		<!-- showAd: 内容加载完成再显示广告，避免广告先于内容显示 -->
+		<!-- #ifdef MP-WEIXIN -->
+		<view v-if="showAd && !adClosed" :style="adLoaded ? 'border-bottom: 10rpx solid #efefef' : ''">
+			<ad @load="adLoad" @close="adClose" :unit-id="bannerAdUnitId" ad-intervals="30"></ad>
+		</view>
+		<!-- #endif -->
+
 		<view v-if="relatedBooks.length>0" class='panel related-books'>
 			<view class='panel-heading base-padding'>
 				<view class='panel-title pdt-30 strong font-lv2'>相关书籍</view>
@@ -158,11 +165,15 @@
 				comments: [],
 				tags: ['Hello', 'World'],
 				scrollWidth: util.getSysInfo().bannerWidth + "px",
+				showAd: false,
+				adLoaded: false,
+				adClosed: false,
+				bannerAdUnitId: config.bannerAdUnitId,
 			}
 		},
 		onLoad(options) {
 			util.loading("loading...")
-			
+
 			let id = options.id || options.scene
 
 			if (config.debug) console.log(options, id)
@@ -184,8 +195,13 @@
 			this.isLogin = util.getToken() != ""
 		},
 		methods: {
+			adLoad() {
+				this.adLoaded = true
+			},
+			adClose() {
+				this.adClosed = true
+			},
 			loadData: function() {
-
 				let that = this
 				let book = {}
 				let books = []
@@ -237,6 +253,7 @@
 					})
 					uni.stopPullDownRefresh()
 					that.getComments()
+					that.showAd = that.bannerAdUnitId != ''
 				})
 			},
 			getComments: function() {
@@ -514,7 +531,7 @@
 		text-align: center;
 		background-color: #fff;
 		/* box-shadow: 0upx 0upx 10upx #ddd; */
-		border-top: 1px solid rgb(213,213,213);
+		border-top: 1px solid rgb(213, 213, 213);
 		height: 48px;
 	}
 

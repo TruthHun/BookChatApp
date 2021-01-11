@@ -11,6 +11,9 @@ let shareLink = 'https://www.bookstack.cn/read/help/app.md'
 // 是否是调试模式。如果是生产环境，请设置为false
 const debug = true
 
+// 横幅广告id，如果申请了腾讯小程序的广告，则创建一个横幅广告，把广告的AdUnitId粘贴进来即可，不投放广告，则把该值设置为空
+const bannerAdUnitId = ''
+
 // 程序信息，置空则不显示
 const info = {
 	about: 'help/about', // "关于我们"的文档标识

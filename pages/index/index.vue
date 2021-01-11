@@ -27,6 +27,14 @@
 			</view>
 		</view>
 
+		<!-- showAd: 内容加载完成再显示广告，避免广告先于内容显示 -->
+		<!-- #ifdef MP-WEIXIN -->
+		<view v-if="showAd && !adClosed" :class="['base-padding', adLoaded ? 'base-margin-bottom': '']">
+			<ad @close="adClose" @load="adLoad" :unit-id="bannerAdUnitId" ad-intervals="30"></ad>
+		</view>
+		<!-- #endif -->
+
+
 		<!--  各种分类的书籍的展示  -->
 		<block v-for="category in categoryBooks" :key="category.id">
 			<view v-if="category.books" class='panel base-padding base-margin-bottom'>
@@ -76,12 +84,14 @@
 				recommendBooks: [],
 				times: 100, // 当iOS未允许访问网络的时候，每3秒请求一次数据
 				platform: '',
-				cacheKey: 'cache-index',
+				bannerAdUnitId: config.bannerAdUnitId,
+				showAd: false,
+				adLoaded: false,
+				adClosed: false,
 			}
 		},
 		onLoad() {
 			util.loading('loading...')
-			this.loadCache()
 			this.loadData()
 		},
 		onShow() {
@@ -98,20 +108,13 @@
 			}
 		},
 		methods: {
-			loadCache(){
-				let that = this
-				let data = uni.getStorageSync(that.cacheKey)
-				if (data){
-					let obj = JSON.parse(data)
-					console.log('loadCache', obj)
-					that.banners = obj.banners
-					that.categories = obj.categories
-					that.showSearch = true
-					that.recommendBooks = obj.recommendBooks
-				}
-			},
+			 adLoad() {
+			    this.adLoaded =  true
+			  },
+			  adClose() {
+			    this.adClosed = true
+			  },
 			loadData() {
-
 				let that = this
 				let cids = []
 				let categories = []
@@ -187,15 +190,7 @@
 						that.categoryBooks = categories
 						that.recommendBooks = recommendBooks
 						that.showSearch = true
-						uni.setStorage({
-							key: that.cacheKey,
-							data: JSON.stringify({
-								banners: banners,
-								categories: categories,
-								recommendBooks: recommendBooks,
-								showSearch: true
-							})
-						})
+						that.showAd = that.bannerAdUnitId != ''
 					})
 				})
 			},
@@ -233,7 +228,8 @@
 		height: 1upx;
 		overflow: hidden;
 	}
-	.history-link{
+
+	.history-link {
 		display: inline-block;
 		margin-left: 30px;
 	}

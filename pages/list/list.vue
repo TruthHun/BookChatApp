@@ -69,6 +69,11 @@
 			this.setTitle()
 			this.loadBooks()
 		},
+		onShareAppMessage: function() {
+			uni.showShareMenu({
+				withShareTicket: true
+			})
+		},
 		onReachBottom() {
 			this.loadBooks()
 		},

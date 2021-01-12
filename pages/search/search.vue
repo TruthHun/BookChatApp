@@ -91,6 +91,11 @@
 			this.showTab = true
 			this.execSearch()
 		},
+		onShareAppMessage: function() {
+			uni.showShareMenu({
+				withShareTicket: true
+			})
+		},
 		onReachBottom() {
 			this.execSearch()
 		},

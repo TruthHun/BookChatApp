@@ -194,6 +194,11 @@
 		onShow() {
 			this.isLogin = util.getToken() != ""
 		},
+		onShareAppMessage: function() {
+			uni.showShareMenu({
+				withShareTicket: true
+			})
+		},
 		methods: {
 			adLoad() {
 				this.adLoaded = true

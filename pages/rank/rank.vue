@@ -194,6 +194,11 @@
 			this.menuStyle = `top: ${top}px;`
 			this.loadData()
 		},
+		onShareAppMessage: function() {
+			uni.showShareMenu({
+				withShareTicket: true
+			})
+		},
 		methods: {
 			changeTab: function(e) {
 				this.loading = true

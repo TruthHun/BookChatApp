@@ -94,6 +94,11 @@
 			util.loading('loading...')
 			this.loadData()
 		},
+		onShareAppMessage: function() {
+			uni.showShareMenu({
+				withShareTicket: true
+			})
+		},
 		onShow() {
 			if (this.categoryBooks.length == 0) {
 				this.loadData()

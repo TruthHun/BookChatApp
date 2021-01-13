@@ -101,6 +101,11 @@
 		onPageScroll(e) {
 			this.currentScrollTop = e.scrollTop
 		},
+		onShareAppMessage: function() {
+			uni.showShareMenu({
+				withShareTicket: true
+			})
+		},
 		methods: {
 			scrollCate(e) {
 				let that = this

@@ -9,7 +9,12 @@
 						<image @click="imgPreview" :src="node['src']" :data-src="node['src']" mode="widthFix"></image>
 					</block>
 					<block v-else-if="node.type == 'audio'">
+						<!-- #ifdef MP-WEIXIN -->
+						<imt-audio :src="node['src']" :title="node['text']"></imt-audio>
+						<!-- #endif -->
+						<!-- #ifndef MP-WEIXIN -->
 						<audio :src="node['src']" :poster="node['poster']" :name="node['text']" controls></audio>
+						<!-- #endif -->
 					</block>
 					<block v-else-if="node.type == 'video'">
 						<video :src="node['src']" :poster="node['poster']" :name="node['text']" controls></video>
@@ -126,11 +131,13 @@
 
 	import imenu from '../../components/menu.vue'
 	import iheader from '../../components/header.vue'
+	import imtAudio from '../../components/imt-audio.vue'
 
 	export default {
 		components: {
 			imenu,
 			iheader,
+			imtAudio,
 		},
 		data() {
 			return {
@@ -148,6 +155,7 @@
 				identify: '',
 				menuStyle: '',
 				wd: '', //搜索关键字
+				audios: [],
 				setting: {
 					themeIndex: 0,
 					fontIndex: 0,
@@ -273,9 +281,9 @@
 					that.nextDisable = nextDisable
 					that.preDisable = preDisable
 					that.menuTree = util.menuTreeReaded(that.menuTree, article.id)
-					
-					setTimeout(function(){
-						that.nodes = article.content.filter(node => {
+
+					setTimeout(function() {
+						that.nodes = article.content.filter((node, idx) => {
 							if (node.type == "img" || node.type == "iframe") {
 								try {
 									node["src"] = node.data[0].attrs['src']
@@ -288,6 +296,7 @@
 									node["src"] = node.data[0].attrs['src']
 									node["poster"] = node.data[0].attrs['poster']
 									node["text"] = node.data[0].children[0]['text']
+									node["id"] = "id" + idx
 								} catch (e) {
 									console.log(e)
 									return false
@@ -300,7 +309,7 @@
 							duration: 100
 						});
 						uni.hideLoading()
-					},10)
+					}, 10)
 				})
 			},
 			pageClick: function(e) {
@@ -688,6 +697,6 @@
 
 	.markdown-body audio,
 	.markdown-body video {
-		width: 100%;
+		max-width: 100%;
 	}
 </style>

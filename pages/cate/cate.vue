@@ -182,19 +182,6 @@
 		margin-top: 10upx;
 	}
 
-	@media (min-width: 768px) {
-		.img-responsive {
-			border-radius: 5px;
-			max-width: 80px;
-			max-height: 80px;
-		}
-
-		.img-responsive image {
-			max-width: 80px;
-			max-height: 80px;
-		}
-	}
-
 	.layout-list .img-responsive {
 		border-radius: 50%;
 		border: 0;
@@ -264,16 +251,28 @@
 	}
 
 	@media (min-width: 768px) {
+		.img-responsive {
+			width: 80px;
+			height: 80px;
+			max-width: 80px;
+			max-height: 80px;
+		}
+	
+		.img-responsive image {
+			width: 80px;
+			height: 80px;
+			max-width: 80px;
+			max-height: 80px;
+		}
+		
 		.layout-list .img-responsive {
-			border-radius: 0;
-			border: 0;
-			max-width: 65upx;
-			height: 65upx;
+			width: 65px;
+			height: 65px;
 		}
 
 		.layout-list .img-responsive image {
-			width: 65upx;
-			height: 65upx;
+			width: 65px;
+			height: 65px;
 		}
 	}
 </style>

@@ -121,8 +121,8 @@
 			let newInfo = {...oriInfo, ...info}
 			util.setSysInfo(newInfo)
 			// 重新计算横幅的宽高
-			that.bannerWidth = parseFloat(that.bannerWidth.split("px")[0])*((e.size.windowWidth -60 )/ e.size.windowHeight) + 'px'
-			that.bannerHeight = parseFloat(that.bannerHeight.split("px")[0])*((e.size.windowWidth -60 ) / e.size.windowHeight) + 'px'
+			that.bannerWidth = parseFloat(that.bannerWidth.split("px")[0])*((e.size.windowWidth-60)/ e.size.windowHeight) + 'px'
+			that.bannerHeight = parseFloat(that.bannerHeight.split("px")[0])*((e.size.windowWidth-60) / e.size.windowHeight) + 'px'
 		},
 		methods: {
 			adLoad() {

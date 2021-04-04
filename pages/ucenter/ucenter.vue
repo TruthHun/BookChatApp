@@ -464,5 +464,9 @@
 		.list .color-grey {
 			line-height: 200%;
 		}
+		.cover {
+			width: 170px;
+			height: 223.5px;
+		}
 	}
 </style>

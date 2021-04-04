@@ -140,5 +140,9 @@
 		.mgt-30{
 			margin-top: 15upx;
 		}
+		.book navigator image {
+			width: 94px;
+			height: 123px;
+		}
 	}
 </style>

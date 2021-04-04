@@ -138,5 +138,9 @@
 			max-height: 18px;
 			top:3px;
 		}
+		.book-list .cover {
+			width: 170px;
+			height: 223.5px;
+		}
 	}
 </style>

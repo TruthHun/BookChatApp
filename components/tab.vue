@@ -105,17 +105,17 @@
 
 	@media (min-width: 768px) {
 		.tab {
-			height: 60upx;
-			line-height: 60upx;
+			height: 50px;
+			line-height: 50px;
 		}
 
 		.tab .col {
-			height: 60upx;
+			height: 50px;
 		}
 
 		.tab image {
-			width: 30upx;
-			height: 30upx;
+			width: 30px;
+			height: 30px;
 			top: 5upx;
 		}
 	}

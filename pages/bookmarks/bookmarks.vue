@@ -43,7 +43,12 @@
 			if (op.identify) this.identify = op.identify
 		},
 		onShow: function() {
-			util.getToken() == '' ? this.tips = ' -- 您暂时还没有书签 -- ' : this.loadBookmarks()
+			let user = util.getUser()
+			let isLogin = true
+			if (user == undefined || user.token == undefined || user.uid <= 0) {
+				isLogin = false
+			}
+			isLogin ? this.tips = ' -- 您暂时还没有书签 -- ' : this.loadBookmarks()
 		},
 		methods: {
 			loadBookmarks: function() {

@@ -6,10 +6,11 @@
 		</view>
 
 		<view v-if="banners.length>0" class="base-padding base-margin-bottom">
-			<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots" :interval="interval"
-			 :duration="duration">
+			<swiper :style="'height:'+bannerHeight" :autoplay="autoplay" :indicator-dots="indicatorDots"
+				:interval="interval" :duration="duration">
 				<swiper-item v-for="banner in banners" :key="banner.id" class="radius-basic">
-					<image @click="bannerClick" :data-url="banner.link" :src="banner.image" :style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
+					<image @click="bannerClick" :data-url="banner.link" :src="banner.image"
+						:style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -40,7 +41,8 @@
 			<view v-if="category.books" class='panel base-padding base-margin-bottom'>
 				<view class='panel-heading'>
 					<view class='panel-title font-lv1 strong'>{{category.title}}
-						<navigator :url="'/pages/list/list?tab=new&cid='+category.id" class='pull-right color-link font-lv3'>更多</navigator>
+						<navigator :url="'/pages/list/list?tab=new&cid='+category.id"
+							class='pull-right color-link font-lv3'>更多</navigator>
 					</view>
 				</view>
 				<view class='panel-body'>
@@ -112,13 +114,23 @@
 				if (this.showHeaderSearch == true) this.showHeaderSearch = false
 			}
 		},
+		onResize(e) {
+			let that = this
+			let info = uni.getSystemInfoSync()
+			let oriInfo = util.getSysInfo()
+			let newInfo = {...oriInfo, ...info}
+			util.setSysInfo(newInfo)
+			// 重新计算横幅的宽高
+			that.bannerWidth = parseFloat(that.bannerWidth.split("px")[0])*((e.size.windowWidth -60 )/ e.size.windowHeight) + 'px'
+			that.bannerHeight = parseFloat(that.bannerHeight.split("px")[0])*((e.size.windowWidth -60 ) / e.size.windowHeight) + 'px'
+		},
 		methods: {
-			 adLoad() {
-			    this.adLoaded =  true
-			  },
-			  adClose() {
-			    this.adClosed = true
-			  },
+			adLoad() {
+				this.adLoaded = true
+			},
+			adClose() {
+				this.adClosed = true
+			},
 			loadData() {
 				let that = this
 				let cids = []
@@ -163,7 +175,8 @@
 							that.bannerWidth = width / info.pixelRatio + "px"
 							that.bannerHeight = height / info.pixelRatio + "px"
 						}
-						if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks = resRecommendBooks.data.books
+						if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks =
+							resRecommendBooks.data.books
 						if (resBookLists.data && resBookLists.data.books) {
 							bookLists = resBookLists.data.books
 							categories = categories.map(function(category) {

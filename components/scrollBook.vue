@@ -57,5 +57,13 @@
 	.ellipsis-2row{
 		line-height: 200%;
 	}
+	.hor navigator {
+	  width: 170px;
+	  margin: 3px 15px;
+	}
+	.hor navigator image {
+	  width: 170px;
+	  height: 223.4px;
+	}
 }
 </style>

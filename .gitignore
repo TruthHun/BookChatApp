@@ -6,3 +6,4 @@ unpackage/release/*
 */.DS_Store
 config.js
 .idea
+.hbuilderx

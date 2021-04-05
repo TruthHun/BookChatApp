@@ -289,15 +289,15 @@
 
 <style>
 	.box {
-		padding: 15upx;
+		padding: 8px;
 	}
 
 	.fix {
 		position: fixed;
 		width: 100%;
-		padding: 0 30rpx;
+		padding: 0 15px;
 		box-sizing: border-box;
-		border-bottom: 1rpx solid #F1F1F1;
+		border-bottom: 1upx solid #F1F1F1;
 		background-color: #FFFFFF;
 		z-index: 999;
 	}
@@ -328,36 +328,37 @@
 	.tips {
 		width: 100%;
 		box-sizing: border-box;
-		padding: 120upx 15upx 0;
+		padding: 60px 8px 0;
 		text-align: center;
 		color: #888;
 		line-height: 200%;
 	}
 
 	.tips .action {
-		margin-top: 60upx;
+		margin-top: 30px;
 	}
 
 	.book {
-		width: 206upx;
+		width: 103px;
 		max-width: 100%;
 		display: block;
-		margin: 30upx auto;
+		margin: 15px auto;
 	}
 
 	.book image {
-		width: 206upx;
-		height: 271.6upx;
-		margin-bottom: 15upx;
+		width: 103px;
+		height: 136px;
+		max-width: 100%;
+		margin-bottom: 8px;
 	}
 
 	.longpress-tips {
 		border: 1upx dashed #FF6600;
-		border-radius: 3upx;
+		border-radius: 2px;
 		box-sizing: border-box;
 		padding: 0 10px;
 		line-height: 35px;
-		border-radius: 5upx;
+		border-radius: 3px;
 	}
 
 	.longpress-tips .close-longpress-tips {
@@ -375,16 +376,21 @@
 		}
 
 		.book {
-			width: 154.5upx;
-			max-width: 100%;
+			width: 154.5px;
 			display: block;
 			margin: 30upx auto;
 		}
 
 		.book image {
-			width: 154.5upx;
-			height: 203.7upx;
+			width: 154.5px;
+			height: 203.7px;
 			margin-bottom: 8upx;
+		}
+	}
+	@media (min-width: 1000px) {
+		.col-4 {
+			flex: 0 0 20%;
+			max-width: 20%;
 		}
 	}
 </style>

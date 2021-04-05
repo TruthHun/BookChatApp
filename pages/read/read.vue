@@ -6,7 +6,7 @@
 				<view class='title font-lv1 text-center'>{{article.title}}</view>
 				<block v-for="(node, idx) of nodes" :key='idx'>
 					<block v-if="node.type == 'img'">
-						<image @click="imgPreview" :src="node['src']" :data-src="node['src']" mode="widthFix"></image>
+						<image @click="imgPreview" :src="node['src']" :data-src="node['src']" mode="aspectFit"></image>
 					</block>
 					<block v-else-if="node.type == 'audio'">
 						<!-- #ifdef MP-WEIXIN -->

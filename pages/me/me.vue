@@ -30,17 +30,20 @@
 		</view>
 		<view v-if="moreInfo.uid>0" class="row text-center font-lv4 text-muted reading-time">
 			<view class="col-4">
-				<view><text class="font-lv3">{{moreInfo.today_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.today_reading_min}}</text>
+				<view><text class="font-lv3">{{moreInfo.today_reading_hour}}</text> 时 <text
+						class="font-lv3">{{moreInfo.today_reading_min}}</text>
 					分</view>
 				<view class="font-lv5">今日阅读</view>
 			</view>
 			<view class="col-4">
-				<view><text class="font-lv3">{{moreInfo.month_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.month_reading_min}}</text>
+				<view><text class="font-lv3">{{moreInfo.month_reading_hour}}</text> 时 <text
+						class="font-lv3">{{moreInfo.month_reading_min}}</text>
 					分</view>
 				<view class="font-lv5">本月阅读</view>
 			</view>
 			<view class="col-4">
-				<view><text class="font-lv3">{{moreInfo.total_reading_hour}}</text> 时 <text class="font-lv3">{{moreInfo.total_reading_min}}</text>
+				<view><text class="font-lv3">{{moreInfo.total_reading_hour}}</text> 时 <text
+						class="font-lv3">{{moreInfo.total_reading_min}}</text>
 					分</view>
 				<view class="font-lv5">累计阅读</view>
 			</view>
@@ -59,7 +62,7 @@
 
 		</view>
 		<view class='base-padding row base-info font-lv2'>
-			
+
 			<navigator url='/pages/search/search' class='col-12'>
 				<image class="me-icon" src='../../static/images/search.png'></image>
 				<text>书籍搜索</text>
@@ -224,9 +227,9 @@
 					})
 				}
 			},
-			sign: function(){
+			sign: function() {
 				let that = this
-				util.request(config.api.userSign, {}, 'POST').then(function(res){
+				util.request(config.api.userSign, {}, 'POST').then(function(res) {
 					util.setSignedAt(res.data.signed_at)
 					uni.showToast({
 						title: res.data.message,
@@ -234,7 +237,7 @@
 						icon: 'none',
 					})
 					that.isSignedToday = util.isSignedToday()
-				}).catch(function(e){
+				}).catch(function(e) {
 					console.log(e)
 					util.toastError(e.data.message || e.errMsg)
 				})
@@ -283,12 +286,12 @@
 
 	.row {
 		background-color: #fff;
-		margin-bottom: 10upx;
-		padding: 30upx;
+		margin-bottom: 5px;
+		padding: 15px;
 	}
 
 	.row:last-of-type {
-		margin-bottom: 0upx;
+		margin-bottom: 0;
 	}
 
 	.user {
@@ -316,20 +319,20 @@
 	}
 
 	.username {
-		margin: 15upx auto;
+		margin: 15px auto;
 	}
 
 	.user image {
-		width: 180upx;
-		height: 180upx;
-		border-radius: 90upx;
+		width: 90px;
+		height: 90px;
+		border-radius: 45px;
 		border: 1px solid #ddd;
 		margin: 0 auto;
 		display: block;
 	}
 
 	.base-info image {
-		margin-right: 30upx !important;
+		margin-right: 15px !important;
 	}
 
 	.base-info image.pull-right {
@@ -344,8 +347,8 @@
 
 	.base-info .col-12 {
 		border-bottom: 1px solid #f6f6f6;
-		padding-bottom: 30upx;
-		padding-top: 30upx;
+		padding-bottom: 15px;
+		padding-top: 15px;
 		color: #666;
 	}
 
@@ -360,7 +363,7 @@
 	}
 
 	.user-func {
-		line-height: 40upx;
+		line-height: 20px;
 		border: 1px solid #000000;
 	}
 
@@ -372,11 +375,11 @@
 	}
 
 	.user-func .color-red {
-		margin-right: 8upx;
+		margin-right: 4px;
 	}
 
 	.reading-time text {
-		margin: auto 8upx;
+		margin: auto 4px;
 		color: red;
 	}
 
@@ -388,13 +391,13 @@
 	.reading-time .col-4:nth-child(2),
 	.reading-time .col-4:nth-child(3) {
 		border-bottom: 1px solid #f6f6f6;
-		padding-bottom: 16upx;
+		padding-bottom: 8px;
 	}
 
 	.reading-time .col-4:nth-child(4),
 	.reading-time .col-4:nth-child(5),
 	.reading-time .col-4:nth-child(6) {
-		padding-top: 16upx;
+		padding-top: 8px;
 	}
 
 	.reading-time .col-4:nth-child(2),
@@ -404,17 +407,17 @@
 	}
 
 	image.me-icon {
-		width: 40upx;
-		height: 40upx;
+		width: 20px;
+		height: 20px;
 		vertical-align: middle;
-		margin-right: 6upx;
+		margin-right: 3px;
 		position: relative;
-		top: -4upx;
+		top: -2px;
 	}
 
 	.signed image {
-		width: 25upx;
-		height: 25upx;
+		width: 13px;
+		height: 13px;
 	}
 
 	.signed.text-muted {
@@ -431,7 +434,6 @@
 	}
 
 	@media (min-width: 768px) {
-
 		.base-info image,
 		image.me-icon {
 			max-width: 20px;

@@ -2,8 +2,8 @@
     "name" : "BookChat",
     "appid" : "__UNI__8FAB29C",
     "description" : "",
-    "versionName" : "1.5.1",
-    "versionCode" : 151,
+    "versionName" : "1.7.0",
+    "versionCode" : 170,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -17,13 +17,13 @@
             "autoclose" : true,
             "delay" : 0
         },
-		// 屏幕方向
-		"screenOrientation": [
-		  "portrait-primary",
-		  "landscape-primary",
-		  "portrait-secondary",
-		  "landscape-secondary"
-		],
+        // 屏幕方向
+        "screenOrientation" : [
+            "portrait-primary",
+            "landscape-primary",
+            "portrait-secondary",
+            "landscape-secondary"
+        ],
         /* 模块配置 */
         "modules" : {},
         /* 应用发布信息 */

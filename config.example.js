@@ -1,8 +1,5 @@
 // api host，末尾不要带斜杠。后端程序是BookStack (https://github.com/truthhun/BookStack)
 // let host = 'http://localhost:8181/bookchat'
-let host = 'https://www.bookstack.cn/bookchat'
-
-
 
 // 默认分享的内容
 let shareContent = 'BookChat，程序员IT互联网开源编程书籍免费阅读'
@@ -17,7 +14,7 @@ const bannerAdUnitId = ''
 // 程序信息，置空则不显示
 const info = {
 	about: 'help/about', // "关于我们"的文档标识
-	version: 'v1.5.1',
+	version: 'v1.7.0',
 	copyright: 'BookStack.CN',
 	license: 'Apache 2.0',
 	author: 'TruthHun',

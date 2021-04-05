@@ -1,21 +1,21 @@
 /* pages/reg/reg.wxss */
 
-.form-body{margin-bottom: 30upx;}
+.form-body{margin-bottom: 15px;}
 
 .form-body .row{
   border-bottom: 1upx solid #efefef;
-  color: #353535;height: 100upx;line-height: 100upx;
+  color: #353535;height: 50px;line-height: 50px;
 }
 .form-body .row input{
-  margin-top: 24upx;
+  margin-top: 12px;
 }
 
 .btn-captcha{
-  border-radius: 6upx;
+  border-radius: 3px;
 }
 
 .btn-block{
-    width: 100%;border-radius: 6upx;color: #fff;margin-bottom: 30upx;
+    width: 100%;border-radius: 3px;color: #fff;margin-bottom: 15px;
 }
 .btn-submit{
   background-color: #00acff;border-color: #00acff;
@@ -28,4 +28,4 @@
     color: #353535;
 }
 
-image{width: 160upx;height: 160upx;display: block;margin:30upx auto;}
+image{width: 80px;height: 80px;display: block;margin:15px auto;}

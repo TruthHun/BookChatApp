@@ -140,23 +140,23 @@
 	
 	.layout-grid {
 		background-color: #FFFFFF;
-		padding-top: 30upx;
+		padding-top: 15px;
 	}
 
 	.item {
-		margin-bottom: 30upx;
+		margin-bottom: 15px;
 	}
 
 	.item>.row {
 		border: 1px solid #efefef;
-		border-radius: 6upx;
+		border-radius: 3px;
 		box-sizing: border-box;
-		padding: 15upx;
-		padding-bottom: 6upx;
+		padding: 8px;
+		padding-bottom: 3px;
 	}
 
 	.item:nth-of-type(2n)>.row {
-		margin-left: 15upx;
+		margin-left: 8px;
 	}
 
 
@@ -164,40 +164,40 @@
 		/* border-radius: 6upx; */
 		border-radius: 50%;
 		border: 1px solid #efefef;
-		max-width: 100upx;
-		height: 100upx;
+		max-width: 45px;
+		height: 45px;
 	}
 
 	.img-responsive image {
-		width: 100upx;
-		height: 100upx;
+		width: 45px;
+		height: 45px;
 	}
 
 	.item>.row .col-8 {
-		padding-left: 15upx;
+		padding-left: 8px;
 		box-sizing: border-box;
 	}
 
 	.text-muted {
-		margin-top: 10upx;
+		margin-top: 5px;
 	}
 
 	.layout-list .img-responsive {
 		border-radius: 50%;
 		border: 0;
-		max-width: 75upx;
-		height: 75upx;
+		max-width: 38px;
+		height: 38px;
 	}
 
 	.layout-list .img-responsive image {
-		width: 75upx;
-		height: 75upx;
+		width: 38px;
+		height: 38px;
 	}
 
 	.layout-list .panel-heading {
-		margin: 20upx 0;
+		margin: 10px 0;
 		box-sizing: border-box;
-		padding-left: 30upx;
+		padding-left: 15px;
 	}
 
 	.layout-list .item {
@@ -209,7 +209,7 @@
 	.layout-list .item .row {
 		border: 0;
 		border-bottom: 1upx solid #F1F1F1;
-		padding: 20upx 30upx;
+		padding: 10px 15px;
 	}
 
 	.layout-list .item:nth-of-type(2n)>.row {
@@ -217,12 +217,12 @@
 	}
 
 	.layout-list .item .row .col-4 {
-		width: 105upx;
-		max-width: 105upx;
+		width: 53px;
+		max-width: 53px;
 	}
 
 	.layout-list .item .row .col-8 {
-		line-height: 75upx;
+		line-height: 38px;
 	}
 
 	.layout-list .item:nth-of-type(2n+1)>.row {
@@ -233,7 +233,7 @@
 		position: fixed;
 		right: 0;
 		bottom: 0;
-		width: 50upx;
+		width: 25px;
 		background-color: #FFFFFF;
 		text-align: center;
 		font-size: 12px;

@@ -188,9 +188,9 @@
 	@import url("../../static/css/reg-login.css");
 
 	image {
-		width: 180upx;
-		height: 180upx;
-		border-radius: 90upx;
+		width: 90px;
+		height: 90px;
+		border-radius: 45px;
 		border: 1px solid #ddd;
 		margin: 15px auto;
 		display: block;

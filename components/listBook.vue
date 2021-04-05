@@ -67,12 +67,12 @@
 <style>
 	.book-list .col-9 {
 		box-sizing: border-box;
-		padding-left: 30upx;
+		padding-left: 15px;
 	}
 
 	.book-list .row {
-		margin-bottom: 30upx;
-		padding-bottom: 30upx;
+		margin-bottom: 15px;
+		padding-bottom: 15px;
 		border-bottom: 1px solid #efefef;
 		display: flex;
 	}
@@ -83,15 +83,16 @@
 	}
 
 	.book-list .cover {
-		width: 170upx;
-		height: 223.5upx;
+		width: 85px;
+		max-width: 100%;
+		height: 112px;
 	}
 
 	.book-list .info {
 		box-sizing: border-box;
 		border-bottom: 0 !important;
 		display: flex;
-		margin: 20upx 0;
+		margin: 10px 0;
 	}
 
 	.book-list .info .col {
@@ -102,16 +103,16 @@
 	}
 
 	.book-list .info image {
-		width: 24upx;
-		height: 24upx;
+		width: 12px;
+		height: 12px;
 		position: relative;
-		top: 4upx;
-		margin-right: 6upx;
+		top: 2px;
+		margin-right: 3px;
 	}
 
 	.book-list .icon {
-		width: 64upx;
-		height: 64upx;
+		width: 32px;
+		height: 32px;
 		margin: 0 auto;
 		display: block;
 	}
@@ -121,7 +122,7 @@
 		margin-bottom: 0;
 		padding-bottom: 0;
 	}
-
+	
 	@media (min-width:768px) {
 		.ellipsis-2row{
 			text-overflow: ellipsis;
@@ -139,6 +140,7 @@
 			top:3px;
 		}
 		.book-list .cover {
+			max-width: 100%;
 			width: 170px;
 			height: 223.5px;
 		}

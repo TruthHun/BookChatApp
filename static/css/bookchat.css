@@ -30,53 +30,65 @@
 /*  margin   */
 
 .mgt-15 {
-	margin-top: 15upx;
+	/* margin-top: 15upx; */
+	margin-top: 8px;
 }
 
 .mgb-15 {
-	margin-bottom: 15upx;
+	/* margin-bottom: 15upx; */
+	margin-bottom: 8px;
 }
 
 .mgt-30 {
-	margin-top: 30upx;
+	/* margin-top: 30upx; */
+	margin-top: 15px;
 }
 
 .mgb-30 {
-	margin-bottom: 30upx;
+	/* margin-bottom: 30upx; */
+	margin-bottom: 15px;
 }
 
 .mgl-30{
-	margin-left: 30upx;
+	/* margin-left: 30upx; */
+	margin-left: 15px;
 }
 
 .mgr-30{
-	margin-right: 30upx;
+	/* margin-right: 30upx; */
+	margin-right: 15px;
 }
 
 /*  padding  */
 
 .pdt-15 {
-	padding-top: 15upx;
+	/* padding-top: 15upx; */
+	padding-top: 8px;
 }
 
 .pdb-15 {
-	padding-bottom: 15upx;
+	/* padding-bottom: 15upx; */
+	padding-bottom: 8px;
 }
 
 .pdt-30 {
-	padding-top: 30upx;
+	/* padding-top: 30upx; */
+	padding-top: 15px;
 }
 
 .pdb-30 {
-	padding-bottom: 30upx;
+	/* padding-bottom: 30upx; */
+	padding-bottom: 15px;
 }
 
 .pdl-30 {
-	padding-left: 30upx;
+	/* padding-left: 30upx; */
+	padding-left: 15px;
 }
 
 .plr-30 {
-	padding-right: 30upx;
+	/* padding-right: 30upx; */
+	padding-right: 15px;
 }
 
 /*  颜色规范  */
@@ -129,7 +141,7 @@
 
 .radius-basic,
 .cover {
-	border-radius: 6upx;
+	border-radius: 3px;
 }
 
 .radius-circle {
@@ -216,11 +228,11 @@
 
 .base-padding {
 	box-sizing: border-box;
-	padding: 0upx 30upx;
+	padding: 0 15px;
 }
 
 .base-margin-bottom {
-	margin-bottom: 60upx;
+	margin-bottom: 30px;
 }
 
 .pull-right {
@@ -237,7 +249,7 @@ navigator:active {
 }
 
 .panel-heading {
-	margin-bottom: 30upx;
+	margin-bottom: 15px;
 }
 
 /* 显示两行，溢出文字用‘...’替换 */
@@ -278,16 +290,16 @@ navigator:active {
 }
 
 .cover {
-	border-radius: 6upx;
+	border-radius: 3px;
 }
 
 .score {
 	height: 14.5px;
-	padding-left: 170upx;
+	padding-left: 85px;
 	background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAClCAYAAAAUAAAYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5xJREFUeNrs3T9rFEEcxvG7qEQIglaCICKkin9AUEtBKxU7wS61VlYivgWj70TtNFj5BqzE7qxEWwsxKIoYn4UtluFmbm8nczvzm+/BjxyuDwNzu3uXD0+46f7LC5PA45Hm+WTYw1x2LRDc0jzTXB+wqMlsaLPutz8fDFjYZHYauAz3NBvt83XNnyUWNpn1nVm3OsHmsb3EomazzZnVXKMPNcc0xzUnNKc0Rzv/77fms+Z7O3vt9b1eU7bZrNN68l5zcolX4ofmsuZXTdnmMvyi2dR86Bmcac62P6vKrnVubpc0bxYE32nOab45N8YqsvPeDfcD4SOav4HjprPuu+H5BTt9LXDMfNbdLPfT678Fx6vKupt1o/O8+R3pkOaJ5/iktqx7z/qp+aq5q/nY+fczmheaK03Gs7D5rLtZdzSvA6/Ebc2u55j57HQB0TzW7AzkjiKzny6+2hlKNE8juMNcFqKBaIZndRlCNBBNgmx7ZkE0fbLtZkE0EA1EM17WuQwhGogGooFoss6296y52cNO+J6HLJoPaFdbsvA9zGerIxrPh85eWYgGooFoDiQbuAxp0UA0EVmdWbRo+ma1WbRoIBqIZtzsnHdDWjQQDUQD0WSbde5ZS2UhmtqJJtSEiVkXooFoIJre2VATJmZdiKZ2ogk1YSb8oVMvDeUPnSAaiCaPJkzMuhANRAPRQDQpsqEmTMy6EI11oolpwkA0EA1EcyDZmCYMRAPR+LMxTZjqiCamCQPRQDQQzehNGIgGooFoIJpVZ2OaMBBN7USTqgkD0UA0EE3vbKomDERTO9GkasKYJJpUTRiIBqKBaEZvwkA0EA1EA9GkyKZqwkA01olmrCYMRAPRQDR9LkO+0QmiKbAJUyTRjNWEgWggGohm9CYMRAPRQDQQzZDsWE0YiMYC0eTYhIFoIJrKiCbHJgxEY4FocmzCZEs0OTZhIBqIpjKiybEJA9FANBANROPL5tiEgWhKIJoSmzAQDURjjGhKbMJANCUQTYlNmNGIpsQmDEQD0RgjmhKbMBANRAPR1Es0JTZhIJpciMZaEwaigWgKJBprTRiIJheisdaESUo01powEA1EUyDRWGvCQDQQDURjm2isNWEgmlURzWw2q4pZIBqIJkOiCVyGJpkFolkV0ejMMvel28mIRptl7ku3IRqIpjCimfNuaJpZIBqIBqIpm2ice5Z5ZonJupvVkMRu4JW4qXnrOWY++1+AAQBw9BJSCTeN9wAAAABJRU5ErkJggg==) no-repeat 0upx 4upx;
 	font-size: 15px;
 	color: #999;
-	margin-bottom: 15upx;
+	margin-bottom: 8px;
 }
 
 .score text {
@@ -365,42 +377,42 @@ navigator:active {
 .score-9,
 .score-8,
 .score-7 {
-	background-position-y: -239upx;
+	background-position-y: -120px;
 }
 
 .score-5,
 .score-6,
 .score-4,
 .score-3 {
-	background-position-y: -269upx;
+	background-position-y: -135px;
 }
 
 .score-2,
 .score-1,
 .score-0 {
-	background-position-y: -299upx;
+	background-position-y: -150px;
 }
 
 /* 平板样式兼容 */
 
 @media (min-width: 768px) {
 	.font-lv1 {
-		font-size: 22px !important;
+		font-size: 21px !important;
 	}
 
 	.font-lv2 {
-		font-size: 20px !important;
+		font-size: 19px !important;
 	}
 
 	.font-lv3 {
-		font-size: 18px !important;
+		font-size: 17px !important;
 	}
 
 	.font-lv4 {
-		font-size: 16px !important;
+		font-size: 15px !important;
 	}
 
 	.font-lv5 {
-		font-size: 14px !important;
+		font-size: 13px !important;
 	}
 }

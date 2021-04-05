@@ -41,8 +41,8 @@
 }
 
 .hor navigator {
-  width: 170upx;
-  margin: 3upx 15upx;
+  width: 85px;
+  margin: 2px 8px;
 }
 
 .hor navigator:first-of-type {
@@ -50,8 +50,9 @@
 }
 
 .hor navigator image {
-  width: 170upx;
-  height: 223.4upx;
+  width: 85px;
+  height: 112px;
+  max-width: 100%;
 }
 @media (min-width:768px) {
 	.ellipsis-2row{

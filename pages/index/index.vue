@@ -10,7 +10,7 @@
 				:interval="interval" :duration="duration">
 				<swiper-item v-for="banner in banners" :key="banner.id" class="radius-basic">
 					<image @click="bannerClick" :data-url="banner.link" :src="banner.image"
-						:style="'height:'+bannerHeight+';width:'+bannerWidth"></image>
+						:style="'height:'+bannerHeight+';width:'+bannerWidth+';min-width:100%;max-width:100%'"></image>
 				</swiper-item>
 			</swiper>
 		</view>

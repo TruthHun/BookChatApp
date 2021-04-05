@@ -377,23 +377,24 @@
 
 	.cate-row .font-lv3 {
 		display: inline-block;
-		margin-right: 30upx;
+		margin-right: 15px;
 	}
 
 	.icon-avatar {
-		width: 38upx;
-		height: 38upx;
+		width: 19px;
+		height: 19px;
 		position: relative;
 		top: 6upx;
 	}
 
 	.info {
-		padding: 30upx;
+		padding: 15px;
 	}
 
 	.info .cover {
-		width: 230upx;
-		height: 302.3upx;
+		width: 115px;
+		max-width: 100%;
+		height: 151px;
 	}
 
 	.title {

@@ -65,13 +65,13 @@
 	}
 
 	.li .navigator {
-		padding-right: 30upx;
+		padding-right: 15px;
 		width: 100%;
 		box-sizing: border-box;
 		padding-left: 22px;
 		text-overflow: ellipsis;
-		height: 70upx;
-		line-height: 70upx;
+		height: 35px;
+		line-height: 35px;
 		cursor: pointer;
 		display: -webkit-box;
 		-webkit-line-clamp: 1;

@@ -73,6 +73,7 @@
 		},
 		data() {
 			return {
+				bannerRatio: 2.619,
 				indicatorDots: true,
 				autoplay: true,
 				interval: 3000,
@@ -121,8 +122,9 @@
 			let newInfo = {...oriInfo, ...info}
 			util.setSysInfo(newInfo)
 			// 重新计算横幅的宽高
-			that.bannerWidth = parseFloat(that.bannerWidth.split("px")[0])*((e.size.windowWidth-60)/ e.size.windowHeight) + 'px'
-			that.bannerHeight = parseFloat(that.bannerHeight.split("px")[0])*((e.size.windowWidth-60) / e.size.windowHeight) + 'px'
+			let bannerWidth = parseFloat(that.bannerWidth.split("px")[0])*((e.size.windowWidth-30)/ e.size.windowHeight)
+			that.bannerWidth = bannerWidth + 'px'
+			that.bannerHeight = (bannerWidth / that.bannerRatio) + 'px'
 		},
 		methods: {
 			adLoad() {
@@ -166,14 +168,15 @@
 
 							// 计算横幅合适的宽高
 							// 转成 upx，因为两边边距设置为 30upx
-							let size = resBanners.data.size || 2.619
+							let bannerRatio = resBanners.data.size || 2.619
 							let info = util.getSysInfo()
-							let width = info.windowWidth * info.pixelRatio - 60
-							let height = width / size
+							let width = info.windowWidth * info.pixelRatio - 30
+							let height = width / bannerRatio
 							that.platform = info.platform || ''
 							that.platform = that.platform.toLowerCase()
 							that.bannerWidth = width / info.pixelRatio + "px"
 							that.bannerHeight = height / info.pixelRatio + "px"
+							that.bannerRatio = bannerRatio
 						}
 						if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks =
 							resRecommendBooks.data.books

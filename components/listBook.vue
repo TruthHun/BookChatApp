@@ -105,8 +105,8 @@
 	.book-list .info image {
 		width: 12px;
 		height: 12px;
-		position: relative;
-		top: 2px;
+		/* position: relative; */
+		/* top: 2px; */
 		margin-right: 3px;
 	}
 
@@ -137,7 +137,7 @@
 		.book-list .info image{
 			max-width: 18px;
 			max-height: 18px;
-			top:3px;
+			/* top:3px; */
 		}
 		.book-list .cover {
 			max-width: 100%;

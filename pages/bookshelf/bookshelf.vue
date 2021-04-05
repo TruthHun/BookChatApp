@@ -93,7 +93,8 @@
 			iheader,
 		},
 		onLoad() {
-			util.loading("loading...")
+			let token = util.getToken() || ''
+			if (token) util.loading("loading...")
 			setTimeout(function(){
 				uni.hideLoading()
 			},2000)

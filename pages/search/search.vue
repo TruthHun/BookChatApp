@@ -201,38 +201,36 @@
 
 <style scoped>
 	.doc-info {
-		font-size: 24upx;
-		margin: 20upx 0;
+		font-size: 12px;
+		margin: 10px 0;
 	}
 
 	.doc-info image {
-		height: 20upx;
-		width: 20upx;
-		margin-right: 6upx;
+		height: 10px;
+		width: 10px;
+		margin-right: 3px;
 	}
 
 	.doc-info .item {
 		display: inline-block;
-		margin-right: 16upx;
+		margin-right: 8px;
 	}
 
 	.doc-intro {
-		font-size: 28upx;
+		font-size: 14px;
 		line-height: 170%;
 	}
 
 	.doc-list .row {
 		border-bottom: 1px solid #efefef;
-		margin-bottom: 30upx;
-		padding-bottom: 30upx;
+		margin-bottom: 15px;
+		padding-bottom: 15px;
 	}
 	@media (min-width: 768px) {
 		.doc-info image {
 			max-height: 18px;
 			max-width: 18px;
 			margin-right: 6px;
-			position: relative;
-			top: 3px;
 		}
 	}
 </style>

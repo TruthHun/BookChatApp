@@ -54,6 +54,7 @@
 				this.searchWd = wd
 			},
 			search() {
+				this.clickFocus = false
 				if (this.target) {
 					uni.navigateTo({
 						url: this.target + "?wd=" + this.searchWd

@@ -162,7 +162,7 @@
 				},
 				defautScreenBrightness: 0,
 				screenBrightness: 0,
-				fontIndexs: util.getSysInfo().windowWidth >= 768 ? ['16px', '17px', '18px', '19px', '20px', '21px', '22px'] : [
+				fontIndexs: util.getSysInfo().windowWidth >= 768 ? ['15px', '16px', '17px', '18px', '19px', '20px', '21px'] : [
 					'14px', '15px', '16px', '17px', '18px', '19px', '20px'
 				],
 				tips: '',
@@ -525,13 +525,13 @@
 	.title {
 		line-height: 1.6;
 		border-bottom: 1px solid #efefef;
-		padding: 0 0 30upx;
-		margin-bottom: 30upx;
+		padding: 0 0 15px;
+		margin-bottom: 15px;
 	}
 
 	.markdown-body {
 		transition: all 0.5s;
-		padding: 30upx 30upx 120upx;
+		padding: 15px 15px 60px;
 		box-sizing: border-box;
 	}
 
@@ -580,7 +580,7 @@
 	.drawer .drawer-content {
 		width: 100%;
 		box-sizing: border-box;
-		padding-bottom: 120upx;
+		padding-bottom: 60px;
 	}
 
 	.drawer-left {

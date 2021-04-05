@@ -153,12 +153,12 @@
 
 	.header .icon-right {
 		flex-direction: row-reverse;
-		padding-right: 30upx;
+		padding-right: 15px;
 	}
 
 	.header .header-icon>view {
 		height: 16px;
-		padding: 0upx 16upx;
+		padding: 0upx 8px;
 	}
 
 	.header .header-icon .line {
@@ -167,11 +167,11 @@
 		background-color: #CCCCCC;
 		height: 16px;
 		padding: 0;
-		margin: 0 5upx 0 0upx;
+		margin: 0 3px 0 0;
 	}
 
 	.header .back {
-		padding-left: 30upx;
+		padding-left: 15px;
 	}
 
 	.header image {

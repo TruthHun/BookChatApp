@@ -384,7 +384,7 @@
 		width: 19px;
 		height: 19px;
 		position: relative;
-		top: 6upx;
+		top: 3px;
 	}
 
 	.info {
@@ -398,12 +398,12 @@
 	}
 
 	.title {
-		margin-bottom: 15upx;
-		min-height: 80upx;
+		margin-bottom: 8px;
+		min-height: 40px;
 	}
 
 	.info .col-8 {
-		padding-left: 30upx;
+		padding-left: 15px;
 		box-sizing: border-box;
 	}
 
@@ -413,18 +413,18 @@
 	}
 
 	.data {
-		margin-bottom: 30upx;
-		padding: 0upx 30upx;
+		margin-bottom: 15px;
+		padding: 0upx 15px;
 	}
 
 	.data>view {
 		border-bottom: 1px solid #efefef;
-		padding-bottom: 30upx;
+		padding-bottom: 15px;
 	}
 
 	.data .col {
 		text-align: center;
-		font-size: 28upx;
+		font-size: 14px;
 	}
 
 	.data .col:nth-of-type(2n) {
@@ -443,13 +443,13 @@
 	}
 
 	.btns {
-		padding: 0upx 15upx 30upx;
-		border-bottom: 10upx solid #efefef;
+		padding: 0upx 8px 15px;
+		border-bottom: 5px solid #efefef;
 	}
 
 	.btns .col {
 		justify-content: space-between;
-		padding: 0upx 15upx;
+		padding: 0upx 8px;
 		box-sizing: border-box;
 	}
 
@@ -457,75 +457,75 @@
 		background-color: #efefef;
 		text-align: center;
 		margin: 0px auto;
-		padding: 8upx 0upx;
-		border-radius: 10upx;
+		padding: 4px 0;
+		border-radius: 5px;
 	}
 
 	/*  书籍介绍  */
 
 	.intro {
 		border-bottom: 1px solid #efefef;
-		padding: 30upx;
-		padding-top: 0upx;
+		padding: 15px;
+		padding-top: 0;
 		line-height: 180%;
 	}
 
 	.intro .tags navigator {
 		display: inline-block;
-		padding: 4upx 26upx;
+		padding: 2px 13px;
 		background-color: #F6F6F6;
-		margin-right: 16upx;
-		margin-top: 12upx;
-		margin-bottom: 4upx;
+		margin-right: 8px;
+		margin-top: 6px;
+		margin-bottom: 2px;
 		font-size: 13px !important;
 	}
 
 	.intro .ellipsis-1row {
 		word-break: break-all;
-		padding-top: 10upx;
+		padding-top: 5px;
 		/* font-size: 26upx; */
-		margin-bottom: -10upx;
+		margin-bottom: -5px;
 		color: #aaa;
 	}
 
 	/*  目录入口  */
 
 	.menu {
-		padding: 30upx;
-		font-size: 28upx;
-		border-bottom: 10upx solid #efefef;
+		padding: 15px;
+		font-size: 14px;
+		border-bottom: 5px solid #efefef;
 	}
 
 	.user image {
-		width: 36upx;
-		height: 36upx;
+		width: 18px;
+		height: 18px;
 		display: inline-block;
-		margin-right: 10upx;
+		margin-right: 5px;
 	}
 
 	.user image.clock {
-		margin-left: 30upx;
-		width: 26upx;
-		height: 26upx;
+		margin-left: 15px;
+		width: 13px;
+		height: 13px;
 		position: relative;
-		top: -5upx;
+		top: -3px;
 	}
 
 	.related-books {
-		border-bottom: 10upx solid #efefef;
-		padding-bottom: 30upx;
+		border-bottom: 5px solid #efefef;
+		padding-bottom: 15px;
 	}
 
 	.related-books .panel-heading {
 		border-bottom: 1px solid #efefef;
-		padding-bottom: 30upx;
+		padding-bottom: 15px;
 	}
 
 	.user .text-muted {
 		display: inline-block;
 		position: relative;
-		top: -7upx;
-		margin-left: 6upx;
+		top: -4px;
+		margin-left: 3px;
 	}
 
 	/* fix bottom  */
@@ -595,11 +595,11 @@
 
 	.comments .panel-heading {
 		border-bottom: 1px solid #efefef;
-		padding-bottom: 30upx;
+		padding-bottom: 15px;
 	}
 
 	.comment-info {
-		margin-bottom: 20upx;
+		margin-bottom: 10px;
 	}
 
 	.comment-info .score {
@@ -608,23 +608,24 @@
 	}
 
 	.comment-info .pull-right {
-		margin-top: 5upx;
+		margin-top: 3px;
 	}
 
 	.comment-right {
-		padding-left: 30upx;
+		padding-left: 15px;
 		box-sizing: border-box;
 	}
 
 	.comment-list {
 		border-bottom: 1upx solid #efefef;
-		padding-bottom: 30upx;
-		margin-bottom: 40upx;
+		padding-bottom: 15px;
+		margin-bottom: 20px;
 	}
 
 	.comment-list image {
-		width: 120upx;
-		height: 120upx;
+		width: 60px;
+		height: 60px;
+		max-width: 100%;
 	}
 
 	.hor {
@@ -634,17 +635,18 @@
 	}
 
 	.hor navigator {
-		width: 170upx;
-		margin: 3upx 15upx;
+		width: 85px;
+		margin: 2px 8px;
 	}
 
 	.hor navigator:first-of-type {
-		margin-left: 3upx;
+		margin-left: 2px;
 	}
 
 	.hor navigator image {
-		width: 170upx;
-		height: 223.5upx;
+		width: 85px;
+		height: 112px;
+		max-width: 100%;
 	}
 
 	.info navigator text {

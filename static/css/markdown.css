@@ -47,7 +47,7 @@
 .markdown-body {
 	width: 100%;
 	box-sizing: border-box;
-	padding: 30upx;
+	padding: 15px;
 }
 
 .markdown-body .tag-a {
@@ -62,7 +62,7 @@
 
 .markdown-body .tag-hr {
 	height: 0;
-	margin: 15upx 0;
+	margin: 8px 0;
 	overflow: hidden;
 	background: transparent;
 	border: 0;
@@ -86,8 +86,8 @@
 .markdown-body .tag-h4,
 .markdown-body .tag-h5,
 .markdown-body .tag-h6 {
-	margin-top: 30upx;
-	margin-bottom: 30upx;
+	margin-top: 15px;
+	margin-bottom: 15px;
 	font-weight: 400;
 }
 
@@ -698,8 +698,8 @@
 	/* padding-bottom: 0px; */
 	background-color: #f6f6f6;
 	color: #c7254e;
-	padding: 6upx 8upx;
-	margin: 5upx;
+	padding: 3px 4px;
+	margin: 3px;
 }
 
 .editormd-preview-container .tag-pre,
